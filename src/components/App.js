@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div>
+        <div className="container">
           <Navbar />
           <Switch>
             <Route path={homeRoute} exact component={Home} />
