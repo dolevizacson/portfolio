@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
+import '../utils/icons';
 
 import Navbar from './Navbar';
 import Home from '../scenes/home';
@@ -19,7 +20,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div className="container">
+        <div className="container-fluid">
           <Navbar />
           <Switch>
             <Route path={homeRoute} exact component={Home} />
