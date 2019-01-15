@@ -11,14 +11,38 @@ import {
 
 const Navbar = () => {
   return (
-    <div className="navbar">
+    <nav className="navbar navbar-expand-md navbar-light bg-light">
       <Link className="navbar-brand" to={homeRoute}>
         <FontAwesomeIcon icon="dot-circle" />
       </Link>
-      <Link to={projectsRoute}>projects</Link>
-      <Link to={skillsRoute}>skills</Link>
-      <Link to={contactRoute}>contacts</Link>
-    </div>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navRightLinks"
+        aria-controls="navRightLinks"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon" />
+      </button>
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navRightLinks"
+      >
+        <div className="navbar-nav">
+          <Link className="nav-item nav-link active" to={projectsRoute}>
+            projects
+          </Link>
+          <Link className="nav-item nav-link" to={skillsRoute}>
+            skills
+          </Link>
+          <Link className="nav-item nav-link" to={contactRoute}>
+            contacts
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 };
 
