@@ -18,16 +18,20 @@ import {
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <BrowserRouter>
-        <div className="container-fluid">
-          <Navbar />
-          <Switch>
-            <Route path={homeRoute} exact component={Home} />
-            <Route path={projectsRoute} exact component={Projects} />
-            <Route path={skillsRoute} exact component={Skills} />
-            <Route path={contactRoute} exact component={Contact} />
-          </Switch>
+        <div>
+          <div className="container-fluid">
+            <Navbar />
+          </div>
+          <div className="container">
+            <Switch>
+              <Route path={homeRoute} exact component={Home} />
+              <Route path={projectsRoute} exact component={Projects} />
+              <Route path={skillsRoute} exact component={Skills} />
+              <Route path={contactRoute} exact component={Contact} />
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     </div>

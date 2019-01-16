@@ -1,0 +1,23 @@
+.outer-navbar {
+  background-color: #4e4e50;
+  padding: 10px;
+}
+
+.inner-navbar {
+  background-color: #1a1a1d;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.outer-navbar a {
+  color: #d2caca;
+}
+.outer-navbar span {
+  color: #c3073f;
+  padding: 8px;
+}
+
+.outer-navbar button {
+  color: #d2caca;
+}
