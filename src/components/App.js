@@ -24,7 +24,7 @@ const App = () => {
           <div className="container-fluid">
             <Navbar />
           </div>
-          <div className="container">
+          <div className="container main-page">
             <Switch>
               <Route path={homeRoute} exact component={Home} />
               <Route path={projectsRoute} exact component={Projects} />

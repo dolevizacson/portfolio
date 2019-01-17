@@ -1,6 +1,7 @@
 .outer-navbar {
   background-color: #4e4e50;
   padding: 10px;
+  margin-bottom: 5px;
 }
 
 .inner-navbar {
@@ -16,6 +17,12 @@
 .outer-navbar span {
   color: #c3073f;
   padding: 8px;
+}
+
+@media (max-width: 767.98px) {
+  span {
+    display: none;
+  }
 }
 
 .outer-navbar button {

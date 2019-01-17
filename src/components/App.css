@@ -1,3 +1,11 @@
 .container-fluid {
   padding: 0 0;
 }
+
+.main-page {
+  background-color: #6f2232;
+  border-color: #c3073f;
+  border-width: 10px;
+  border-style: solid;
+  padding: 10px;
+}
