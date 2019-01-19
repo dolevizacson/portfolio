@@ -1,6 +1,6 @@
 const content = {
   about: 'Here i will write stuff about me',
-  moto: 'here i will write a moto',
+  moto: 'Try to find moments to lought, even in bad times',
 };
 
 export default content;
