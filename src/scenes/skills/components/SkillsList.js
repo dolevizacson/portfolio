@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SkillList = props => {
-  const { skills } = props.skillObject;
-  const skillList = skills.map(lang => {
+  const { skillsListContent } = props.skillsList;
+  const skillList = skillsListContent.map(lang => {
     return (
       <div className="skill">
         <div className="icon">{lang.icon}</div>
@@ -16,4 +17,8 @@ const SkillList = props => {
   return <div>{skillList}</div>;
 };
 
-export default SkillList;
+const mapStateToProps = state => {
+  return { skillsList: state.loadSkillsListContent };
+};
+
+export default connect(mapStateToProps)(SkillList);
