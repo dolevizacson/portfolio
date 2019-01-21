@@ -2,7 +2,7 @@ const content = {
   skills: [
     {
       language: 'JavaScript',
-      icon: '< FontAwesomeIcon icon = "JsSquare" />',
+      icon: '<FontAwesomeIcon icon = "JsSquare" />',
       shortData: 'here will be written shorten knowledge about javascript',
       longData: [
         'stuff about java script',

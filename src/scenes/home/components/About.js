@@ -1,17 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './About.css';
 
-import content from '../services/content';
+const About = props => {
+  const { aboutContent } = props.about;
+  const { motoContent } = props.moto;
 
-const About = () => {
   return (
     <div className="about">
-      <div className="content">{content.about}</div>
+      <div className="content">{aboutContent}</div>
       <br />
-      <div className="content">{content.moto}</div>
+      <div className="content">{motoContent}</div>
     </div>
   );
 };
 
-export default About;
+const mapStateToProps = state => {
+  return {
+    about: state.loadAboutContentReducer,
+    moto: state.loadMotoContentReducer,
+  };
+};
+
+export default connect(mapStateToProps)(About);
