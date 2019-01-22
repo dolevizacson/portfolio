@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 import './App.css';
 import '../utils/icons';
 
-import Navbar from './Navbar';
+import AppNavbar from './AppNavbar';
 import Home from '../scenes/home';
 import Projects from '../scenes/projects';
 import Skills from '../scenes/skills';
@@ -21,17 +22,17 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <div>
-          <div className="container-fluid">
-            <Navbar />
-          </div>
-          <div className="container main-page">
+          <Container fluid>
+            <AppNavbar />
+          </Container>
+          <Container className="main-page">
             <Switch>
               <Route path={homeRoute} exact component={Home} />
               <Route path={projectsRoute} exact component={Projects} />
               <Route path={skillsRoute} exact component={Skills} />
               <Route path={contactRoute} exact component={Contact} />
             </Switch>
-          </div>
+          </Container>
         </div>
       </BrowserRouter>
     </div>
