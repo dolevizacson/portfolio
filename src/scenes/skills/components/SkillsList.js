@@ -6,8 +6,10 @@ const SkillList = props => {
   const { skillsListContent } = props.skillsList;
   const skillList = skillsListContent.map(lang => {
     return (
-      <div className="skill">
-        <div className="icon">{lang.icon}</div>
+      <div className="skill" key={lang.key}>
+        <div>
+          <FontAwesomeIcon icon={['fab', lang.icon]} />
+        </div>
         <div>{lang.language}</div>
         <div>{lang.shortData}</div>
       </div>

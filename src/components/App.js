@@ -25,7 +25,7 @@ const App = () => {
           <Container fluid>
             <AppNavbar />
           </Container>
-          <Container className="main-page">
+          <Container fluid>
             <Switch>
               <Route path={homeRoute} exact component={Home} />
               <Route path={projectsRoute} exact component={Projects} />

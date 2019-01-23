@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col, Jumbotron } from 'reactstrap';
 
 import './index.css';
 
@@ -7,14 +8,16 @@ import About from './components/About';
 const Home = () => {
   return (
     <div>
-      <div className="row">
-        <div className="col">
-          <img src="tempPic.jpg" alt="profile" />
-        </div>
-        <div className="col">
-          <About />
-        </div>
-      </div>
+      <Jumbotron>
+        <Row>
+          <Col>
+            <img src="tempPic.jpg" alt="profile" />
+          </Col>
+          <Col>
+            <About />
+          </Col>
+        </Row>
+      </Jumbotron>
     </div>
   );
 };
