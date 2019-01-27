@@ -1,4 +1,5 @@
 body {
-  background-image: linear-gradient(#1a1a1d, #626264);
   height: 100vh;
+  background-image: url('/blackWhiteTiles.jpg');
+  background-color: black;
 }
