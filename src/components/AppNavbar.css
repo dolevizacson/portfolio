@@ -1,20 +1,23 @@
 .outer-navbar {
+  background-color: #d2caca;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.middle-navbar {
   background-color: #4e4e50;
-  padding: 10px;
-  margin-bottom: 5px;
+  height: 55px;
 }
 
 .inner-navbar {
-  background-color: #1a1a1d;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  background-color: black;
+  height: 50px;
 }
 
-.outer-navbar a {
+.inner-navbar a {
   color: #d2caca;
 }
-.outer-navbar span {
+.inner-navbar span {
   color: #c3073f;
   padding: 8px;
 }
@@ -25,6 +28,6 @@
   }
 }
 
-.outer-navbar button {
+.inner-navbar button {
   background-color: #d2caca;
 }

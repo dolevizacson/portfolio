@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 
 import './index.css';
 
@@ -7,12 +7,12 @@ import SkillsList from './components/SkillsList';
 
 const Skills = () => {
   return (
-    <div>
-      <Container>
-        <Jumbotron>
+    <div className="skills">
+      <Jumbotron>
+        <div className="skillsList">
           <SkillsList />
-        </Jumbotron>
-      </Container>
+        </div>
+      </Jumbotron>
     </div>
   );
 };

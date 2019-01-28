@@ -1,7 +1,7 @@
 const content = {
   home: {
     about: 'Full Stack developer, ',
-    moto: 'Try to find moments to lought, even in bad times',
+    moto: 'Try to find moments to laugh, even in bad times',
   },
   skills: [
     {

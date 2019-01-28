@@ -1,0 +1,27 @@
+.skills .jumbotron {
+  background: transparent;
+}
+
+.skillsList {
+  background-color: black;
+
+  border: solid #d2caca;
+  border-bottom-width: 5px;
+}
+
+.card {
+  background-color: #1a1a1d;
+  color: #d2caca;
+  margin: 7px;
+  border: solid #d2caca;
+  border-bottom-width: 1px;
+}
+
+.card-header {
+  background-color: #1a1a1d;
+}
+
+.card-body {
+  background-color: #d2caca;
+  color: #1a1a1d;
+}

@@ -7,11 +7,11 @@ import About from './components/About';
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Jumbotron>
         <Row>
           <Col>
-            <img src="tempPic.jpg" alt="profile" />
+            <img className="border-style" src="tempPic.jpg" alt="profile" />
           </Col>
           <Col>
             <About />

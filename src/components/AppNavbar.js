@@ -24,33 +24,35 @@ class AppNavbar extends React.Component {
   render() {
     return (
       <div className="outer-navbar">
-        <Navbar className="inner-navbar" expand="md">
-          <Link to={homeRoute}>
-            <FontAwesomeIcon icon="dot-circle" />
-          </Link>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link className="nav-item nav-link active" to={projectsRoute}>
-                  projects
-                </Link>
-              </NavItem>
-              <span>/</span>
-              <NavItem>
-                <Link className="nav-item nav-link" to={skillsRoute}>
-                  skills
-                </Link>
-              </NavItem>
-              <span>/</span>
-              <NavItem>
-                <Link className="nav-item nav-link" to={contactRoute}>
-                  contacts
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+        <div className="middle-navbar">
+          <Navbar className="inner-navbar" expand="md">
+            <Link to={homeRoute}>
+              <FontAwesomeIcon icon="dot-circle" />
+            </Link>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <Link className="nav-item nav-link active" to={projectsRoute}>
+                    projects
+                  </Link>
+                </NavItem>
+                <span>/</span>
+                <NavItem>
+                  <Link className="nav-item nav-link" to={skillsRoute}>
+                    skills
+                  </Link>
+                </NavItem>
+                <span>/</span>
+                <NavItem>
+                  <Link className="nav-item nav-link" to={contactRoute}>
+                    contacts
+                  </Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
       </div>
     );
   }
