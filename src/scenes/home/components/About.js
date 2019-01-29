@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
 
 import './About.css';
 
@@ -9,9 +10,14 @@ const About = props => {
 
   return (
     <div className="about">
-      <div className="content">{aboutContent}</div>
-      <br />
-      <div className="content">{motoContent}</div>
+      <Container className="about-me">
+        <div className="content">{aboutContent}</div>
+      </Container>
+      <Container className="moto">
+        <div className="top-quotes">"</div>
+        <div className="content">{motoContent}</div>
+        <div className="bottum-quotes">"</div>
+      </Container>
     </div>
   );
 };

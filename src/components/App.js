@@ -22,17 +22,21 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <div>
-          <Container fluid>
-            <AppNavbar />
-          </Container>
-          <Container fluid>
-            <Switch>
-              <Route path={homeRoute} exact component={Home} />
-              <Route path={projectsRoute} exact component={Projects} />
-              <Route path={skillsRoute} exact component={Skills} />
-              <Route path={contactRoute} exact component={Contact} />
-            </Switch>
-          </Container>
+          <div>
+            <Container fluid>
+              <AppNavbar />
+            </Container>
+          </div>
+          <div>
+            <Container fluid>
+              <Switch>
+                <Route path={homeRoute} exact component={Home} />
+                <Route path={projectsRoute} exact component={Projects} />
+                <Route path={skillsRoute} exact component={Skills} />
+                <Route path={contactRoute} exact component={Contact} />
+              </Switch>
+            </Container>
+          </div>
         </div>
       </BrowserRouter>
     </div>

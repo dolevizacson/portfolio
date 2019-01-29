@@ -1,8 +1,31 @@
 .about {
   background-color: #1a1a1d;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .content {
   color: #d2caca;
+}
+.about-me {
+  text-align: center;
+  margin: auto;
+}
+
+.top-quotes,
+.bottum-quotes {
+  color: #c3073f;
+}
+
+.moto {
+  text-align: center;
+}
+.top-quotes {
+  text-align: left;
+}
+
+.bottum-quotes {
+  text-align: right;
 }

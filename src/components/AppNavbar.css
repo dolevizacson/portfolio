@@ -1,17 +1,8 @@
-.outer-navbar {
-  background-color: #d2caca;
-  height: 60px;
-  margin-bottom: 10px;
-}
-
-.middle-navbar {
-  background-color: #4e4e50;
-  height: 55px;
-}
-
 .inner-navbar {
   background-color: black;
-  height: 50px;
+  height: 55px;
+  border-bottom: 5px solid #d2caca;
+  margin-bottom: 10px;
 }
 
 .inner-navbar a {
@@ -30,4 +21,8 @@
 
 .inner-navbar button {
   background-color: #d2caca;
+}
+
+.navbar-collapse {
+  background-color: black;
 }
