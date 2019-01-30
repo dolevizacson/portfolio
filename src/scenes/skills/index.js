@@ -1,18 +1,15 @@
 import React from 'react';
-import { Jumbotron } from 'reactstrap';
 
 import './index.css';
 
-import SkillsList from './components/SkillsList';
+import MethodologyList from './components/MethodologyList';
 
 const Skills = () => {
   return (
     <div className="skills">
-      <Jumbotron>
-        <div className="skillsList">
-          <SkillsList />
-        </div>
-      </Jumbotron>
+      <div className="skillsList">
+        <MethodologyList />
+      </div>
     </div>
   );
 };

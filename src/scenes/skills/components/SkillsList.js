@@ -1,13 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 
+import './SkillsList.css';
+
 const SkillList = props => {
   const { skillsListContent } = props.skillsList;
-  const skillList = skillsListContent.map(lang => {
+  const createSkillsList = skillsListContent.map(lang => {
     return (
-      <div className="skill" key={lang.key}>
+      <div className="skill" key={lang.name}>
         <Card>
           <CardHeader>
             <div>
@@ -25,11 +26,7 @@ const SkillList = props => {
     );
   });
 
-  return <div>{skillList}</div>;
+  return <div>{createSkillsList}</div>;
 };
 
-const mapStateToProps = state => {
-  return { skillsList: state.loadSkillsListContent };
-};
-
-export default connect(mapStateToProps)(SkillList);
+export default SkillList;

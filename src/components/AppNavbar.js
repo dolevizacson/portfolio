@@ -23,7 +23,7 @@ class AppNavbar extends React.Component {
 
   render() {
     return (
-      <Navbar className="inner-navbar" expand="md" fixed="top">
+      <Navbar className="appNavbar" expand="md" fixed="top">
         <Link to={homeRoute}>
           <FontAwesomeIcon icon="dot-circle" />
         </Link>

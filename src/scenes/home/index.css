@@ -2,14 +2,3 @@ img {
   height: 100%;
   width: 100%;
 }
-
-.home .jumbotron {
-  background: transparent;
-}
-
-.border-style,
-.about {
-  border: solid;
-  border-color: #d2caca;
-  border-bottom-width: 5px;
-}

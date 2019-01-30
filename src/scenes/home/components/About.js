@@ -9,7 +9,7 @@ const About = props => {
   const { motoContent } = props.moto;
 
   return (
-    <div className="about">
+    <div className="about ui-container">
       <Container className="about-me">
         <div className="content">{aboutContent}</div>
       </Container>
