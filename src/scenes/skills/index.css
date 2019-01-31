@@ -1,0 +1,14 @@
+.skills {
+  height: 100vh;
+  background-image: url('/blackWhiteTiles.jpg');
+}
+
+.skills-content {
+  padding-top: 8vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+.skills-list {
+  padding: 3% 15%;
+}

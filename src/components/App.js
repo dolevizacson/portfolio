@@ -10,6 +10,7 @@ import Home from '../scenes/home';
 import Projects from '../scenes/projects';
 import Skills from '../scenes/skills';
 import Contact from '../scenes/contact';
+import Footer from './Footer';
 import {
   homeRoute,
   projectsRoute,
@@ -31,6 +32,7 @@ const App = () => {
               <Route path={contactRoute} exact component={Contact} />
             </Switch>
           </Container>
+          <Footer />
         </div>
       </BrowserRouter>
     </div>

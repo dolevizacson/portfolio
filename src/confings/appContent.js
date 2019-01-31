@@ -36,7 +36,7 @@ const content = {
     {
       key: 2,
       topic: 'Back-End',
-      image: '/frontendImage.png',
+      image: '/backendImage.png',
       stack: [
         {
           key: 21,

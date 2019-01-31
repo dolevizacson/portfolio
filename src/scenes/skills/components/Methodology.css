@@ -14,9 +14,22 @@
 }
 
 .card-img {
-  width: 50%;
-  height: 50%;
+  max-width: 100%;
+  max-height: 100%;
   align-self: center;
+  object-fit: contain;
+}
+
+.methodology:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #d2caca;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @media (max-width: 576px) {

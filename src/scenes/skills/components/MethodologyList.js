@@ -1,14 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardImg,
-  Col,
-  Row,
-  Button,
-} from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 
 import './Methodology.css';
 
@@ -22,14 +14,22 @@ const MethodologyList = props => {
       <Col key={methodology.key}>
         <div className="methodology ui-container">
           <Card>
-            <CardHeader>{methodology.topic}</CardHeader>
-            <CardImg src={methodology.image} />
+            <CardHeader>
+              <Row>
+                <Col xs="3">
+                  <div className="image-container rounded">
+                    <img src={methodology.image} />
+                  </div>
+                </Col>
+                <Col>{methodology.topic}</Col>
+              </Row>
+            </CardHeader>
+
             <CardBody>
               {methodology.stack.map(lang => {
                 return <div key={lang.key}>{lang.language}</div>;
               })}
             </CardBody>
-            <Button color="secondary">Button</Button>
           </Card>
         </div>
       </Col>
