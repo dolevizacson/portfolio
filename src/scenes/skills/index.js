@@ -8,23 +8,25 @@ import MethodologyList from './components/MethodologyList';
 const Skills = () => {
   return (
     <div className="skills">
-      <div className="skills-content">
+      <div className="skills-skillsList">
         <Row>
           <div className="ui-titles-container">
             <Row>
-              <Col xs="3">
+              <Col xs="2">
                 <img
                   className="rounded"
                   src="/skillsTitleImage.png"
                   alt="stone-stack"
                 />
               </Col>
-              <Col> Technology Stack And Stuff</Col>
+              <Col>
+                <h2>Technology Stack And Stuff</h2>
+              </Col>
             </Row>
           </div>
         </Row>
         <Row>
-          <div className="skills-list">
+          <div className="Methodology-list">
             <MethodologyList />
           </div>
         </Row>

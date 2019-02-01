@@ -8,7 +8,7 @@ import About from './components/About';
 const Home = () => {
   return (
     <div className="home">
-      <div className="home-content">
+      <div className="home-on-picture">
         <Row>
           <Col>
             <img className="ui-container" src="tempPic.jpg" alt="profile" />

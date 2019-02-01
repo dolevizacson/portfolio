@@ -23,16 +23,16 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <div>
-          <AppNavbar />
           <Container className="app-container" fluid>
+            <AppNavbar />
             <Switch>
               <Route path={homeRoute} exact component={Home} />
               <Route path={projectsRoute} exact component={Projects} />
               <Route path={skillsRoute} exact component={Skills} />
               <Route path={contactRoute} exact component={Contact} />
             </Switch>
+            <Footer />
           </Container>
-          <Footer />
         </div>
       </BrowserRouter>
     </div>

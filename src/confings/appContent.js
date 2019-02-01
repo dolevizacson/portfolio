@@ -1,6 +1,7 @@
 const content = {
   home: {
-    about: 'Full Stack developer, ',
+    about:
+      'Full Stack developer, biotechnology engineer, love to learn how things work ',
     moto: 'Try to find moments to laugh, even in bad times',
   },
   skills: [
@@ -47,6 +48,17 @@ const content = {
             'stuff about java',
             'more stuff about java',
             'more stuff about java',
+          ],
+        },
+        {
+          key: 22,
+          language: 'node js',
+          icon: 'node',
+          shortData: 'here will be written shorten knowledge about node js',
+          longData: [
+            'stuff about node js',
+            'more stuff about node js',
+            'more stuff about node js',
           ],
         },
       ],

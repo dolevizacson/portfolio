@@ -1,14 +1,19 @@
 .skills {
-  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
   background-image: url('/blackWhiteTiles.jpg');
 }
 
-.skills-content {
-  padding-top: 8vh;
-  padding-left: 3vw;
-  padding-right: 3vw;
+.skills-skillsList {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8vh 3vw;
 }
 
-.skills-list {
+.Methodology-list {
   padding: 3% 15%;
 }
