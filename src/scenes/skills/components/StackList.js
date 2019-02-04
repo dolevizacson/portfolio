@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, CardBody, CardHeader } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardFooter, Button } from 'reactstrap';
 
 import './StackList.css';
 
@@ -25,7 +25,14 @@ const StackList = props => {
     );
   });
 
-  return <div>{createSkillsList}</div>;
+  return (
+    <div>
+      {createSkillsList}
+      <CardFooter>
+        <Button onClick={props.backButton}>Go Back</Button>
+      </CardFooter>
+    </div>
+  );
 };
 
 export default StackList;
