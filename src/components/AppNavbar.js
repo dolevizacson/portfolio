@@ -44,7 +44,7 @@ class AppNavbar extends React.Component {
             <span>/</span>
             <NavItem>
               <Link className="nav-item nav-link" to={contactRoute}>
-                contacts
+                contact
               </Link>
             </NavItem>
           </Nav>
