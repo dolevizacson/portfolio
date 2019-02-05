@@ -21,9 +21,44 @@ class AppNavbar extends React.Component {
     });
   };
 
+  renderNavbar = () => {
+    return (
+      <div className="app-navbar">
+        <div className="navbar-left">
+          <div className="navbar-logo">
+            <Link to={homeRoute}>
+              <FontAwesomeIcon icon="dot-circle" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="navbar-right">
+          <div className="navbar-link">
+            <Link className="nav-item nav-link active" to={projectsRoute}>
+              projects
+            </Link>
+          </div>
+          <span>/</span>
+          <div className="navbar-link">
+            <Link className="nav-item nav-link" to={skillsRoute}>
+              skills
+            </Link>
+          </div>
+          <span>/</span>
+          <div className="navbar-link">
+            <Link className="nav-item nav-link" to={contactRoute}>
+              contact
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
-      <Navbar className="appNavbar" expand="md" fixed="top">
+      <div>{this.renderNavbar()}</div>
+      /* <Navbar className="appNavbar" expand="md" fixed="top">
         <Link to={homeRoute}>
           <FontAwesomeIcon icon="dot-circle" />
         </Link>
@@ -50,6 +85,7 @@ class AppNavbar extends React.Component {
           </Nav>
         </Collapse>
       </Navbar>
+    */
     );
   }
 }
