@@ -8,21 +8,23 @@ import './index.css';
 import MethodologyList from './components/MethodologyList';
 import StackList from './components/StackList';
 
-import { loadOneSkillsList, loadSkillsListContent } from './services/actions';
+import { loadSkillsListContent } from './services/actions';
 
 class Skills extends React.Component {
-  createMethodologyList = () => {
-    //console.log(this.props);
+  state = {
+    skillsList: this.props.skills.skillsContent.skillsList,
+    isHidden: true,
+  };
 
-    const { skillsContent } = this.props.skills;
-    return skillsContent.skillsList.map(methodology => {
+  createMethodologyList = () => {
+    return this.state.skillsList.map(methodology => {
       return (
         <Col key={methodology.key}>
           <div
             className="methodology ui-container"
             onClick={() => {
-              this.props.loadOneSkillsList({
-                skillList: skillsContent.skillsList.filter(
+              this.setState({
+                skillsList: this.state.skillsList.filter(
                   item => item.key === methodology.key
                 ),
                 isHidden: false,
@@ -42,19 +44,22 @@ class Skills extends React.Component {
                   </Col>
                 </Row>
               </CardHeader>
-              {skillsContent.isHidden && (
+              {this.state.isHidden && (
                 <CardBody>
                   {methodology.stack.map(lang => {
                     return <div key={lang.key}>{lang.language}</div>;
                   })}
                 </CardBody>
               )}
-              {!skillsContent.isHidden && (
+              {!this.state.isHidden && (
                 <StackList
                   stackList={methodology.stack}
                   backButton={e => {
                     e.stopPropagation();
-                    this.props.loadSkillsListContent();
+                    this.setState({
+                      skillsList: this.props.skills.skillsContent.skillsList,
+                      isHidden: true,
+                    });
                   }}
                 />
               )}
@@ -105,7 +110,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    loadOneSkillsList,
     loadSkillsListContent,
   }
 )(Skills);

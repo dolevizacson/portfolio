@@ -7,12 +7,3 @@ export const loadSkillsListContent = () => async (dispatch, getState) => {
     payload: 'skillList',
   });
 };
-
-export const loadOneSkillsList = skillsList => async (dispatch, getState) => {
-  console.log('load one skill');
-  //do async stuff with await
-  dispatch({
-    type: 'LOAD_ONE_SKILLS_LIST',
-    payload: skillsList,
-  });
-};
