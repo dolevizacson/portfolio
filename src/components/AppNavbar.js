@@ -13,12 +13,19 @@ import {
 } from '../confings/routes';
 
 class AppNavbar extends React.Component {
-  state = { isOpen: false };
+  state = { ShowIcon: false, isHidden: true };
 
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+  componentDidMount() {
+    window.addEventListener('resize', this.checkWidth);
+  }
+
+  checkWidth = () => {
+    const width = window.innerWidth;
+    if (width < 767.98) {
+      this.setState({ ShowIcon: true });
+    } else {
+      this.setState({ ShowIcon: false });
+    }
   };
 
   renderNavbar = () => {
@@ -31,24 +38,23 @@ class AppNavbar extends React.Component {
             </Link>
           </div>
         </div>
-
         <div className="navbar-right">
+          {this.state.ShowIcon && (
+            <div className="navbar-collapse-icon">
+              <FontAwesomeIcon icon="dot-circle" />
+            </div>
+          )}
+
           <div className="navbar-link">
-            <Link className="nav-item nav-link active" to={projectsRoute}>
-              projects
-            </Link>
+            <Link to={projectsRoute}>projects</Link>
           </div>
           <span>/</span>
           <div className="navbar-link">
-            <Link className="nav-item nav-link" to={skillsRoute}>
-              skills
-            </Link>
+            <Link to={skillsRoute}>skills</Link>
           </div>
           <span>/</span>
           <div className="navbar-link">
-            <Link className="nav-item nav-link" to={contactRoute}>
-              contact
-            </Link>
+            <Link to={contactRoute}>contact</Link>
           </div>
         </div>
       </div>
