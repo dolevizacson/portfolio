@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
+import { Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 
 import './AppNavbar.css';
 
@@ -13,86 +13,77 @@ import {
 } from '../confings/routes';
 
 class AppNavbar extends React.Component {
-  state = { ShowIcon: false, isHidden: true };
+  state = { ShowIcon: false, isCollapse: true, hideNavbar: false };
 
   componentDidMount() {
     window.addEventListener('resize', this.checkWidth);
+    this.checkWidth();
   }
 
   checkWidth = () => {
     const width = window.innerWidth;
-    if (width < 767.98) {
+    if (width < 800) {
       this.setState({ ShowIcon: true });
     } else {
       this.setState({ ShowIcon: false });
     }
   };
 
+  displayLinks = () => {
+    return (
+      <>
+        <div className="navbar-link">
+          <Link to={projectsRoute}>projects</Link>
+        </div>
+        {!this.state.ShowIcon && <span>/</span>}
+        <div className="navbar-link">
+          <Link to={skillsRoute}>skills</Link>
+        </div>
+        {!this.state.ShowIcon && <span>/</span>}
+        <div className="navbar-link">
+          <Link to={contactRoute}>contact</Link>
+        </div>
+      </>
+    );
+  };
+
   renderNavbar = () => {
     return (
       <div className="app-navbar">
-        <div className="navbar-left">
-          <div className="navbar-logo">
-            <Link to={homeRoute}>
-              <FontAwesomeIcon icon="dot-circle" />
-            </Link>
-          </div>
-        </div>
-        <div className="navbar-right">
-          {this.state.ShowIcon && (
-            <div className="navbar-collapse-icon">
-              <FontAwesomeIcon icon="dot-circle" />
+        <div className="navbar-container">
+          <div className="top-navbar">
+            <div className="navbar-left">
+              <div className="navbar-logo">
+                <Link to={homeRoute}>
+                  <FontAwesomeIcon icon="dot-circle" />{' '}
+                </Link>
+              </div>
             </div>
-          )}
 
-          <div className="navbar-link">
-            <Link to={projectsRoute}>projects</Link>
+            <div className="navbar-right">
+              {this.state.ShowIcon && (
+                <div
+                  className="navbar-collapse-icon"
+                  onClick={() =>
+                    this.setState({ isCollapse: !this.state.isCollapse })
+                  }
+                >
+                  <FontAwesomeIcon icon="dot-circle" />
+                </div>
+              )}
+              {!this.state.ShowIcon && <>{this.displayLinks()}</>}
+            </div>
           </div>
-          <span>/</span>
-          <div className="navbar-link">
-            <Link to={skillsRoute}>skills</Link>
-          </div>
-          <span>/</span>
-          <div className="navbar-link">
-            <Link to={contactRoute}>contact</Link>
-          </div>
+          {!this.state.isCollapse && (
+            <div className="navbar-collapse">{this.displayLinks()}</div>
+          )}
         </div>
       </div>
     );
   };
 
   render() {
-    return (
-      <div>{this.renderNavbar()}</div>
-      /* <Navbar className="appNavbar" expand="md" fixed="top">
-        <Link to={homeRoute}>
-          <FontAwesomeIcon icon="dot-circle" />
-        </Link>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Link className="nav-item nav-link active" to={projectsRoute}>
-                projects
-              </Link>
-            </NavItem>
-            <span>/</span>
-            <NavItem>
-              <Link className="nav-item nav-link" to={skillsRoute}>
-                skills
-              </Link>
-            </NavItem>
-            <span>/</span>
-            <NavItem>
-              <Link className="nav-item nav-link" to={contactRoute}>
-                contact
-              </Link>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    */
-    );
+    return <div>{this.renderNavbar()}</div>;
   }
 }
 

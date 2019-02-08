@@ -12,7 +12,7 @@
   flex-wrap: nowrap;
   background-color: #1a1a1d;
   color: #d2caca;
-  border: solid #d2caca 5px;
+  border: solid #d2caca 2px;
   -webkit-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
@@ -24,7 +24,7 @@
   margin: auto;
   padding: 1% 2%;
   background-color: #1a1a1d;
-  border: solid #d2caca 5px;
+  border: solid #d2caca 2px;
   color: #d2caca;
   -webkit-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);

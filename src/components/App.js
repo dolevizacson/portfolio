@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Container } from 'reactstrap';
 
 import './App.css';
 import '../utils/icons';
@@ -23,7 +22,7 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <div>
-          <Container className="app-container" fluid>
+          <div className="app-container">
             <AppNavbar />
             <Switch>
               <Route path={homeRoute} exact component={Home} />
@@ -32,7 +31,7 @@ const App = () => {
               <Route path={contactRoute} exact component={Contact} />
             </Switch>
             <Footer />
-          </Container>
+          </div>
         </div>
       </BrowserRouter>
     </div>
