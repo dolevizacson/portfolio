@@ -17,8 +17,11 @@ const StackList = props => {
             </div>
           </CardHeader>
           <CardBody>
-            <div />
-            <div>{lang.shortData}</div>
+            <div>
+              {lang.longData.map(data => {
+                return <div> - {data} </div>;
+              })}
+            </div>
           </CardBody>
         </Card>
       </div>

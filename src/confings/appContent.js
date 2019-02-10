@@ -1,8 +1,22 @@
 const content = {
   home: {
     about:
-      'Full Stack developer, biotechnology engineer, love to learn how things work ',
+      'Full Stack developer, biotechnology engineer, love to learn and understand how things work. Love to create and design my own projects',
     moto: 'Try to find moments to laugh, even in bad times',
+    workingOn: [
+      {
+        header: "What i'am working on1",
+        description:
+          'Explantion about the project and what needs to be accomplished',
+        isDone: true,
+      },
+      {
+        header: "What i'am working on2",
+        description:
+          'Explantion about the project and what needs to be accomplished',
+        isDone: false,
+      },
+    ],
   },
   skills: {
     skillsList: [
@@ -15,8 +29,6 @@ const content = {
             key: 11,
             language: 'JavaScript',
             icon: 'js-square',
-            shortData:
-              'here will be written shorten knowledge about javascript',
             longData: [
               'stuff about java script',
               'more stuff about java script',
@@ -27,7 +39,6 @@ const content = {
             key: 12,
             language: 'React',
             icon: 'react',
-            shortData: 'here will be written shorten knowledge about react',
             longData: [
               'stuff about react',
               'more stuff about react',
@@ -45,7 +56,6 @@ const content = {
             key: 21,
             language: 'Java',
             icon: 'java',
-            shortData: 'here will be written shorten knowledge about java',
             longData: [
               'stuff about java',
               'more stuff about java',
@@ -56,7 +66,6 @@ const content = {
             key: 22,
             language: 'node js',
             icon: 'node',
-            shortData: 'here will be written shorten knowledge about node js',
             longData: [
               'stuff about node js',
               'more stuff about node js',

@@ -19,3 +19,12 @@ export const loadMotoContentReducer = (state = {}, action) => {
       return { motoContent: home.moto };
   }
 };
+
+export const loadTaskListContentReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOAD_TASK_LIST_CONTENT':
+      return { ...state, motoContent: action.payload };
+    default:
+      return { taskListContent: home.workingOn };
+  }
+};
