@@ -54,7 +54,7 @@ class AppNavbar extends React.Component {
             <div className="navbar-left">
               <div className="navbar-logo">
                 <Link to={homeRoute}>
-                  <FontAwesomeIcon icon="dot-circle" />{' '}
+                  <FontAwesomeIcon icon="dot-circle" />
                 </Link>
               </div>
             </div>

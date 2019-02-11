@@ -1,17 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './CurrentlyWorking.css';
 
 const CurrentlyWorking = props => {
-  const { taskListContent } = props.taskList;
+  const { workingOn } = props.home.homeContent;
   const renderTaskList = () => {
-    return taskListContent.map(task => {
+    return workingOn.map(task => {
       return (
-        <div key={task.header}>
-          <div>{task.header}</div>
+        <div className="task-container" key={task.header}>
+          <div className="task-container-header">{task.header}</div>
           <div>{task.description}</div>
-          {task.isDone && <div>task is done</div>}
+          {task.isDone && (
+            <div className="task-container-done">
+              <div className="done">
+                <FontAwesomeIcon icon="dot-circle" />
+              </div>
+            </div>
+          )}
         </div>
       );
     });
@@ -19,14 +26,14 @@ const CurrentlyWorking = props => {
 
   return (
     <div className="currently-working-on">
-      <div className="task-container">{renderTaskList()}</div>
+      <div className="task-list-container">{renderTaskList()}</div>
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    taskList: state.loadTaskListContentReducer,
+    home: state.loadHomeContentReducer,
   };
 };
 

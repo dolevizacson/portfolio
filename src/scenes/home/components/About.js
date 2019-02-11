@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import './About.css';
 
 const About = props => {
-  const { aboutContent } = props.about;
-  const { motoContent } = props.moto;
+  const { about, moto } = props.home.homeContent;
 
   return (
     <div className="about ui-container ">
       <div className="about-me">
-        <div className="content">{aboutContent}</div>
+        <div className="content">{about}</div>
       </div>
       <div className="moto">
         <div className="top-quotes">"</div>
-        <div className="content">{motoContent}</div>
+        <div className="content">{moto}</div>
         <div className="bottum-quotes">"</div>
       </div>
     </div>
@@ -23,8 +22,7 @@ const About = props => {
 
 const mapStateToProps = state => {
   return {
-    about: state.loadAboutContentReducer,
-    moto: state.loadMotoContentReducer,
+    home: state.loadHomeContentReducer,
   };
 };
 
