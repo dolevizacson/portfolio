@@ -29,6 +29,7 @@
 
 .task-container-header {
   text-decoration-line: underline;
+  font-weight: bold;
 }
 
 .task-container-done {

@@ -24,6 +24,8 @@
 
 .moto {
   text-align: center;
+  font-size: 22px;
+  font-family: 'myFont1-bold';
 }
 .top-quotes {
   text-align: left;

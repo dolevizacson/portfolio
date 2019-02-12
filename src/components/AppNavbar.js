@@ -32,15 +32,15 @@ class AppNavbar extends React.Component {
     return (
       <>
         <div className="navbar-link">
-          <Link to={projectsRoute}>projects</Link>
+          <Link to={projectsRoute}>PROJECTS</Link>
         </div>
         {!this.state.ShowIcon && <span>/</span>}
         <div className="navbar-link">
-          <Link to={skillsRoute}>skills</Link>
+          <Link to={skillsRoute}>SKILLS</Link>
         </div>
         {!this.state.ShowIcon && <span>/</span>}
         <div className="navbar-link">
-          <Link to={contactRoute}>contact</Link>
+          <Link to={contactRoute}>CONTACT</Link>
         </div>
       </>
     );

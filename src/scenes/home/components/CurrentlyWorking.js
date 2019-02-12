@@ -15,7 +15,7 @@ const CurrentlyWorking = props => {
           {task.isDone && (
             <div className="task-container-done">
               <div className="done">
-                <FontAwesomeIcon icon="dot-circle" />
+                <FontAwesomeIcon icon="check" />
               </div>
             </div>
           )}

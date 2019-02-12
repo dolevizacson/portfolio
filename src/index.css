@@ -1,3 +1,15 @@
 body {
   background-color: #cfcfcf;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+}
+
+@font-face {
+  font-family: 'myFont1-regular';
+  src: url('/fonts/Kalam-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'myFont1-bold';
+  src: url('/fonts/Kalam-Bold.ttf');
 }

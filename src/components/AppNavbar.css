@@ -3,6 +3,7 @@
   flex-direction: column;
   background-color: #cfcfcf;
   height: 55px;
+  font-weight: bold;
 }
 
 .navbar-container {
