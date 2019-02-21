@@ -2,17 +2,14 @@
   padding: 15vh 0;
   display: flex;
   justify-content: center;
+  flex: 1;
 }
 
 .task-list-container {
   display: flex;
   flex-direction: column;
-  border: solid #1a1a1d 3px;
-  padding: 8px;
-  border-radius: 10px;
-  -webkit-box-shadow: -5px 5px 20px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -5px 5px 20px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: -5px 5px 20px 0px rgba(0, 0, 0, 0.75);
+  flex: 1;
+  padding: 15px;
 }
 
 .task-container {
@@ -24,7 +21,10 @@
   color: #cfcfcf;
   border-radius: 10px;
   padding: 10px;
-  margin: 5px 0;
+  margin: 10px 0;
+  -webkit-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
 }
 
 .task-container-header {

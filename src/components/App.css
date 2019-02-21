@@ -1,18 +1,23 @@
 .app-container {
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: column;
-  margin: 0 0;
-  padding-left: 0;
-  padding-right: 0;
+}
+
+.ui {
+  display: flex;
+  padding: 0 150px;
+}
+
+@media (max-width: 1000px) {
+  .ui {
+    padding: 0;
+  }
 }
 
 .ui-container {
   display: flex;
-  flex-wrap: nowrap;
   background-color: #1a1a1d;
   color: #d2caca;
-  border: solid #d2caca 2px;
   -webkit-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
@@ -20,19 +25,24 @@
 
 .ui-titles-container {
   display: flex;
-  flex-wrap: nowrap;
-  margin: auto;
-  padding: 1% 2%;
+  flex-direction: row;
+  justify-items: center;
+  padding: 0 15px;
   background-color: #1a1a1d;
-  border: solid #d2caca 2px;
   color: #d2caca;
   -webkit-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
-  width: 74vw;
-  height: 17vh;
 }
 
-.ui-titles-container img {
-  background-color: #d2caca;
+.ui-titles-container .container-title {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.ui-titles-container .container-image {
+  padding: 5px;
+  height: 100px;
+  width: 100px;
 }

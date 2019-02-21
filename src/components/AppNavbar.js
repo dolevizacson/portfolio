@@ -34,11 +34,9 @@ class AppNavbar extends React.Component {
         <div className="navbar-link">
           <Link to={projectsRoute}>PROJECTS</Link>
         </div>
-        {!this.state.ShowIcon && <span>/</span>}
         <div className="navbar-link">
           <Link to={skillsRoute}>SKILLS</Link>
         </div>
-        {!this.state.ShowIcon && <span>/</span>}
         <div className="navbar-link">
           <Link to={contactRoute}>CONTACT</Link>
         </div>

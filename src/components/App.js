@@ -24,12 +24,14 @@ const App = () => {
         <div>
           <div className="app-container">
             <AppNavbar />
-            <Switch>
-              <Route path={homeRoute} exact component={Home} />
-              <Route path={projectsRoute} exact component={Projects} />
-              <Route path={skillsRoute} exact component={Skills} />
-              <Route path={contactRoute} exact component={Contact} />
-            </Switch>
+            <div className="ui">
+              <Switch>
+                <Route path={homeRoute} exact component={Home} />
+                <Route path={projectsRoute} exact component={Projects} />
+                <Route path={skillsRoute} exact component={Skills} />
+                <Route path={contactRoute} exact component={Contact} />
+              </Switch>
+            </div>
             <Footer />
           </div>
         </div>
