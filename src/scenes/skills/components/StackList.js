@@ -1,6 +1,5 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, CardBody, CardHeader, CardFooter, Button } from 'reactstrap';
 
 import './StackList.css';
 
@@ -8,34 +7,23 @@ const StackList = props => {
   const createSkillsList = props.stackList.map(lang => {
     return (
       <div className="skill" key={lang.key}>
-        <Card>
-          <CardHeader>
-            <div>
-              <FontAwesomeIcon icon={['fab', lang.icon]} />
-              <span> </span>
-              {lang.language}
-            </div>
-          </CardHeader>
-          <CardBody>
-            <div>
-              {lang.longData.map(data => {
-                return <div> - {data} </div>;
-              })}
-            </div>
-          </CardBody>
-        </Card>
+        <div className="skills-stacklist-ui-container">
+          <div className="skills-stacklist-ui-container-header">
+            <FontAwesomeIcon icon={['fab', lang.icon]} />
+            <span> </span>
+            {lang.language}
+          </div>
+          <div className="skills-stacklist-ui-container-body">
+            {lang.longData.map(data => {
+              return <div> - {data} </div>;
+            })}
+          </div>
+        </div>
       </div>
     );
   });
 
-  return (
-    <div>
-      {createSkillsList}
-      <CardFooter>
-        <Button onClick={props.backButton}>Go Back</Button>
-      </CardFooter>
-    </div>
-  );
+  return <div>{createSkillsList}</div>;
 };
 
 export default StackList;

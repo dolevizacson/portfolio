@@ -1,5 +1,6 @@
 .skills {
   display: flex;
+  flex: 1;
 }
 
 .skills-skillsList {
@@ -16,7 +17,12 @@
   margin: 10px 0;
 }
 
-h2,
+@media (max-width: 800px) {
+  .Methodology-list {
+    flex-direction: column;
+  }
+}
+
 h4 {
   font-weight: bold;
   font-size: 40px;

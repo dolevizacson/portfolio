@@ -1,0 +1,11 @@
+.skills-stacklist-ui-container-header {
+  padding: 10px;
+  border: solid 1px black;
+  border-radius: 2.5px;
+}
+
+.skills-stacklist-ui-container-body {
+  padding: 10px;
+  border: solid 1px black;
+  border-radius: 2.5px;
+}

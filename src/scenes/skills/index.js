@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardHeader } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.css';
 
@@ -14,6 +13,7 @@ class Skills extends React.Component {
   state = {
     skillsList: this.props.skills.skillsContent.skillsList,
     isHidden: true,
+    cursor: 'pointer',
   };
 
   createMethodologyList = () => {
@@ -21,49 +21,49 @@ class Skills extends React.Component {
       return (
         <div
           key={methodology.key}
-          className="methodology-ui-container"
+          className="skills-methodology-ui-container"
+          style={{ cursor: this.state.cursor }}
           onClick={() => {
             this.setState({
               skillsList: this.state.skillsList.filter(
                 item => item.key === methodology.key
               ),
               isHidden: false,
+              cursor: 'auto',
             });
           }}
         >
-          <Card>
-            <CardHeader>
-              <Row>
-                <Col xs="3">
-                  <div className="image-container rounded">
-                    <img src={methodology.image} alt={methodology.topic} />
-                  </div>
-                </Col>
-                <Col>
-                  <h4>{methodology.topic}</h4>
-                </Col>
-              </Row>
-            </CardHeader>
-            {this.state.isHidden && (
-              <CardBody>
-                {methodology.stack.map(lang => {
-                  return <div key={lang.key}>{lang.language}</div>;
-                })}
-              </CardBody>
-            )}
-            {!this.state.isHidden && (
-              <StackList
-                stackList={methodology.stack}
-                backButton={e => {
-                  e.stopPropagation();
-                  this.setState({
-                    skillsList: this.props.skills.skillsContent.skillsList,
-                    isHidden: true,
-                  });
-                }}
-              />
-            )}
-          </Card>
+          <div className="skills-methodology-ui-container-header">
+            <div className="skills-methodology-ui-container-header-image">
+              <img src={methodology.image} alt={methodology.topic} />
+            </div>
+            <div className="skills-methodology-ui-container-header-title">
+              <h4>{methodology.topic}</h4>
+              {!this.state.isHidden && (
+                <FontAwesomeIcon
+                  icon="times"
+                  size="2x"
+                  style={{ cursor: 'pointer' }}
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.setState({
+                      skillsList: this.props.skills.skillsContent.skillsList,
+                      isHidden: true,
+                      cursor: 'pointer',
+                    });
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          {this.state.isHidden && (
+            <div className="skills-methodology-ui-container-body">
+              {methodology.stack.map(lang => {
+                return <div key={lang.key}> - {lang.language}</div>;
+              })}
+            </div>
+          )}
+          {!this.state.isHidden && <StackList stackList={methodology.stack} />}
         </div>
       );
     });
@@ -75,14 +75,10 @@ class Skills extends React.Component {
         <div className="skills-skillsList">
           <div className="ui-titles-container">
             <div className="container-image">
-              <img
-                className="rounded"
-                src="/skillsTitleImage.png"
-                alt="stone-stack"
-              />
+              <img src="/skillsTitleImage.png" alt="stone-stack" />
             </div>
             <div className="container-title">
-              <h2>Technology Stack And Stuff</h2>
+              <h4>Technology Stack And Stuff</h4>
             </div>
           </div>
           <div className="Methodology-list">
