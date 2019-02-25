@@ -3,27 +3,47 @@ import { connect } from 'react-redux';
 
 import './About.css';
 
-const About = props => {
-  const { about, moto } = props.home.homeContent;
+import { loadAboutContent, loadMotoContent } from '../services/actions';
 
-  return (
-    <div className="about ui-container ">
-      <div className="about-me">
-        <div className="content">{about}</div>
+class About extends React.Component {
+  componentDidMount() {
+    this.props.loadAboutContent();
+    this.props.loadMotoContent();
+  }
+
+  render() {
+    return (
+      <div className="about ui-container ">
+        <div className="about-me">
+          <div className="content">
+            {this.props.about === undefined
+              ? ''
+              : this.props.about.aboutContent}
+          </div>
+        </div>
+        <div className="moto">
+          <div className="top-quotes">"</div>
+          <div className="content">
+            {this.props.moto === undefined ? '' : this.props.moto.motoContent}{' '}
+          </div>
+          <div className="bottum-quotes">"</div>
+        </div>
       </div>
-      <div className="moto">
-        <div className="top-quotes">"</div>
-        <div className="content">{moto}</div>
-        <div className="bottum-quotes">"</div>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    home: state.loadHomeContentReducer,
+    about: state.about,
+    moto: state.moto,
   };
 };
 
-export default connect(mapStateToProps)(About);
+export default connect(
+  mapStateToProps,
+  {
+    loadAboutContent,
+    loadMotoContent,
+  }
+)(About);

@@ -1,8 +1,12 @@
-import { loadHomeContentReducer } from './homeContentReducers';
+import {
+  loadAboutContentReducer,
+  loadMotoContentReducer,
+} from './homeContentReducers';
 import { loadSkillsListContentReducer } from './skillsContentReducers';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  loadHomeContentReducer,
-  loadSkillsListContentReducer,
+  about: loadAboutContentReducer,
+  moto: loadMotoContentReducer,
+  skillsList: loadSkillsListContentReducer,
 });
