@@ -1,12 +1,10 @@
-import content from '../../../confings/appContent';
-
-const { skills } = content;
+import { skills } from '../../../confings/types';
 
 export const loadSkillsListContentReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'LOAD_SKILLS_LIST_CONTENT':
-      return { ...state, skillsContent: skills };
+    case skills.skillsList:
+      return { ...state, skillsListContent: action.payload };
     default:
-      return { skillsContent: skills };
+      return state;
   }
 };

@@ -14,8 +14,8 @@ const StackList = props => {
             {lang.language}
           </div>
           <div className="skills-stacklist-ui-container-body">
-            {lang.longData.map(data => {
-              return <div> - {data} </div>;
+            {lang.longData.map((data, index) => {
+              return <div key={index}> - {data} </div>;
             })}
           </div>
         </div>

@@ -1,9 +1,17 @@
+import { serverSkills } from '../../../../services/api/portfolioServer';
+import { skills } from '../../../../confings/types';
+
 // load skills list content to skills page
 export const loadSkillsListContent = () => async (dispatch, getState) => {
-  console.log('load skill content');
-  //do async stuff with await
+  let response;
+  try {
+    response = await serverSkills.get('/skillslist');
+  } catch (err) {
+    console.log(err);
+  }
+
   dispatch({
-    type: 'LOAD_SKILLS_LIST_CONTENT',
-    payload: 'skillList',
+    type: skills.skillsList,
+    payload: response.data,
   });
 };

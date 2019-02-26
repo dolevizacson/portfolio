@@ -1,4 +1,5 @@
 import { serverHome } from '../../../../services/api/portfolioServer';
+import { home } from '../../../../confings/types';
 
 // load about content to home page
 export const loadAboutContent = () => async (dispatch, getState) => {
@@ -10,7 +11,7 @@ export const loadAboutContent = () => async (dispatch, getState) => {
   }
 
   dispatch({
-    type: 'LOAD_ABOUT_CONTENT',
+    type: home.about,
     payload: response.data,
   });
 };
@@ -23,7 +24,20 @@ export const loadMotoContent = () => async (dispatch, getState) => {
     console.log(err);
   }
   dispatch({
-    type: 'LOAD_MOTO_CONTENT',
+    type: home.moto,
+    payload: response.data,
+  });
+};
+
+export const loadCurrentlyWorkingContent = () => async (dispatch, getState) => {
+  let response = {};
+  try {
+    response = await serverHome.get('/workingon');
+  } catch (err) {
+    console.log(err);
+  }
+  dispatch({
+    type: home.currentlyWorking,
     payload: response.data,
   });
 };

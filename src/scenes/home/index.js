@@ -18,9 +18,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <div className="home-currently-working">
+      <div className="home-currently-working">
         <CurrentlyWorking />
-      </div> */}
+      </div>
     </div>
   );
 };
