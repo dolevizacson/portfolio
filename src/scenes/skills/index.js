@@ -28,13 +28,13 @@ class Skills extends React.Component {
       return this.state.skillsList.map(methodology => {
         return (
           <div
-            key={methodology.key}
+            key={methodology._id}
             className="skills-methodology-ui-container"
             style={{ cursor: this.state.cursor }}
             onClick={() => {
               this.setState({
                 skillsList: this.state.skillsList.filter(
-                  item => item.key === methodology.key
+                  item => item._id === methodology._id
                 ),
                 isHidden: false,
                 cursor: 'auto',
@@ -67,7 +67,7 @@ class Skills extends React.Component {
             {this.state.isHidden && (
               <div className="skills-methodology-ui-container-body">
                 {methodology.stack.map(lang => {
-                  return <div key={lang.key}> - {lang.language}</div>;
+                  return <div key={lang._id}> - {lang.language}</div>;
                 })}
               </div>
             )}
