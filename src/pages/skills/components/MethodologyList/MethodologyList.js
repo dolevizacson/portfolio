@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Methodology.css';
+import './MethodologyList.css';
 
 const MethodologyList = props => {
   return <>{props.content}</>;

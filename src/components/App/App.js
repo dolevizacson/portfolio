@@ -2,20 +2,20 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import '../utils/icons';
+import '../../utils/icons';
 
-import AppNavbar from './AppNavbar';
-import Home from '../scenes/home';
-import Projects from '../scenes/projects';
-import Skills from '../scenes/skills';
-import Contact from '../scenes/contact';
-import Footer from './Footer';
+import AppNavbar from '../AppNavbar/AppNavbar';
+import Home from '../../pages/home';
+import Projects from '../../pages/projects';
+import Skills from '../../pages/skills';
+import Contact from '../../pages/contact';
+import Footer from '../Footer/Footer';
 import {
   homeRoute,
   projectsRoute,
   skillsRoute,
   contactRoute,
-} from '../confings/routes';
+} from '../../confing/routes';
 
 const App = () => {
   return (

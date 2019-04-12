@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './CurrentlyWorking.css';
 
-import { loadCurrentlyWorkingContent } from '../services/actions';
+import { loadCurrentlyWorkingContent } from '../../services/actions';
 
 class CurrentlyWorking extends React.Component {
   componentDidMount() {

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.css';
 
-import MethodologyList from './components/MethodologyList';
-import StackList from './components/StackList';
+import MethodologyList from './components/MethodologyList/MethodologyList';
+import StackList from './components/StackList/StackList';
 
 import { loadSkillsListContent } from './services/actions';
 

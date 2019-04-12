@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './About.css';
 
-import { loadAboutContent, loadMotoContent } from '../services/actions';
+import { loadAboutContent, loadMotoContent } from '../../services/actions';
 
 class About extends React.Component {
   componentDidMount() {

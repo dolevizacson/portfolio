@@ -9,7 +9,7 @@ import {
   contactRoute,
   skillsRoute,
   projectsRoute,
-} from '../confings/routes';
+} from '../../confing/routes';
 
 class AppNavbar extends React.Component {
   state = { ShowIcon: false, isCollapse: true, hideNavbar: false };

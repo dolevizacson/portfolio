@@ -1,4 +1,4 @@
-import { skills } from '../../../confings/types';
+import { skills } from '../../confing/types';
 
 export const loadSkillsListContentReducer = (state = {}, action) => {
   switch (action.type) {

@@ -2,8 +2,8 @@ import React from 'react';
 
 import './index.css';
 
-import About from './components/About';
-import CurrentlyWorking from './components/CurrentlyWorking';
+import About from './components/About/About';
+import CurrentlyWorking from './components/CurrentlyWorking/CurrentlyWorking';
 
 const Home = () => {
   return (

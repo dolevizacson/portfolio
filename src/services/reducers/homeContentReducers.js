@@ -1,4 +1,4 @@
-import { home } from '../../../confings/types';
+import { home } from '../../confing/types';
 
 export const loadAboutContentReducer = (state = {}, action) => {
   switch (action.type) {

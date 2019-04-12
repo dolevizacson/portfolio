@@ -1,5 +1,5 @@
 import { serverHome } from '../../../../services/api/portfolioServer';
-import { home } from '../../../../confings/types';
+import { home } from '../../../../confing/types';
 
 // load about content to home page
 export const loadAboutContent = () => async (dispatch, getState) => {
