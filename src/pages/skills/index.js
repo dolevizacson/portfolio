@@ -7,7 +7,7 @@ import './index.css';
 import MethodologyList from './components/MethodologyList/MethodologyList';
 import StackList from './components/StackList/StackList';
 
-import { loadSkillsListContent } from './services/actions';
+import { getSkillsListContent } from './services/actions';
 
 class Skills extends React.Component {
   state = {
@@ -17,8 +17,10 @@ class Skills extends React.Component {
   };
 
   componentDidMount = async () => {
-    await this.props.loadSkillsListContent();
-    this.setState({ skillsList: this.props.skillsList.skillsListContent });
+    await this.props.getSkillsListContent();
+    this.setState(state => {
+      return { skillsList: this.props.skillsListContent.content };
+    });
   };
 
   createMethodologyList = () => {
@@ -54,10 +56,12 @@ class Skills extends React.Component {
                     style={{ cursor: 'pointer' }}
                     onClick={e => {
                       e.stopPropagation();
-                      this.setState({
-                        skillsList: this.props.skillsList.skillsListContent,
-                        isHidden: true,
-                        cursor: 'pointer',
+                      this.setState(state => {
+                        return {
+                          skillsList: this.props.skillsListContent.content,
+                          isHidden: true,
+                          cursor: 'pointer',
+                        };
                       });
                     }}
                   />
@@ -101,15 +105,15 @@ class Skills extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ skillsListContent }) => {
   return {
-    skillsList: state.skillsList,
+    skillsListContent,
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    loadSkillsListContent,
+    getSkillsListContent,
   }
 )(Skills);

@@ -4,19 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './CurrentlyWorking.css';
 
-import { loadCurrentlyWorkingContent } from '../../services/actions';
+import { getCurrentlyWorkingContent } from '../../services/actions';
 
 class CurrentlyWorking extends React.Component {
   componentDidMount() {
-    this.props.loadCurrentlyWorkingContent();
+    this.props.getCurrentlyWorkingContent();
   }
 
   renderTaskList = () => {
-    const taskList = this.props.currentlyWorking.currentlyWorkingContent;
+    const taskList = this.props.currentlyWorkingContent.content;
     if (taskList === undefined) {
       return <div />;
     } else {
-      return this.props.currentlyWorking.currentlyWorkingContent.map(task => {
+      return taskList.map(task => {
         return (
           <div className="task-container" key={task.header}>
             <div className="task-container-header">{task.header}</div>
@@ -43,15 +43,15 @@ class CurrentlyWorking extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ currentlyWorkingContent }) => {
   return {
-    currentlyWorking: state.currentlyWorking,
+    currentlyWorkingContent,
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    loadCurrentlyWorkingContent,
+    getCurrentlyWorkingContent,
   }
 )(CurrentlyWorking);

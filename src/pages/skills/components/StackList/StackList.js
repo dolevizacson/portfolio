@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './StackList.css';
 
 const StackList = props => {
-  const createSkillsList = props.stackList.map(lang => {
+  const createSkillsList = props.stackList.map((lang, index) => {
     return (
-      <div className="skill" key={lang.key}>
+      <div className="skill" key={index}>
         <div className="skills-stacklist-ui-container">
           <div className="skills-stacklist-ui-container-header">
             <FontAwesomeIcon icon={['fab', lang.icon]} />

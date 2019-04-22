@@ -2,7 +2,7 @@ import { serverHome } from '../../../../services/api/portfolioServer';
 import { home } from '../../../../confing/types';
 
 // load about content to home page
-export const loadAboutContent = () => async (dispatch, getState) => {
+export const getAboutContent = () => async (dispatch, getState) => {
   let response = {};
   try {
     response = await serverHome.get('/about');
@@ -16,7 +16,7 @@ export const loadAboutContent = () => async (dispatch, getState) => {
   });
 };
 // load moto to home page
-export const loadMotoContent = () => async (dispatch, getState) => {
+export const getMotoContent = () => async (dispatch, getState) => {
   let response = {};
   try {
     response = await serverHome.get('/moto');
@@ -29,7 +29,7 @@ export const loadMotoContent = () => async (dispatch, getState) => {
   });
 };
 
-export const loadCurrentlyWorkingContent = () => async (dispatch, getState) => {
+export const getCurrentlyWorkingContent = () => async (dispatch, getState) => {
   let response = {};
   try {
     response = await serverHome.get('/workingon');

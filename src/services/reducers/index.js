@@ -1,14 +1,14 @@
 import {
-  loadAboutContentReducer,
-  loadMotoContentReducer,
-  loadCurentlyWorkingContentReducer,
+  getAboutContentReducer,
+  getMotoContentReducer,
+  getCurentlyWorkingContentReducer,
 } from './homeContentReducers';
-import { loadSkillsListContentReducer } from './skillsContentReducers';
+import { getSkillsListContentReducer } from './skillsContentReducers';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  about: loadAboutContentReducer,
-  moto: loadMotoContentReducer,
-  currentlyWorking: loadCurentlyWorkingContentReducer,
-  skillsList: loadSkillsListContentReducer,
+  aboutContent: getAboutContentReducer,
+  motoContent: getMotoContentReducer,
+  currentlyWorkingContent: getCurentlyWorkingContentReducer,
+  skillsListContent: getSkillsListContentReducer,
 });

@@ -1,9 +1,9 @@
 import { skills } from '../../confing/types';
 
-export const loadSkillsListContentReducer = (state = {}, action) => {
+export const getSkillsListContentReducer = (state = {}, action) => {
   switch (action.type) {
     case skills.skillsList:
-      return { ...state, skillsListContent: action.payload };
+      return { ...state, content: action.payload };
     default:
       return state;
   }

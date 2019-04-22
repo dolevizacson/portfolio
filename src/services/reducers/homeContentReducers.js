@@ -1,27 +1,27 @@
 import { home } from '../../confing/types';
 
-export const loadAboutContentReducer = (state = {}, action) => {
+export const getAboutContentReducer = (state = {}, action) => {
   switch (action.type) {
     case home.about:
-      return { ...state, aboutContent: action.payload };
+      return { ...state, content: action.payload };
     default:
       return state;
   }
 };
 
-export const loadMotoContentReducer = (state = {}, action) => {
+export const getMotoContentReducer = (state = {}, action) => {
   switch (action.type) {
     case home.moto:
-      return { ...state, motoContent: action.payload };
+      return { ...state, content: action.payload };
     default:
       return state;
   }
 };
 
-export const loadCurentlyWorkingContentReducer = (state = {}, action) => {
+export const getCurentlyWorkingContentReducer = (state = {}, action) => {
   switch (action.type) {
     case home.currentlyWorking:
-      return { ...state, currentlyWorkingContent: action.payload };
+      return { ...state, content: action.payload };
     default:
       return state;
   }
