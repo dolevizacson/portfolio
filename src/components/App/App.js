@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Flex from 'styled-flex-component';
-import GlobalStyle from './GlobalStyle';
-
+import GlobalStyle from '../../style/GlobalStyle';
+import MainTheme from '../../style/MainTheme';
 import './App.css';
 import '../../utils/icons';
 
@@ -30,22 +30,24 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <AppStyle>
-        <BrowserRouter>
-          <>
-            <AppNavbar />
-            <Main>
-              <Switch>
-                <Route path={homeRoute} exact component={Home} />
-                <Route path={projectsRoute} exact component={Projects} />
-                <Route path={skillsRoute} exact component={Skills} />
-                <Route path={contactRoute} exact component={Contact} />
-              </Switch>
-            </Main>
-            <Footer />
-          </>
-        </BrowserRouter>
-      </AppStyle>
+      <MainTheme>
+        <AppStyle>
+          <BrowserRouter>
+            <>
+              <AppNavbar />
+              <Main>
+                <Switch>
+                  <Route path={homeRoute} exact component={Home} />
+                  <Route path={projectsRoute} exact component={Projects} />
+                  <Route path={skillsRoute} exact component={Skills} />
+                  <Route path={contactRoute} exact component={Contact} />
+                </Switch>
+              </Main>
+              <Footer />
+            </>
+          </BrowserRouter>
+        </AppStyle>
+      </MainTheme>
     </>
   );
 };

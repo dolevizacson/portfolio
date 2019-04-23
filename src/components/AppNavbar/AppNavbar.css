@@ -1,16 +1,16 @@
-.app-navbar {
+/* .app-navbar {
   display: flex;
   flex-direction: column;
   background-color: #1a1a1d;
   height: 70px;
-}
+} */
 
-.navbar-container {
+/* .navbar-container {
   position: fixed;
   z-index: 1;
   width: 100%;
   background-color: #1a1a1d;
-}
+} */
 
 .top-navbar {
   display: flex;
