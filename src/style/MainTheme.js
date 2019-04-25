@@ -8,10 +8,18 @@ const screenSizes = {
   phone: 576,
 };
 
-const colors = {};
-
-const BackgroundColors = {
+const mainAppThemeColors = {
+  red1: '#c3073f',
+  white1: 'white',
+  white2: '#d2caca',
+  white3: '#cfcfcf',
   black1: '#1a1a1d',
+  grey1: '#313331',
+};
+
+const mainAppThemeFonts = {
+  font1: 'Courier New',
+  font2: 'myFont1-regular',
 };
 
 const createMediaqueries = sizes => {
@@ -28,7 +36,7 @@ const createMediaqueries = sizes => {
 const createsCss = (name, options) => {
   return Object.keys(options).reduce((optionsArray, option) => {
     optionsArray[option] = css`
-      ${name} : ${options[option]}
+      ${name} : ${options[option]};
     `;
     return optionsArray;
   }, {});
@@ -40,8 +48,9 @@ const MainTheme = props => {
       <ThemeProvider
         theme={{
           media: createMediaqueries(screenSizes),
-          color: createsCss('color', colors),
-          BackgroundColor: createsCss('background-color', BackgroundColors),
+          color: createsCss('color', mainAppThemeColors),
+          BackgroundColor: createsCss('background-color', mainAppThemeColors),
+          font: createsCss('font-family', mainAppThemeFonts),
         }}
       >
         {props.children}

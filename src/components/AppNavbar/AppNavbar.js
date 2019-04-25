@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Flex, { FlexItem } from 'styled-flex-component';
-import { Grid, GridItem } from 'styled-grid-component';
+import Flex from 'styled-flex-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import './AppNavbar.css';
 
 // constants
 import {
@@ -15,19 +12,42 @@ import {
   projectsRoute,
 } from '../../confing/routes';
 
-const AppNavbarstyle = styled(Flex).attrs({ column: true })`
+// style
+const AppNavbarStyle = styled(Flex).attrs({ column: true })`
   width: 100%;
+  box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
+
   ${props => props.theme.BackgroundColor.black1}
 `;
-const LeftStyle = styled(Flex)``;
-const RightStyle = styled(Flex).attrs({ justifyEnd: true })``;
-const LogoStyle = styled(Flex)``;
-const LinkStyle = styled(Flex)``;
-const LinksListStyle = styled(Flex)``;
+const NavbarContainerStyle = styled(Flex).attrs({ justifyBetween: true })`
+  padding: 0.625em;
+`;
+const LeftStyle = styled(Flex).attrs({ full: true })``;
+const RightStyle = styled(Flex).attrs({ full: true, justifyEnd: true })``;
+const LogoStyle = styled(Flex)`
+  font-size: 24px;
+`;
+const MainLogoStyle = styled(Flex)`
+  ${props => props.theme.color.red1}
+`;
+const LinkStyle = styled(Link)`
+  text-decoration: none;
+  padding: 0 0.625em;
+  font-size: 24px;
+
+  ${props => props.theme.font.font1}
+  ${props => props.theme.color.white1}
+  ${props => props.theme.media.tablet`
+    padding: 0.05em;
+  `}
+`;
 const CollapseIconStyle = styled(Flex)`
   color: white;
+  font-size: 24px;
 `;
-const Collapsestyle = styled(Flex).attrs({ column: true })``;
+const CollapseStyle = styled(Flex).attrs({ column: true })`
+  padding: 0.3em 0.625em;
+`;
 
 class AppNavbar extends Component {
   state = { showIcon: false, isCollapse: true };
@@ -57,60 +77,23 @@ class AppNavbar extends Component {
   displayLinks = () => {
     return (
       <>
-        <LinkStyle>
-          <Link to={projectsRoute}>PROJECTS</Link>
-        </LinkStyle>
-        <LinkStyle>
-          <Link to={skillsRoute}>SKILLS</Link>
-        </LinkStyle>
-        <LinkStyle>
-          <Link to={contactRoute}>CONTACT</Link>
-        </LinkStyle>
-      </>
-    );
-  };
-
-  renderNavbar = () => {
-    return (
-      <>
-        <div className="top-navbar">
-          <div className="navbar-left">
-            <div className="navbar-logo">
-              <Link to={homeRoute}>
-                <FontAwesomeIcon icon="dot-circle" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="navbar-right">
-            {this.state.showIcon && (
-              <div
-                className="navbar-collapse-icon"
-                onClick={() =>
-                  this.setState({ isCollapse: !this.state.isCollapse })
-                }
-              >
-                <FontAwesomeIcon icon="dot-circle" />
-              </div>
-            )}
-            {!this.state.showIcon && <>{this.displayLinks()}</>}
-          </div>
-        </div>
-        {!this.state.isCollapse && (
-          <div className="navbar-collapse">{this.displayLinks()}</div>
-        )}
+        <LinkStyle to={projectsRoute}>PROJECTS</LinkStyle>
+        <LinkStyle to={skillsRoute}>SKILLS</LinkStyle>
+        <LinkStyle to={contactRoute}>CONTACT</LinkStyle>
       </>
     );
   };
 
   render() {
     return (
-      <AppNavbarstyle>
-        <Flex>
+      <AppNavbarStyle>
+        <NavbarContainerStyle>
           <LeftStyle>
             <LogoStyle>
               <Link to={homeRoute}>
-                <FontAwesomeIcon icon="dot-circle" />
+                <MainLogoStyle>
+                  <FontAwesomeIcon icon="dot-circle" />
+                </MainLogoStyle>
               </Link>
             </LogoStyle>
           </LeftStyle>
@@ -129,11 +112,11 @@ class AppNavbar extends Component {
             )}
             {!this.state.showIcon && this.displayLinks()}
           </RightStyle>
-        </Flex>
+        </NavbarContainerStyle>
         {!this.state.isCollapse && (
-          <Collapsestyle>{this.displayLinks()} </Collapsestyle>
+          <CollapseStyle>{this.displayLinks()} </CollapseStyle>
         )}
-      </AppNavbarstyle>
+      </AppNavbarStyle>
     );
   }
 }

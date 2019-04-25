@@ -10,7 +10,7 @@ import '../../utils/icons';
 // components
 import AppNavbar from '../AppNavbar/AppNavbar';
 import Main from '../Main/Main';
-import Home from '../../pages/home';
+import Home from '../../pages/home/Home';
 import Projects from '../../pages/projects';
 import Skills from '../../pages/skills';
 import Contact from '../../pages/contact';
@@ -24,29 +24,32 @@ import {
   contactRoute,
 } from '../../confing/routes';
 
+// style
 const AppStyle = styled(Flex).attrs({ column: true })``;
 
 const App = () => {
   return (
     <>
-      <GlobalStyle />
       <MainTheme>
-        <AppStyle>
-          <BrowserRouter>
-            <>
-              <AppNavbar />
-              <Main>
-                <Switch>
-                  <Route path={homeRoute} exact component={Home} />
-                  <Route path={projectsRoute} exact component={Projects} />
-                  <Route path={skillsRoute} exact component={Skills} />
-                  <Route path={contactRoute} exact component={Contact} />
-                </Switch>
-              </Main>
-              <Footer />
-            </>
-          </BrowserRouter>
-        </AppStyle>
+        <>
+          <GlobalStyle />
+          <AppStyle>
+            <BrowserRouter>
+              <>
+                <AppNavbar />
+                <Main>
+                  <Switch>
+                    <Route path={homeRoute} exact component={Home} />
+                    <Route path={projectsRoute} exact component={Projects} />
+                    <Route path={skillsRoute} exact component={Skills} />
+                    <Route path={contactRoute} exact component={Contact} />
+                  </Switch>
+                </Main>
+                <Footer />
+              </>
+            </BrowserRouter>
+          </AppStyle>
+        </>
       </MainTheme>
     </>
   );
