@@ -12,7 +12,7 @@ import AppNavbar from '../AppNavbar/AppNavbar';
 import Main from '../Main/Main';
 import Home from '../../pages/home/Home';
 import Projects from '../../pages/projects';
-import Skills from '../../pages/skills';
+import Skills from '../../pages/skills/Skills';
 import Contact from '../../pages/contact';
 import Footer from '../Footer/Footer';
 

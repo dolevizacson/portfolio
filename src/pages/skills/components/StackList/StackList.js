@@ -1,9 +1,18 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+import Flex from 'styled-flex-component';
 
 import './StackList.css';
 
-const StackList = props => {
+// components
+import Stack from '../Stack/Stack';
+
+// style
+const StackListStyle = styled(Flex).attrs({ column: true })`
+  padding: 0.625rem;
+`;
+
+/* const StackList = props => {
   const createSkillsList = props.stackList.map((lang, index) => {
     return (
       <div className="skill" key={index}>
@@ -24,6 +33,18 @@ const StackList = props => {
   });
 
   return <div>{createSkillsList}</div>;
+}; */
+
+const renderStackList = (list, isExtended) => {
+  return list.map((stack, index) => {
+    return <Stack key={index} content={stack} isExtended={isExtended} />;
+  });
+};
+
+const StackList = ({ list, isExtended, close }) => {
+  return (
+    <StackListStyle>{renderStackList(list, isExtended, close)}</StackListStyle>
+  );
 };
 
 export default StackList;

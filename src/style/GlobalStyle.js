@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     margin:0;
   }
 
+  h4 {
+    font-size: 2em;
+  }
+
   @font-face {
   font-family: 'myFont1-regular';
   src: url('/fonts/Kalam-Regular.ttf');

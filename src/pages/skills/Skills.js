@@ -1,16 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import Flex from 'styled-flex-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './index.css';
 
+// components
+import SkillsListHeader from './components/SkillsListHeader/SkillsListHeader';
 import MethodologyList from './components/MethodologyList/MethodologyList';
 import StackList from './components/StackList/StackList';
 
+// actions
 import { getSkillsListContent } from './services/actions';
 
+// style
+const SkillsStyle = styled(Flex).attrs({ column: true, full: true })``;
+const SkillsListContainerStyle = styled(Flex)``;
+
 class Skills extends React.Component {
-  state = {
+  /* state = {
     skillsList: [],
     isHidden: true,
     cursor: 'pointer',
@@ -82,26 +91,25 @@ class Skills extends React.Component {
         );
       });
     }
-  };
+  }; */
+
+  componentDidMount() {
+    this.props.getSkillsListContent();
+  }
 
   render() {
-    return (
-      <div className="skills">
-        <div className="skills-skillsList">
-          <div className="ui-titles-container">
-            <div className="container-image">
-              <img src="/skillsTitleImage.png" alt="stone-stack" />
-            </div>
-            <div className="container-title">
-              <h4>Technology Stack And Stuff</h4>
-            </div>
-          </div>
-          <div className="Methodology-list">
-            <MethodologyList content={this.createMethodologyList()} />
-          </div>
-        </div>
-      </div>
-    );
+    if (!this.props.skillsListContent.content) {
+      return <div />;
+    } else {
+      return (
+        <SkillsStyle>
+          <SkillsListHeader />
+          <SkillsListContainerStyle>
+            <MethodologyList list={this.props.skillsListContent.content} />
+          </SkillsListContainerStyle>
+        </SkillsStyle>
+      );
+    }
   }
 }
 
