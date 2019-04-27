@@ -17,14 +17,16 @@ const MethodologyContainerstyle = styled(Flex).attrs({
 })`
   border-radius: 10px;
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  ${props => (props.isExtended === false ? `cursor: pointer` : '')}
 
   ${props => props.theme.BackgroundColor.black1}
 `;
 
 const MethodologyHeaderStyle = styled(Flex).attrs({
   full: true,
-  alignCenter: true,
+  justifyBetween: true,
 })``;
+const LeftHeaderStyle = styled(Flex).attrs({ alignCenter: true })``;
 const HeaderStyle = styled.h4`
   font-weight: bold;
   padding: 0 0.625rem;
@@ -43,8 +45,19 @@ const IconStyle = styled.img`
 
   ${props => props.theme.BackgroundColor.white2}
 `;
-const MethodologyCloseIconStyle = styled(Flex).attrs({ justifyEnd: true })``;
-const CloseIconStyle = styled(Flex)``;
+const MethodologyCloseIconStyle = styled(Flex).attrs({
+  justifyEnd: true,
+})`
+  padding: 0.625rem;
+
+  ${props => props.theme.color.white2}
+`;
+const CloseIconStyle = styled(FontAwesomeIcon).attrs({
+  icon: 'times',
+  size: '3x',
+})`
+  cursor: pointer;
+`;
 const MethodologyBodyStyle = styled(Flex)``;
 
 const renderStackList = (list, isExtended, close) => {
@@ -58,21 +71,24 @@ const Methodology = ({ content, isExtended, choose, close }) => {
         choose(content._id);
       }}
     >
-      <MethodologyContainerstyle>
+      <MethodologyContainerstyle isExtended={isExtended}>
         <MethodologyHeaderStyle>
-          <MethodologyIconStyle>
-            <IconStyle src={content.image} alt={content.topic} />
-          </MethodologyIconStyle>
-          <HeaderStyle>{content.topic}</HeaderStyle>
-
-          <MethodologyCloseIconStyle
-            onClick={event => {
-              event.stopPropagation();
-              close();
-            }}
-          >
-            <FontAwesomeIcon icon="times" size="2x" />
-          </MethodologyCloseIconStyle>
+          <LeftHeaderStyle>
+            <MethodologyIconStyle>
+              <IconStyle src={content.image} alt={content.topic} />
+            </MethodologyIconStyle>
+            <HeaderStyle>{content.topic}</HeaderStyle>
+          </LeftHeaderStyle>
+          {isExtended && (
+            <MethodologyCloseIconStyle
+              onClick={event => {
+                event.stopPropagation();
+                close();
+              }}
+            >
+              <CloseIconStyle />
+            </MethodologyCloseIconStyle>
+          )}
         </MethodologyHeaderStyle>
         <MethodologyBodyStyle>
           {renderStackList(content.stack, isExtended)}

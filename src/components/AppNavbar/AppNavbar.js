@@ -44,6 +44,7 @@ const LinkStyle = styled(Link)`
 const CollapseIconStyle = styled(Flex)`
   color: white;
   font-size: 24px;
+  cursor: pointer;
 `;
 const CollapseStyle = styled(Flex).attrs({ column: true })`
   padding: 0.3em 0.625em;

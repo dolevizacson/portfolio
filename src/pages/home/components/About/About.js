@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Flex from 'styled-flex-component';
 import { connect } from 'react-redux';
 
-//import './About.css';
-
 // components
 import ProfileImage from '../ProfileImage/ProfileImage';
 

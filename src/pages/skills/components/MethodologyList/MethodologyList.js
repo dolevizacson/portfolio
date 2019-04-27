@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Flex from 'styled-flex-component';
 
-import './MethodologyList.css';
-
 // components
 import Methodology from '../Methodology/Methodology';
 
 // style
-const MethodologyListStyle = styled(Flex).attrs({ full: true })``;
+const MethodologyListStyle = styled(Flex).attrs({ full: true })`
+  padding 3vh 0;
+`;
 
 class MethodologyList extends Component {
   state = {

@@ -4,8 +4,6 @@ import Flex from 'styled-flex-component';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-//import './CurrentlyWorking.css';
-
 // actions
 import { getCurrentlyWorkingContent } from '../../services/actions';
 
