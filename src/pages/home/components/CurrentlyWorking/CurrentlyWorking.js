@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Flex from 'styled-flex-component';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// actions
-import { getCurrentlyWorkingContent } from '../../services/actions';
+// content
+import content from './staticContent';
 
 // style
 const CurrentlyWorkingStyle = styled(Flex)`
@@ -52,56 +51,33 @@ const DoneIconStyle = styled(Flex).attrs({ center: true })`
   ${props => props.theme.BackgroundColor.white3}
 `;
 
-class CurrentlyWorking extends React.Component {
-  componentDidMount() {
-    this.props.getCurrentlyWorkingContent();
-  }
-
-  renderTaskList = () => {
-    const taskList = this.props.currentlyWorkingContent.content;
-    if (taskList === undefined) {
-      return <div />;
-    } else {
-      return taskList.map((task, index) => {
-        return (
-          <TaskStyle key={index}>
-            <TaskHeaderStyle>{task.header}</TaskHeaderStyle>
-            <TaskBodyStyle>
-              <BodyStyle>{task.description}</BodyStyle>
-              {task.isDone && (
-                <TaskDoneIconStyle>
-                  <DoneIconStyle>
-                    <FontAwesomeIcon icon="check" />
-                  </DoneIconStyle>
-                </TaskDoneIconStyle>
-              )}
-            </TaskBodyStyle>
-          </TaskStyle>
-        );
-      });
-    }
-  };
-
-  render() {
+const renderTaskList = () => {
+  const taskList = content.workingOn;
+  return taskList.map((task, index) => {
     return (
-      <CurrentlyWorkingStyle>
-        <TastsListContainerStyle>
-          {this.renderTaskList()}
-        </TastsListContainerStyle>
-      </CurrentlyWorkingStyle>
+      <TaskStyle key={index}>
+        <TaskHeaderStyle>{task.header}</TaskHeaderStyle>
+        <TaskBodyStyle>
+          <BodyStyle>{task.description}</BodyStyle>
+          {task.isDone && (
+            <TaskDoneIconStyle>
+              <DoneIconStyle>
+                <FontAwesomeIcon icon="check" />
+              </DoneIconStyle>
+            </TaskDoneIconStyle>
+          )}
+        </TaskBodyStyle>
+      </TaskStyle>
     );
-  }
-}
-
-const mapStateToProps = ({ currentlyWorkingContent }) => {
-  return {
-    currentlyWorkingContent,
-  };
+  });
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    getCurrentlyWorkingContent,
-  }
-)(CurrentlyWorking);
+const CurrentlyWorking = () => {
+  return (
+    <CurrentlyWorkingStyle>
+      <TastsListContainerStyle>{renderTaskList()}</TastsListContainerStyle>
+    </CurrentlyWorkingStyle>
+  );
+};
+
+export default CurrentlyWorking;

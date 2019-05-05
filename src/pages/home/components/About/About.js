@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Flex from 'styled-flex-component';
-import { connect } from 'react-redux';
 
 // components
 import ProfileImage from '../ProfileImage/ProfileImage';
 
-// actions
-import { getAboutContent, getMotoContent } from '../../services/actions';
+// content
+import content from './staticContent';
 
 // style
 const AboutStyle = styled(Flex)`
@@ -59,46 +58,22 @@ const QuotesEndStyle = styled(Flex).attrs({ alignEnd: true })`
   ${props => props.theme.color.red1}
 `;
 
-class About extends Component {
-  componentDidMount() {
-    this.props.getAboutContent();
-    this.props.getMotoContent();
-  }
-
-  render() {
-    const { aboutContent, motoContent } = this.props;
-
-    return (
-      <AboutStyle>
-        <AboutContainerStyle>
-          <ProfileImage />
-          <AboutMeStyle>
-            <DescriptionStyle>
-              {aboutContent === undefined ? '' : aboutContent.content}
-            </DescriptionStyle>
-            <MotoStyle>
-              <QuotesStartStyle>"</QuotesStartStyle>
-              {motoContent === undefined ? '' : motoContent.content}
-              <QuotesEndStyle>"</QuotesEndStyle>
-            </MotoStyle>
-          </AboutMeStyle>
-        </AboutContainerStyle>
-      </AboutStyle>
-    );
-  }
-}
-
-const mapStateToProps = ({ aboutContent, motoContent }) => {
-  return {
-    aboutContent,
-    motoContent,
-  };
+const About = () => {
+  return (
+    <AboutStyle>
+      <AboutContainerStyle>
+        <ProfileImage />
+        <AboutMeStyle>
+          <DescriptionStyle>{content.about}</DescriptionStyle>
+          <MotoStyle>
+            <QuotesStartStyle>"</QuotesStartStyle>
+            {content.moto}
+            <QuotesEndStyle>"</QuotesEndStyle>
+          </MotoStyle>
+        </AboutMeStyle>
+      </AboutContainerStyle>
+    </AboutStyle>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    getAboutContent,
-    getMotoContent,
-  }
-)(About);
+export default About;
