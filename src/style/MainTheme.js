@@ -1,6 +1,7 @@
 import React from 'react';
 import { css, ThemeProvider } from 'styled-components';
 
+// theme style options
 const screenSizes = {
   wideDesktop: 1200,
   desktop: 992,
@@ -22,6 +23,7 @@ const mainAppThemeFonts = {
   font2: 'myFont1-regular',
 };
 
+// theme methods
 const createMediaqueries = sizes => {
   return Object.keys(sizes).reduce((sizesArray, size) => {
     sizesArray[size] = (...args) => css`
@@ -42,6 +44,15 @@ const createsCss = (name, options) => {
   }, {});
 };
 
+// theme element specific style
+const div = css`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+`;
+
 const MainTheme = props => {
   return (
     <>
@@ -51,6 +62,7 @@ const MainTheme = props => {
           color: createsCss('color', mainAppThemeColors),
           BackgroundColor: createsCss('background-color', mainAppThemeColors),
           font: createsCss('font-family', mainAppThemeFonts),
+          div,
         }}
       >
         {props.children}

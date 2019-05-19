@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 import GlobalStyle from '../../style/GlobalStyle';
 import MainTheme from '../../style/MainTheme';
-import './App.css';
 import '../../utils/icons';
 
 // components
@@ -14,6 +12,8 @@ import Home from '../../pages/home/Home';
 import Projects from '../../pages/projects';
 import Skills from '../../pages/skills/Skills';
 import Contact from '../../pages/contact';
+import Admin from '../../pages/admin/Admin';
+import Login from '../../pages/login/Login';
 import Footer from '../Footer/Footer';
 
 // constants
@@ -22,10 +22,19 @@ import {
   projectsRoute,
   skillsRoute,
   contactRoute,
+  adminRoute,
+  loginRoute,
 } from '../../confing/routes';
 
 // style
-const AppStyle = styled(Flex).attrs({ column: true })``;
+const AppStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const App = () => {
   return (
@@ -43,6 +52,8 @@ const App = () => {
                     <Route path={projectsRoute} exact component={Projects} />
                     <Route path={skillsRoute} exact component={Skills} />
                     <Route path={contactRoute} exact component={Contact} />
+                    <Route path={adminRoute} exact component={Admin} />
+                    <Route path={loginRoute} exact component={Login} />
                   </Switch>
                 </Main>
                 <Footer />

@@ -1,54 +1,70 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // style
-const StackStyle = styled(Flex)``;
-const StackNotExtendedStyle = styled(Flex)`
-  font-weight: bold;  
-  font-size: 20px;
-  padding 0.625rem;  
+const StackStyle = styled.div`
+  ${({ theme }) => theme.div}
+`;
+const StackNotExtendedStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white2}
-`;
-const StackExtendedStyle = styled(Flex).attrs({ column: true })`
-  padding: 0.625rem;
-`;
-const StackExtendedHeaderStyle = styled(Flex).attrs({ alignCenter: true })``;
-const HeaderStyle = styled(Flex)`
-  text-decoration-line: underline;
-  font-size: 20px;
   font-weight: bold;
-  padding: 0 0.625rem;
+  font-size: 1.25rem;
+  padding: 12px;
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white2}
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white2}
 `;
-const StackExtendedHeaderIconStyle = styled(Flex)`
-  ${props => props.theme.color.white2}
-`;
-const HeaderIconStyle = styled(FontAwesomeIcon).attrs({ size: '2x' })``;
-const StackExtendedBodyStyle = styled(Flex).attrs({ column: true })``;
-const StackExtendedBodyItemStyle = styled(Flex)`
-  font-size: 20px;
-  padding: 0.312rem 0;
+const StackExtendedStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white2}
+  flex-direction: column;
+  padding: 12px;
+`;
+const StackExtendedHeaderStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  align-items: center;
+`;
+const HeaderStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  text-decoration-line: underline;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 12px;
+
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white2}
+`;
+const StackExtendedHeaderIconStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  ${({ theme }) => theme.color.white2}
+`;
+const StackExtendedBodyStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  flex-direction: column;
+`;
+const StackExtendedBodyItemStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  font-size: 1.25rem;
+  padding: 6px 0;
+
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white2}
 `;
 
-const renderStack = (content, isExtended) => {
+const renderStack = (content, isExtended, icon) => {
   if (!isExtended) {
     return <StackNotExtendedStyle> - {content.language}</StackNotExtendedStyle>;
   } else {
     return (
       <StackExtendedStyle>
         <StackExtendedHeaderStyle>
-          <StackExtendedHeaderIconStyle>
-            <HeaderIconStyle icon={['fab', content.icon]} />
-          </StackExtendedHeaderIconStyle>
+          <StackExtendedHeaderIconStyle>{icon}</StackExtendedHeaderIconStyle>
           <HeaderStyle>{content.language}</HeaderStyle>
         </StackExtendedHeaderStyle>
         <StackExtendedBodyStyle>
@@ -65,8 +81,8 @@ const renderStack = (content, isExtended) => {
   }
 };
 
-const Stack = ({ content, isExtended }) => {
-  return <StackStyle>{renderStack(content, isExtended)}</StackStyle>;
+const Stack = ({ content, isExtended, icon }) => {
+  return <StackStyle>{renderStack(content, isExtended, icon)}</StackStyle>;
 };
 
 export default Stack;

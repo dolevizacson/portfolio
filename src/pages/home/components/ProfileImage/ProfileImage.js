@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
 // style
-const ProfileImageStyle = styled(Flex)`
-  width: 50%;
+const ProfileImageStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.media.tablet`width: 100%;`}
+  width: 50%;
+  height: 100%;
+
+  ${({ theme }) => theme.media.tablet`width: 100%; height: 50%`}
 `;
+
 const Image = styled.img.attrs({ src: 'tempPic.jpg', alt: 'profile' })`
   width: 100%;
   height: 100%;

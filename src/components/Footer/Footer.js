@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
-const FooterStyle = styled(Flex).attrs({ full: true })`
-  ${props => props.theme.color.white2}
-  ${props => props.theme.BackgroundColor.black1}
+const FooterStyle = styled.div`
+  ${({ theme }) => theme.div}
+  ${({ theme }) => theme.color.white2}
+  ${({ theme }) => theme.BackgroundColor.black1}
+  width: 100%;
 `;
 
 const Footer = () => {

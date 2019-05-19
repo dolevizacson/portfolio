@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Domain } from 'styled-icons/material';
+import { ThMenu } from 'styled-icons/typicons';
 
 // constants
 import {
@@ -13,41 +13,70 @@ import {
 } from '../../confing/routes';
 
 // style
-const AppNavbarStyle = styled(Flex).attrs({ column: true })`
+const AppNavbarStyle = styled.div`
+  ${({ theme }) => theme.div}
+  ${({ theme }) => theme.BackgroundColor.black1}
+
   width: 100%;
   box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
+  flex-direction: column;
+`;
+const NavbarContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.BackgroundColor.black1}
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
 `;
-const NavbarContainerStyle = styled(Flex).attrs({ justifyBetween: true })`
-  padding: 0.625em;
+const LeftStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 30%;
+  height: 100%;
+  align-items: center;
 `;
-const LeftStyle = styled(Flex).attrs({ full: true })``;
-const RightStyle = styled(Flex).attrs({ full: true, justifyEnd: true })``;
-const LogoStyle = styled(Flex)`
-  font-size: 24px;
+const RightStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 70%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
 `;
-const MainLogoStyle = styled(Flex)`
-  ${props => props.theme.color.red1}
+
+const MainLogoStyle = styled(Domain)`
+  ${({ theme }) => theme.color.red1}
+  width: 50px;
+  height: 50px;
 `;
+
+const LinksContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
+  padding: 0 10px;
+`;
+
 const LinkStyle = styled(Link)`
   text-decoration: none;
-  padding: 0 0.625em;
-  font-size: 24px;
+  font-size: 1.5rem;
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white1}
-  ${props => props.theme.media.tablet`
-    padding: 0.05em;
-  `}
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white1}
 `;
-const CollapseIconStyle = styled(Flex)`
-  color: white;
-  font-size: 24px;
+const CollapseIconStyle = styled(ThMenu)`
+  ${({ theme }) => theme.color.white1}
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 `;
-const CollapseStyle = styled(Flex).attrs({ column: true })`
-  padding: 0.3em 0.625em;
+const CollapseStyle = styled.div`
+  ${({ theme }) => theme.div}
+  flex-direction: column;
+  padding: 7px;
+`;
+const CollapseLinkContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
+  padding: 3px 0;
 `;
 
 class AppNavbar extends Component {
@@ -75,28 +104,20 @@ class AppNavbar extends Component {
     }
   };
 
-  displayLinks = () => {
-    return (
-      <>
-        <LinkStyle to={projectsRoute}>PROJECTS</LinkStyle>
-        <LinkStyle to={skillsRoute}>SKILLS</LinkStyle>
-        <LinkStyle to={contactRoute}>CONTACT</LinkStyle>
-      </>
-    );
-  };
+  linkList = [
+    <LinkStyle to={projectsRoute}>PROJECTS</LinkStyle>,
+    <LinkStyle to={skillsRoute}>SKILLS</LinkStyle>,
+    <LinkStyle to={contactRoute}>CONTACT</LinkStyle>,
+  ];
 
   render() {
     return (
       <AppNavbarStyle>
         <NavbarContainerStyle>
           <LeftStyle>
-            <LogoStyle>
-              <Link to={homeRoute}>
-                <MainLogoStyle>
-                  <FontAwesomeIcon icon="dot-circle" />
-                </MainLogoStyle>
-              </Link>
-            </LogoStyle>
+            <Link to={homeRoute}>
+              <MainLogoStyle />
+            </Link>
           </LeftStyle>
 
           <RightStyle>
@@ -107,15 +128,25 @@ class AppNavbar extends Component {
                     return { isCollapse: !this.state.isCollapse };
                   })
                 }
-              >
-                <FontAwesomeIcon icon="dot-circle" />
-              </CollapseIconStyle>
+              />
             )}
-            {!this.state.showIcon && this.displayLinks()}
+
+            {!this.state.showIcon &&
+              this.linkList.map((item, index) => {
+                return (
+                  <LinksContainerStyle key={index}>{item}</LinksContainerStyle>
+                );
+              })}
           </RightStyle>
         </NavbarContainerStyle>
         {!this.state.isCollapse && (
-          <CollapseStyle>{this.displayLinks()} </CollapseStyle>
+          <CollapseStyle>
+            {this.linkList.map((item, index) => {
+              return (
+                <CollapseLinkContainerStyle>{item}</CollapseLinkContainerStyle>
+              );
+            })}
+          </CollapseStyle>
         )}
       </AppNavbarStyle>
     );

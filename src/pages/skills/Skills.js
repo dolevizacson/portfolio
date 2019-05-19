@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
 // components
 import SkillsListHeader from './components/SkillsListHeader/SkillsListHeader';
@@ -11,8 +10,17 @@ import MethodologyList from './components/MethodologyList/MethodologyList';
 import { getSkillsListContent } from './services/actions';
 
 // style
-const SkillsStyle = styled(Flex).attrs({ column: true, full: true })``;
-const SkillsListContainerStyle = styled(Flex)``;
+const SkillsStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  flex-direction: column;
+  width: 100%;
+`;
+const SkillsListContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 100%;
+`;
 
 class Skills extends React.Component {
   componentDidMount() {

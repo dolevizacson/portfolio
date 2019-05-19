@@ -1,30 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
 // style
-const SkillsListHeaderStyle = styled(Flex).attrs({ full: true })`
-  padding: 3vh 0;
+const SkillsListHeaderStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  padding-top: 10vh;
+  padding-bottom: 5vh;
+
+  ${({ theme }) => theme.media.phone`
+    padding: 2vh 0;
+  `}
 `;
-const SkillsListHeaderContainerStyle = styled(Flex).attrs({
-  full: true,
-  alignCenter: true,
-})`
+const SkillsListHeaderContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 100%;
   border-radius: 10px;
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  align-items: center;
 
-  ${props => props.theme.BackgroundColor.black1}
+  ${({ theme }) => theme.BackgroundColor.black1}
 `;
 const HeaderStyle = styled.h4`
   font-weight: bold;
-  padding: 0 0.625rem;
+  padding: 0 20px;
+  text-align: center;
 
-  ${props => props.theme.color.white2}
-  ${props => props.theme.font.font1}
+  ${({ theme }) => theme.color.white2}
+  ${({ theme }) => theme.font.font1}
 `;
-const HeaderIconStyle = styled(Flex)`
-  width: 5em;
-  height: 5em;
+const HeaderIconStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 80px;
+  height: 80px;
 `;
 const IconStyle = styled.img.attrs({
   src: '/skillsTitleImage.png',
@@ -34,7 +44,7 @@ const IconStyle = styled.img.attrs({
   height: 100%;
   border-radius: 10px;
 
-  ${props => props.theme.BackgroundColor.white2}
+  ${({ theme }) => theme.BackgroundColor.white2}
 `;
 
 const SkillsListHeader = () => {

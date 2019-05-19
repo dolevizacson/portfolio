@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
 // style
-const MainStyle = styled(Flex)`
-  padding: 0 150px;
+const MainStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.media.desktop`padding:2%`}
+  width: 70%;
+  justify-content: center;
+  flex: 1 0;
+
+  ${({ theme }) => theme.media.desktop`
+    width:85%;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    width:100%;
+  `};
 `;
 
 const Main = props => {

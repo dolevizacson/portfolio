@@ -1,18 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
+import { JsSquare, ReactLogo, Java, NodeJs } from 'styled-icons/fa-brands';
 
 // components
 import Stack from '../Stack/Stack';
 
 // style
-const StackListStyle = styled(Flex).attrs({ column: true })`
-  padding: 0.625rem;
+const StackListStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  flex-direction: column;
+  padding: 12px;
 `;
+
+const renderIcon = index => {
+  const iconsList = [JsSquare, ReactLogo, Java, NodeJs];
+
+  if (index < iconsList.length) {
+    let Elem = styled(iconsList[index])`
+      width: 25px;
+      height: 25px;
+    `;
+    return <Elem />;
+  }
+};
 
 const renderStackList = (list, isExtended) => {
   return list.map((stack, index) => {
-    return <Stack key={index} content={stack} isExtended={isExtended} />;
+    return (
+      <Stack
+        key={index}
+        content={stack}
+        isExtended={isExtended}
+        icon={renderIcon(index)}
+      />
+    );
   });
 };
 

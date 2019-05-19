@@ -1,54 +1,86 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Check } from 'styled-icons/fa-solid';
 
 // content
 import content from './staticContent';
 
 // style
-const CurrentlyWorkingStyle = styled(Flex)`
+const CurrentlyWorkingStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  padding-top: 5vh;
   padding-bottom: 10vh;
+
+  ${({ theme }) => theme.media.phone`
+    padding: 2vh 0;
+  `}
 `;
-const TastsListContainerStyle = styled(Flex).attrs({
-  column: true,
-  full: true,
-})``;
-const TaskStyle = styled(Flex).attrs({ column: true })`
-  padding: 0.625rem;
-  margin 0.625rem 0;
+const TastsListContainerStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+`;
+const TaskStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  padding: 12px;
+  margin: 10px 0;
+  flex-direction: column;
   border-radius: 10px;
   box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
 
-  ${props => props.theme.BackgroundColor.black1}
+  ${({ theme }) => theme.BackgroundColor.black1}
 `;
-const TaskHeaderStyle = styled(Flex)`
+const TaskHeaderStyle = styled.div`
+  ${({ theme }) => theme.div}
+
   text-decoration-line: underline;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.5rem;
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white3}
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white3}
 `;
-const TaskBodyStyle = styled(Flex).attrs({ justifyBetween: true })``;
-const BodyStyle = styled(Flex)`
-  font-size: 24px;
+const TaskBodyStyle = styled.div`
+  ${({ theme }) => theme.div}
 
-  ${props => props.theme.font.font1}
-  ${props => props.theme.color.white3}
+  justify-content: space-between;
 `;
-const TaskDoneIconStyle = styled(Flex).attrs({
-  justifyEnd: true,
-  alignEnd: true,
-})``;
-const DoneIconStyle = styled(Flex).attrs({ center: true })`
-  border-radius: 0 0 10px 0;
-  height: 30px;
-  width: 30px;
-  font-size: 24px;
+const BodyStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  font-size: 1.5rem;
+
+  ${({ theme }) => theme.font.font1}
+  ${({ theme }) => theme.color.white3}
+`;
+const TaskDoneIconStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  justify-content: flex-end;
+  align-items: flex-end;
+`;
+const DoneFrameStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  border-radius: 10px;
+  height: 33px;
+  width: 33px;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+
+  ${props => props.theme.BackgroundColor.white3}
+`;
+
+const DoneIconStyle = styled(Check)`
+  height: 28px;
+  width: 28px;
 
   ${props => props.theme.color.red1}
-  ${props => props.theme.BackgroundColor.white3}
 `;
 
 const renderTaskList = () => {
@@ -61,9 +93,9 @@ const renderTaskList = () => {
           <BodyStyle>{task.description}</BodyStyle>
           {task.isDone && (
             <TaskDoneIconStyle>
-              <DoneIconStyle>
-                <FontAwesomeIcon icon="check" />
-              </DoneIconStyle>
+              <DoneFrameStyle>
+                <DoneIconStyle />
+              </DoneFrameStyle>
             </TaskDoneIconStyle>
           )}
         </TaskBodyStyle>

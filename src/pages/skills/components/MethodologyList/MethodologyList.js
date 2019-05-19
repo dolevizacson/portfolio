@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Flex from 'styled-flex-component';
 
 // components
 import Methodology from '../Methodology/Methodology';
 
 // style
-const MethodologyListStyle = styled(Flex).attrs({ full: true })`
-  padding 3vh 0;
+const MethodologyListStyle = styled.div`
+  ${({ theme }) => theme.div}
+
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
 `;
 
 class MethodologyList extends Component {
