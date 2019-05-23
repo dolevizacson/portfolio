@@ -24,8 +24,8 @@ const MethodologyContainerstyle = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  ${({ theme }) => theme.ui.corners}
+  ${({ theme }) => theme.ui.shadow}
 
   ${({ theme }) => theme.BackgroundColor.black1}
 
@@ -52,13 +52,12 @@ const HeaderStyle = styled.h4`
 const MethodologyIconStyle = styled.div`
   ${({ theme }) => theme.div}
 
-  width: 80px;
-  height: 80px;
+  ${({ theme }) => theme.ui.headerIconSize}
 `;
 const IconStyle = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  ${({ theme }) => theme.ui.corners}
 
   ${({ theme }) => theme.BackgroundColor.white2}
 `;

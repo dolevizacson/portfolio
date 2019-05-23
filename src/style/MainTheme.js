@@ -53,6 +53,38 @@ const div = css`
   align-content: stretch;
 `;
 
+const corners = css`
+  border-radius: 10px;
+`;
+
+const shadow = css`
+  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+`;
+
+const headerIconSize = css`
+  width: 80px;
+  height: 80px;
+
+  ${({ theme }) => theme.media.phone`
+    width: 60px;
+    height: 60px;
+  `}
+`;
+
+const formTextField = css`
+  height: 2em;
+  padding: 3px 6px;
+  outline: none;
+  ${({ theme }) => theme.ui.corners}
+`;
+
+const formButton = css`
+  height: 2em;
+  padding: 3px 6px;
+  outline-width: 0;
+  ${({ theme }) => theme.ui.corners}
+`;
+
 const MainTheme = props => {
   return (
     <>
@@ -63,6 +95,13 @@ const MainTheme = props => {
           BackgroundColor: createsCss('background-color', mainAppThemeColors),
           font: createsCss('font-family', mainAppThemeFonts),
           div,
+          ui: {
+            corners,
+            shadow,
+            headerIconSize,
+            formTextField,
+            formButton,
+          },
         }}
       >
         {props.children}

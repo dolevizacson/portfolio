@@ -16,9 +16,9 @@ const SkillsListHeaderContainerStyle = styled.div`
   ${({ theme }) => theme.div}
 
   width: 100%;
-  border-radius: 10px;
-  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
   align-items: center;
+  ${({ theme }) => theme.ui.corners}
+  ${({ theme }) => theme.ui.shadow}
 
   ${({ theme }) => theme.BackgroundColor.black1}
 `;
@@ -33,28 +33,24 @@ const HeaderStyle = styled.h4`
 const HeaderIconStyle = styled.div`
   ${({ theme }) => theme.div}
 
-  width: 80px;
-  height: 80px;
-`;
-const IconStyle = styled.img.attrs({
-  src: '/skillsTitleImage.png',
-  alt: 'stone-stack',
-})`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-
-  ${({ theme }) => theme.BackgroundColor.white2}
+  ${({ theme }) => theme.ui.headerIconSize}
 `;
 
-const SkillsListHeader = () => {
+const renderIcon = icon => {
+  const Elem = styled(icon)`
+    ${({ theme }) => theme.ui.corners}
+
+    ${({ theme }) => theme.BackgroundColor.white2}
+  `;
+  return <Elem />;
+};
+
+const SkillsListHeader = ({ text, icon }) => {
   return (
     <SkillsListHeaderStyle>
       <SkillsListHeaderContainerStyle>
-        <HeaderIconStyle>
-          <IconStyle />
-        </HeaderIconStyle>
-        <HeaderStyle>Technology Stack And Stuff</HeaderStyle>
+        <HeaderIconStyle>{renderIcon(icon)}</HeaderIconStyle>
+        <HeaderStyle>{text}</HeaderStyle>
       </SkillsListHeaderContainerStyle>
     </SkillsListHeaderStyle>
   );

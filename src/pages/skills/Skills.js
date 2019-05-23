@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 // components
-import SkillsListHeader from './components/SkillsListHeader/SkillsListHeader';
+import UiHeader from '../../components/UiHeader/UiHeader';
 import MethodologyList from './components/MethodologyList/MethodologyList';
 
 // actions
-import { getSkillsListContent } from './services/actions';
+import { getSkillsListContent } from './actions/skillsActions';
 
 // style
 const SkillsStyle = styled.div`
@@ -22,24 +22,28 @@ const SkillsListContainerStyle = styled.div`
   width: 100%;
 `;
 
+const HeaderIconStyle = styled.img.attrs({
+  src: '/skillsTitleImage.png',
+  alt: 'stone-stack',
+})`
+  width: 100%;
+  height: 100%;
+`;
+
 class Skills extends React.Component {
   componentDidMount() {
     this.props.getSkillsListContent();
   }
 
   render() {
-    if (!this.props.skillsListContent.content) {
-      return <div />;
-    } else {
-      return (
-        <SkillsStyle>
-          <SkillsListHeader />
-          <SkillsListContainerStyle>
-            <MethodologyList list={this.props.skillsListContent.content} />
-          </SkillsListContainerStyle>
-        </SkillsStyle>
-      );
-    }
+    return (
+      <SkillsStyle>
+        <UiHeader text="Technology Stack And Stuff" icon={HeaderIconStyle} />
+        <SkillsListContainerStyle>
+          <MethodologyList list={this.props.skillsListContent} />
+        </SkillsListContainerStyle>
+      </SkillsStyle>
+    );
   }
 }
 

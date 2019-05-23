@@ -20,6 +20,12 @@ class MethodologyList extends Component {
     isExtended: false,
   };
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.list !== this.props.list) {
+      this.setState({ list: nextProps.list });
+    }
+  };
+
   renderOneMethodology = id => {
     this.setState(state => {
       return {

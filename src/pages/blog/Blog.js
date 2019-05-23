@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// style
-const AdminStyle = styled.div`
+const BlogStyle = styled.div`
   ${({ theme }) => theme.div}
 
   flex-direction: column;
   width: 100%;
 `;
 
-class Admin extends Component {
+class Blog extends Component {
   render() {
-    return <AdminStyle>admin</AdminStyle>;
+    return <BlogStyle>blog</BlogStyle>;
   }
 }
 
-export default Admin;
+export default Blog;

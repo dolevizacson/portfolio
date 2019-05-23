@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Domain } from 'styled-icons/material';
 import { ThMenu } from 'styled-icons/typicons';
 
 // constants
 import {
   homeRoute,
-  contactRoute,
-  skillsRoute,
   projectsRoute,
-} from '../../confing/routes';
+  skillsRoute,
+  blogRoute,
+  contactRoute,
+  adminRoute,
+} from '../../confing/constants';
 
 // style
 const AppNavbarStyle = styled.div`
@@ -107,6 +110,7 @@ class AppNavbar extends Component {
   linkList = [
     <LinkStyle to={projectsRoute}>PROJECTS</LinkStyle>,
     <LinkStyle to={skillsRoute}>SKILLS</LinkStyle>,
+    <LinkStyle to={blogRoute}>BLOG</LinkStyle>,
     <LinkStyle to={contactRoute}>CONTACT</LinkStyle>,
   ];
 
@@ -137,6 +141,11 @@ class AppNavbar extends Component {
                   <LinksContainerStyle key={index}>{item}</LinksContainerStyle>
                 );
               })}
+            {this.props.isLoggedIn && !this.state.showIcon && (
+              <LinksContainerStyle>
+                <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
+              </LinksContainerStyle>
+            )}
           </RightStyle>
         </NavbarContainerStyle>
         {!this.state.isCollapse && (
@@ -146,6 +155,11 @@ class AppNavbar extends Component {
                 <CollapseLinkContainerStyle>{item}</CollapseLinkContainerStyle>
               );
             })}
+            {this.props.isLoggedIn && (
+              <CollapseLinkContainerStyle>
+                <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
+              </CollapseLinkContainerStyle>
+            )}
           </CollapseStyle>
         )}
       </AppNavbarStyle>
@@ -153,4 +167,10 @@ class AppNavbar extends Component {
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = ({ isLoggedIn }) => {
+  return {
+    isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps)(AppNavbar);

@@ -14,7 +14,8 @@ const ProfileImageStyle = styled.div`
 const Image = styled.img.attrs({ src: 'tempPic.jpg', alt: 'profile' })`
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+
+  ${({ theme }) => theme.ui.corners}
 `;
 
 const ProfileImage = () => {

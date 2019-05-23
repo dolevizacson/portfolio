@@ -21,8 +21,8 @@ const AboutStyle = styled.div`
 const AboutContainerStyle = styled.div`
   ${({ theme }) => theme.div}
 
-  border-radius: 10px;
-  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
+  ${({ theme }) => theme.ui.corners}
+  ${({ theme }) => theme.ui.shadow}
 
   ${({ theme }) => theme.media.tablet`flex-direction: column;`}
   ${({ theme }) => theme.BackgroundColor.black1}
