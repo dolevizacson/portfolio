@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
 // style
 const LoginFormStyle = styled.div`
@@ -36,21 +37,33 @@ const LoginFormButtonStyle = styled.button`
   ${({ theme }) => theme.ui.formButton}
 `;
 
+const loginFormValidationSchema = yup.object().shape({
+  email: yup
+    .string()
+    //.email('Invalid email')
+    .required('Must provide an email'),
+  password: yup
+    .string()
+    .max(12, 'Password contains too many letters')
+    .required('Must insert a password'),
+});
+
 const LoginForm = ({ login }) => {
   return (
     <LoginFormStyle>
       <LoginFormContainerStyle>
         <Formik
-          initialValues={{ username: 'email', password: 'password' }}
+          initialValues={{ email: 'email', password: 'password' }}
+          validationSchema={loginFormValidationSchema}
           onSubmit={(values, actions) => {
-            const { username, password } = values;
-            login(username, password);
+            const { email, password } = values;
+            login(email, password);
             actions.setSubmitting(false);
           }}
           render={({ errors, status, touched, isSubmitting }) => (
             <FormStyle>
-              <EmailFieldStyle type="text" name="username" />
-              <ErrorMessage name="username" component="div" />
+              <EmailFieldStyle type="text" name="email" />
+              <ErrorMessage name="email" component="div" />
               <PasswordFieldStyle type="password" name="password" />
               <ErrorMessage name="password" component="div" />
               <LoginFormButtonStyle type="submit" disabled={isSubmitting}>

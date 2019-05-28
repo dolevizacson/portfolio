@@ -24,15 +24,11 @@ const TastsListContainerStyle = styled.div`
   flex-direction: column;
 `;
 const TaskStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme }) => theme.ui.item}
 
   padding: 12px;
   margin: 10px 0;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
-
-  ${({ theme }) => theme.BackgroundColor.black1}
 `;
 const TaskHeaderStyle = styled.div`
   ${({ theme }) => theme.div}

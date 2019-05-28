@@ -19,15 +19,11 @@ const MethodologyStyle = styled.div`
 `;
 
 const MethodologyContainerstyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme }) => theme.ui.item}
 
   flex-direction: column;
   width: 100%;
   height: 100%;
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
-
-  ${({ theme }) => theme.BackgroundColor.black1}
 
   ${({ isExtended }) => (isExtended === false ? `cursor: pointer` : '')}
 `;

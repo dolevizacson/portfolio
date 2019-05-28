@@ -37,19 +37,25 @@ const HeaderIconStyle = styled.div`
 `;
 
 const renderIcon = icon => {
-  const Elem = styled(icon)`
-    ${({ theme }) => theme.ui.corners}
+  if (icon) {
+    const Elem = styled(icon)`
+      ${({ theme }) => theme.ui.corners}
 
-    ${({ theme }) => theme.BackgroundColor.white2}
-  `;
-  return <Elem />;
+      ${({ theme }) => theme.BackgroundColor.white2}
+    `;
+    return (
+      <HeaderIconStyle>
+        <Elem />
+      </HeaderIconStyle>
+    );
+  }
 };
 
 const SkillsListHeader = ({ text, icon }) => {
   return (
     <SkillsListHeaderStyle>
       <SkillsListHeaderContainerStyle>
-        <HeaderIconStyle>{renderIcon(icon)}</HeaderIconStyle>
+        {renderIcon(icon)}
         <HeaderStyle>{text}</HeaderStyle>
       </SkillsListHeaderContainerStyle>
     </SkillsListHeaderStyle>

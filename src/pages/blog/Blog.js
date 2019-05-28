@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+// components
+import BlogPostsList from './components/BlogPostsList/BlogPostsList';
+
 const BlogStyle = styled.div`
   ${({ theme }) => theme.div}
 
@@ -10,7 +13,11 @@ const BlogStyle = styled.div`
 
 class Blog extends Component {
   render() {
-    return <BlogStyle>blog</BlogStyle>;
+    return (
+      <BlogStyle>
+        <BlogPostsList />
+      </BlogStyle>
+    );
   }
 }
 

@@ -19,13 +19,8 @@ const AboutStyle = styled.div`
   `}
 `;
 const AboutContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
-
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
-
   ${({ theme }) => theme.media.tablet`flex-direction: column;`}
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({ theme }) => theme.ui.item}
 `;
 
 const AboutMeStyle = styled.div`

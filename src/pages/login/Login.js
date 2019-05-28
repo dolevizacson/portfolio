@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { LogIn } from 'styled-icons/boxicons-regular';
-import { connect } from 'react-redux';
+import { constants, actions, UiHeader } from '../../env/utils/access';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+// icons
+import { LogIn } from 'styled-icons/boxicons-regular';
 
 // component
-import UiHeader from '../../components/UiHeader/UiHeader';
 import LoginForm from './components/LoginForm/LoginForm';
 
 // actions
-import { login } from '../../actions/authActions';
+const login = actions.authActions.login;
 
 // constants
-import { homeRoute } from '../../confing/constants';
+const { homeRoute } = constants;
 
 // style
 const LoginStyle = styled.div`
