@@ -5,5 +5,9 @@ import reducers from './env/reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default (initialState = {}) => {
-  return createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+  return createStore(
+    reducers,
+    initialState,
+    composeEnhancers(applyMiddleware(thunk))
+  );
 };

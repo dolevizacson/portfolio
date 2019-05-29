@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
 
 // reducers
-import { getSkillsListReducer } from './skillsListReducers';
+import { skillsListReducer } from './skillsListReducers';
 import { authReducer } from './authReducers';
 import { blogPostsReducer } from './blogPostsReducers';
+import { loadingReducer } from './loadingReducer';
+import { errorsReducer } from './errorsReducer';
 
 export default combineReducers({
-  skillsList: getSkillsListReducer,
-  isLoggedIn: authReducer,
+  skillsList: skillsListReducer,
   blogPostsList: blogPostsReducer,
+  isLoggedIn: authReducer,
+  isLoading: loadingReducer,
+  errors: errorsReducer,
 });

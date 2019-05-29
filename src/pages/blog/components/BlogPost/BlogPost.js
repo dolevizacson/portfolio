@@ -74,7 +74,6 @@ const formatDate = date => {
 };
 
 const BlogPost = ({ blogPostData }) => {
-  console.log(blogPostData);
   return (
     <BlogPostStyle>
       <BlogPostContainerStyle>

@@ -1,13 +1,23 @@
 export const skills = {
-  readAll: 'READ_SKILLS_LIST_CONTENT',
+  readAllRequest: 'READ_SKILLS_LIST_REQUEST',
+  readAllSuccess: 'READ_SKILLS_LIST_SUCCESS',
+  readAllFail: 'READ_SKILLS_LIST_FAILURE',
 };
 
 export const auth = {
-  login: 'LOGIN',
-  logout: 'LOGOUT',
-  isLoggedIn: 'IS_LOGGED_IN',
+  loginRequest: 'LOGIN_REQUEST',
+  loginSuccess: 'LOGIN_SUCCESS',
+  loginFail: 'LOGIN_FAILURE',
+  logoutRequest: 'LOGOUT_REQUEST',
+  logoutSuccess: 'LOGOUT_SUCCESS',
+  logoutFail: 'LOGOUT_FAILURE',
+  isLoggedInRequest: 'IS_LOGGED_REQUEST',
+  isLoggedInSuccess: 'IS_LOGGED_SUCCESS',
+  isLoggedInFail: 'IS_LOGGED_FAILURE',
 };
 
 export const blog = {
-  readAll: 'READ_BLOG_POSTS',
+  readAllRequest: 'READ_BLOG_POSTS_REQUEST',
+  readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
+  readAllFail: 'READ_BLOG_POSTS_FAILURE',
 };

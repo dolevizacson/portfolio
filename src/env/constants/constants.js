@@ -29,7 +29,6 @@ const general = {
   adminRoute: '/admin',
   loginRoute: '/login',
 };
-console.log({ ...general, ...dev });
 
 export default (process.env.NODE_ENV === 'production'
   ? merge(general, prod)

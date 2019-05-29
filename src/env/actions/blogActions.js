@@ -5,16 +5,17 @@ const blogService = services.blogService;
 
 // get blog posts
 const getBlogPosts = () => async (dispatch, getState) => {
+  dispatch({ type: blog.readAllRequest });
   let response;
   try {
     response = await blogService.getPosts();
+    dispatch({
+      type: blog.readAllSuccess,
+      payload: response,
+    });
   } catch (err) {
-    console.log(err);
+    dispatch({ type: blog.readAllFail, payload: err });
   }
-  dispatch({
-    type: blog.readAll,
-    payload: response,
-  });
 };
 
 export default {

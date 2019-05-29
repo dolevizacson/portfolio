@@ -1,8 +1,8 @@
 import { skills } from '../types/types';
 
-export const getSkillsListReducer = (state = [], action) => {
+export const skillsListReducer = (state = [], action) => {
   switch (action.type) {
-    case skills.readAll:
+    case skills.readAllSuccess:
       return [...action.payload];
     default:
       return state;

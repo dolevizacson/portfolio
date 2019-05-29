@@ -5,42 +5,48 @@ const authService = services.authService;
 
 // send login request to server
 const login = (username, password) => async (dispatch, getState) => {
+  dispatch({ type: auth.loginRequest });
   let response;
   try {
     response = await authService.login(username, password);
+    dispatch({
+      type: auth.loginSuccess,
+      payload: response,
+    });
   } catch (err) {
-    console.log(err);
+    dispatch({ type: auth.loginFail, payload: err });
   }
-  dispatch({
-    type: auth.login,
-    payload: response,
-  });
 };
 
 const logout = () => async (dispatch, getState) => {
+  dispatch({ type: auth.logoutRequest });
   let response;
   try {
     response = await authService.logout();
+    dispatch({
+      type: auth.logoutSuccess,
+      payload: response,
+    });
   } catch (err) {
-    console.log(err);
+    dispatch({ type: auth.logoutFail, payload: err });
   }
-  dispatch({
-    type: auth.logout,
-    payload: response,
-  });
 };
 
 const isLoggedIn = () => async (dispatch, getState) => {
+  dispatch({ type: auth.isLoggedInRequest });
   let response;
   try {
     response = await authService.isLoggedIn();
+    dispatch({
+      type: auth.isLoggedInSuccess,
+      payload: response,
+    });
   } catch (err) {
-    console.log(err);
+    dispatch({
+      type: auth.isLoggedInFail,
+      payload: response,
+    });
   }
-  dispatch({
-    type: auth.logout,
-    payload: response,
-  });
 };
 
 export default {

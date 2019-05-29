@@ -5,16 +5,20 @@ const skillsService = services.skillsService;
 
 // get skills list
 const getSkillsList = () => async (dispatch, getState) => {
+  dispatch({ type: skills.readAllRequest });
   let response = {};
   try {
     response = await skillsService.getSkillsList();
+    dispatch({
+      type: skills.readAllSuccess,
+      payload: response.data,
+    });
   } catch (err) {
-    console.log(err);
+    dispatch({
+      type: skills.readAllFail,
+      payload: err,
+    });
   }
-  dispatch({
-    type: skills.readAll,
-    payload: response.data,
-  });
 };
 
 export default {
