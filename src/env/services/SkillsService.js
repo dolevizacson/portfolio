@@ -1,12 +1,12 @@
 import axios from 'axios';
-import httpStatus from 'http-status-codes';
 
-import { constants } from '../utils/access';
+import { constants, errorHandlers } from '../utils/access';
 
 class SkillsService {
   constructor() {
     this.serverSkills = axios.create({
       baseURL: constants.server.baseUrl + constants.server.skills,
+      timeout: 2000,
     });
   }
 
@@ -15,7 +15,7 @@ class SkillsService {
     try {
       response = await this.serverSkills.get('/skillslist');
     } catch (err) {
-      throw err;
+      errorHandlers.axiosErrorHandler(err);
     }
     return response;
   }

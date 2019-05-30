@@ -32,15 +32,12 @@ const HeaderIconStyle = styled.img.attrs({
   height: 100%;
 `;
 class SkillsList extends Component {
-  state = { isLoading: true, list: [], isExtended: false };
+  state = { list: [], isExtended: false };
 
   componentDidMount = async () => {
     await this.props.getSkillsList();
     this.setState(state => {
       return { list: this.props.skillsList };
-    });
-    this.setState(state => {
-      return { isLoading: false };
     });
   };
 
@@ -78,9 +75,9 @@ class SkillsList extends Component {
 
     return (
       <SkillsListStyle>
-        {this.state.isLoading && <UiLoading size={50} />}
+        {this.props.isLoading.READ_SKILLS_LIST && <UiLoading size={50} />}
 
-        {!this.state.isLoading && (
+        {!this.props.isLoading.READ_SKILLS_LIST && (
           <>
             <UiHeader
               text="Technology Stack And Stuff"
@@ -96,11 +93,10 @@ class SkillsList extends Component {
   }
 }
 
-const mapStateToProps = ({ skillsList }) => {
-  return {
-    skillsList,
-  };
-};
+const mapStateToProps = ({ skillsList, isLoading }) => ({
+  skillsList,
+  isLoading,
+});
 
 export default connect(
   mapStateToProps,

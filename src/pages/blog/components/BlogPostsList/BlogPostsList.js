@@ -18,17 +18,13 @@ const BlogPostsListStyle = styled.div`
   height: 100%;
 `;
 const HeaderIconStyle = styled(BloggerB)`
+  ${({ theme }) => theme.color.black1}
   ${({ theme }) => theme.ui.headerIconSize}
 `;
 
 class BlogPostsList extends Component {
-  state = { isLoading: true };
-
-  componentDidMount = async () => {
-    await this.props.getBlogPosts();
-    this.setState(state => {
-      return { isLoading: false };
-    });
+  componentDidMount = () => {
+    this.props.getBlogPosts();
   };
 
   renderBlogPostsList = list => {
@@ -42,8 +38,8 @@ class BlogPostsList extends Component {
 
     return (
       <BlogPostsListStyle>
-        {this.state.isLoading && <UiLoading size={50} />}
-        {!this.state.isLoading && (
+        {this.props.isLoading.READ_BLOG_POSTS && <UiLoading size={50} />}
+        {!this.props.isLoading.READ_BLOG_POSTS && (
           <>
             <UiHeader text="Personal blog" icon={HeaderIconStyle} />
             {this.renderBlogPostsList(blogPostsList)}
@@ -54,11 +50,10 @@ class BlogPostsList extends Component {
   }
 }
 
-const mapStateToProps = ({ blogPostsList }) => {
-  return {
-    blogPostsList,
-  };
-};
+const mapStateToProps = ({ blogPostsList, isLoading }) => ({
+  blogPostsList,
+  isLoading,
+});
 
 export default connect(
   mapStateToProps,

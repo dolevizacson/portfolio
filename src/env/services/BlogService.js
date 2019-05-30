@@ -1,12 +1,12 @@
 import axios from 'axios';
-import httpStatus from 'http-status-codes';
 
-import { constants } from '../utils/access';
+import { constants, errorHandlers } from '../utils/access';
 
 class BlogService {
   constructor() {
     this.serverBlog = axios.create({
       baseURL: constants.server.baseUrl + constants.server.blog,
+      timeout: 2000,
     });
   }
 
@@ -15,7 +15,7 @@ class BlogService {
     try {
       response = await this.serverBlog.get('/posts');
     } catch (err) {
-      console.log(err);
+      errorHandlers.axiosErrorHandler(err);
     }
     return response.data;
   }

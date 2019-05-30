@@ -3,6 +3,10 @@ import MainTheme from '../style/MainTheme';
 
 export { default as constants } from '../constants/constants';
 
+export { default as errors } from '../errors/errors';
+
+export { default as errorHandlers } from '../errorHandlers/errorHandlers';
+
 export { default as services } from '../services';
 
 export { default as actions } from '../actions';

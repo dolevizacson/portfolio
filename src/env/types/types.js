@@ -4,6 +4,12 @@ export const skills = {
   readAllFail: 'READ_SKILLS_LIST_FAILURE',
 };
 
+export const blog = {
+  readAllRequest: 'READ_BLOG_POSTS_REQUEST',
+  readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
+  readAllFail: 'READ_BLOG_POSTS_FAILURE',
+};
+
 export const auth = {
   loginRequest: 'LOGIN_REQUEST',
   loginSuccess: 'LOGIN_SUCCESS',
@@ -14,10 +20,4 @@ export const auth = {
   isLoggedInRequest: 'IS_LOGGED_REQUEST',
   isLoggedInSuccess: 'IS_LOGGED_SUCCESS',
   isLoggedInFail: 'IS_LOGGED_FAILURE',
-};
-
-export const blog = {
-  readAllRequest: 'READ_BLOG_POSTS_REQUEST',
-  readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
-  readAllFail: 'READ_BLOG_POSTS_FAILURE',
 };

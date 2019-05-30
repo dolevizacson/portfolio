@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     height: 100%;
     width: 100%;
+    ${({ theme }) => theme.color.white2}
     ${({ theme }) => theme.BackgroundColor.grey1}
   }
 

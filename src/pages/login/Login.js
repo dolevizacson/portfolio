@@ -25,6 +25,7 @@ const LoginStyle = styled.div`
 `;
 
 const HeaderIconStyle = styled(LogIn)`
+  ${({ theme }) => theme.color.black1}
   ${({ theme }) => theme.ui.headerIconSize}
 `;
 

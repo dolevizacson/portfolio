@@ -1,12 +1,13 @@
 import axios from 'axios';
 import httpStatus from 'http-status-codes';
 
-import { constants } from '../utils/access';
+import { constants, errorHandlers } from '../utils/access';
 
 class AuthService {
   constructor() {
     this.serverAuth = axios.create({
       baseURL: constants.server.baseUrl + constants.server.auth,
+      timeout: 2000,
     });
   }
 
@@ -18,7 +19,7 @@ class AuthService {
         password,
       });
     } catch (err) {
-      throw err;
+      errorHandlers.authErrorHandler(err);
     }
     return response.status === httpStatus.OK;
   }
@@ -28,7 +29,7 @@ class AuthService {
     try {
       response = await this.serverAuth.get('/logout');
     } catch (err) {
-      throw err;
+      errorHandlers.authErrorHandler(err);
     }
     return !response.status === httpStatus.OK;
   }
@@ -38,7 +39,7 @@ class AuthService {
     try {
       response = await this.serverAuth.get('/isLoggedIn');
     } catch (err) {
-      throw err;
+      errorHandlers.authErrorHandler(err);
     }
     return response.status === httpStatus.OK;
   }
