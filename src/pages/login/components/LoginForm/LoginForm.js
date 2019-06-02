@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 
 // style
 const LoginFormStyle = styled.div`
@@ -27,23 +27,21 @@ const FormStyle = styled(Form)`
   flex-direction: column;
   align-content: space-around;
 `;
-const EmailFieldStyle = styled(Field)`
+const LoginEmailFieldStyle = styled(Field)`
   ${({ theme }) => theme.ui.formTextField}
 `;
-const PasswordFieldStyle = styled(Field)`
+const LoginPasswordFieldStyle = styled(Field)`
   ${({ theme }) => theme.ui.formTextField}
 `;
 const LoginFormButtonStyle = styled.button`
   ${({ theme }) => theme.ui.formButton}
 `;
 
-const loginFormValidationSchema = yup.object().shape({
-  email: yup
-    .string()
+const loginFormValidationSchema = Yup.object().shape({
+  email: Yup.string()
     //.email('Invalid email')
     .required('Must provide an email'),
-  password: yup
-    .string()
+  password: Yup.string()
     .max(12, 'Password contains too many letters')
     .required('Must insert a password'),
 });
@@ -62,9 +60,9 @@ const LoginForm = ({ login }) => {
           }}
           render={({ errors, status, touched, isSubmitting }) => (
             <FormStyle>
-              <EmailFieldStyle type="text" name="email" />
+              <LoginEmailFieldStyle type="text" name="email" />
               <ErrorMessage name="email" component="div" />
-              <PasswordFieldStyle type="password" name="password" />
+              <LoginPasswordFieldStyle type="password" name="password" />
               <ErrorMessage name="password" component="div" />
               <LoginFormButtonStyle type="submit" disabled={isSubmitting}>
                 Submit
