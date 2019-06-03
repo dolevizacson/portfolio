@@ -1,7 +1,7 @@
-import axiosErrorHandler from './axiosErrorHandler';
+import blogErrorHandler from './blogErrorHandler';
 import authErrorHandler from './authErrorHandler';
 
 export default {
-  axiosErrorHandler,
+  blogErrorHandler,
   authErrorHandler,
 };

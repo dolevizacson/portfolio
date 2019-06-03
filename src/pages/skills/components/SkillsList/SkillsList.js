@@ -42,18 +42,17 @@ class SkillsList extends Component {
   };
 
   renderOneMethodology = id => {
-    this.setState(state => {
-      return {
-        list: this.state.list.filter(methodology => methodology._id === id),
-        isExtended: true,
-      };
-    });
+    this.setState(state => ({
+      list: this.state.list.filter(methodology => methodology._id === id),
+      isExtended: true,
+    }));
   };
 
   renderAllMethodologies = () => {
-    this.setState(state => {
-      return { list: this.props.skillsList, isExtended: false };
-    });
+    this.setState(state => ({
+      list: this.props.skillsList,
+      isExtended: false,
+    }));
   };
 
   renderMethodologyList = list => {

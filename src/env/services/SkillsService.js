@@ -1,19 +1,16 @@
-import axios from 'axios';
-
-import { constants, errorHandlers } from '../utils/access';
+import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
 
 class SkillsService {
   constructor() {
-    this.serverSkills = axios.create({
+    this.skillsServer = portfolioApiServer.create({
       baseURL: constants.server.baseUrl + constants.server.skills,
-      timeout: 2000,
     });
   }
 
   async getSkillsList() {
     let response = {};
     try {
-      response = await this.serverSkills.get('/skillslist');
+      response = await this.skillsServer.get('/skillslist');
     } catch (err) {
       errorHandlers.axiosErrorHandler(err);
     }

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { actions } from '../../../../env/utils/access';
+import { connect } from 'react-redux';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+// actions
+const postBlogPost = actions.blogActions.postBlogPost;
+
+// style
 const BlogPostFormStyle = styled.div`
   ${({ theme }) => theme.div}
 `;
@@ -32,7 +38,7 @@ const BlogPostHeaderFieldStyle = styled(Field)`
 const BlogPostParagraphHeaderFieldStyle = styled(Field)`
   ${({ theme }) => theme.ui.formTextField}
 `;
-const BlogPostParagraphContentFieldStyle = styled.textarea`
+const BlogPostParagraphContentFieldStyle = styled(Field)`
   ${({ theme }) => theme.ui.formTextField}
 `;
 const BlogPostFooterFieldStyle = styled(Field)`
@@ -73,6 +79,10 @@ const BlogPostFormValidationSchema = Yup.object().shape({
 });
 
 class BlogPostForm extends Component {
+  postBlogPost = post => {
+    this.props.postBlogPost(post);
+  };
+
   render() {
     return (
       <BlogPostFormStyle>
@@ -90,6 +100,7 @@ class BlogPostForm extends Component {
             }}
             validationSchema={BlogPostFormValidationSchema}
             onSubmit={(values, actions) => {
+              this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
             render={({ values, errors, status, touched, isSubmitting }) => (
@@ -111,13 +122,9 @@ class BlogPostForm extends Component {
                               name={`paragraph.${index}.header`}
                               component="div"
                             />
-                            <Field name={`paragraph.${index}.content`}>
-                              {({ field, form }) => (
-                                <BlogPostParagraphContentFieldStyle
-                                  {...field}
-                                />
-                              )}
-                            </Field>
+                            <BlogPostParagraphContentFieldStyle
+                              name={`paragraph.${index}.content`}
+                            />
                             <ErrorMessage
                               name={`paragraph.${index}.content`}
                               component="div"
@@ -172,4 +179,7 @@ class BlogPostForm extends Component {
   }
 }
 
-export default BlogPostForm;
+export default connect(
+  null,
+  { postBlogPost }
+)(BlogPostForm);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { constants, actions, UiHeader } from '../../env/utils/access';
+import { constants, UiHeader } from '../../env/utils/access';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,9 +9,6 @@ import { LogIn } from 'styled-icons/boxicons-regular';
 
 // component
 import LoginForm from './components/LoginForm/LoginForm';
-
-// actions
-const login = actions.authActions.login;
 
 // constants
 const { homeRoute } = constants;
@@ -30,10 +27,6 @@ const HeaderIconStyle = styled(LogIn)`
 `;
 
 class Login extends Component {
-  login = (username, password) => {
-    this.props.login(username, password);
-  };
-
   render() {
     const { from } = this.props.location.state || {
       from: { pathname: homeRoute },
@@ -45,7 +38,7 @@ class Login extends Component {
       return (
         <LoginStyle>
           <UiHeader text="Login" icon={HeaderIconStyle} />
-          <LoginForm login={this.login} />
+          <LoginForm />
         </LoginStyle>
       );
     }
@@ -58,7 +51,4 @@ const mapStateToProps = ({ isLoggedIn }) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default connect(mapStateToProps)(Login);

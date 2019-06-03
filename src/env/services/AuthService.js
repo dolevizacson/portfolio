@@ -1,20 +1,18 @@
-import axios from 'axios';
 import httpStatus from 'http-status-codes';
 
-import { constants, errorHandlers } from '../utils/access';
+import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
 
 class AuthService {
   constructor() {
-    this.serverAuth = axios.create({
+    this.authServer = portfolioApiServer.create({
       baseURL: constants.server.baseUrl + constants.server.auth,
-      timeout: 2000,
     });
   }
 
   async login(username, password) {
     let response;
     try {
-      response = await this.serverAuth.post('/login', {
+      response = await this.authServer.post('/login', {
         username,
         password,
       });
@@ -27,7 +25,7 @@ class AuthService {
   async logout() {
     let response;
     try {
-      response = await this.serverAuth.get('/logout');
+      response = await this.authServer.get('/logout');
     } catch (err) {
       errorHandlers.authErrorHandler(err);
     }
@@ -37,7 +35,7 @@ class AuthService {
   async isLoggedIn() {
     let response;
     try {
-      response = await this.serverAuth.get('/isLoggedIn');
+      response = await this.authServer.get('/isLoggedIn');
     } catch (err) {
       errorHandlers.authErrorHandler(err);
     }

@@ -1,21 +1,48 @@
-import axios from 'axios';
-
-import { constants, errorHandlers } from '../utils/access';
+import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
 
 class BlogService {
   constructor() {
-    this.serverBlog = axios.create({
+    this.blogServer = portfolioApiServer.create({
       baseURL: constants.server.baseUrl + constants.server.blog,
-      timeout: 2000,
     });
   }
 
   async getPosts() {
     let response;
     try {
-      response = await this.serverBlog.get('/posts');
+      response = await this.blogServer.get('/posts');
     } catch (err) {
-      errorHandlers.axiosErrorHandler(err);
+      errorHandlers.blogErrorHandler(err);
+    }
+    return response.data;
+  }
+
+  async postPost(post) {
+    let response;
+    try {
+      response = await this.blogServer.post('/posts', post);
+    } catch (err) {
+      errorHandlers.blogErrorHandler(err);
+    }
+    return response.data;
+  }
+
+  async updatePost(id, post) {
+    let response;
+    try {
+      response = await this.blogServer.put(`/posts/${id}`, post);
+    } catch (err) {
+      errorHandlers.blogErrorHandler(err);
+    }
+    return response.data;
+  }
+
+  async deletePost(id) {
+    let response;
+    try {
+      response = await this.blogServer.delete(`/posts/${id}`);
+    } catch (err) {
+      errorHandlers.blogErrorHandler(err);
     }
     return response.data;
   }

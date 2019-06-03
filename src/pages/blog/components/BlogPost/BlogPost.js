@@ -69,7 +69,7 @@ const BlogPostFooterStyle = styled.div`
 
 const formatDate = date => {
   const rawDate = new Date(date);
-  return `${rawDate.getDay()}/${rawDate.getMonth() +
+  return `${rawDate.getDate()}/${rawDate.getMonth() +
     1}/${rawDate.getFullYear()}`;
 };
 

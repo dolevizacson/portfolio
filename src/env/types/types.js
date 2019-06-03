@@ -8,6 +8,10 @@ export const blog = {
   readAllRequest: 'READ_BLOG_POSTS_REQUEST',
   readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
   readAllFail: 'READ_BLOG_POSTS_FAILURE',
+
+  createRequest: 'CREATE_BLOG_POSTS_REQUEST',
+  createSuccess: 'CREATE_BLOG_POSTS_SUCCESS',
+  createFail: 'CREATE_BLOG_POSTS_FAILURE',
 };
 
 export const auth = {

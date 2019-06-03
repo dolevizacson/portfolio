@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { actions } from '../../../../env/utils/access';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+// actions
+const login = actions.authActions.login;
 
 // style
 const LoginFormStyle = styled.div`
@@ -46,33 +51,42 @@ const loginFormValidationSchema = Yup.object().shape({
     .required('Must insert a password'),
 });
 
-const LoginForm = ({ login }) => {
-  return (
-    <LoginFormStyle>
-      <LoginFormContainerStyle>
-        <Formik
-          initialValues={{ email: 'email', password: 'password' }}
-          validationSchema={loginFormValidationSchema}
-          onSubmit={(values, actions) => {
-            const { email, password } = values;
-            login(email, password);
-            actions.setSubmitting(false);
-          }}
-          render={({ errors, status, touched, isSubmitting }) => (
-            <FormStyle>
-              <LoginEmailFieldStyle type="text" name="email" />
-              <ErrorMessage name="email" component="div" />
-              <LoginPasswordFieldStyle type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
-              <LoginFormButtonStyle type="submit" disabled={isSubmitting}>
-                Submit
-              </LoginFormButtonStyle>
-            </FormStyle>
-          )}
-        />
-      </LoginFormContainerStyle>
-    </LoginFormStyle>
-  );
-};
+class LoginForm extends Component {
+  login = (username, password) => {
+    this.props.login(username, password);
+  };
 
-export default LoginForm;
+  render() {
+    return (
+      <LoginFormStyle>
+        <LoginFormContainerStyle>
+          <Formik
+            initialValues={{ email: 'email', password: 'password' }}
+            validationSchema={loginFormValidationSchema}
+            onSubmit={(values, actions) => {
+              const { email, password } = values;
+              this.login(email, password);
+              actions.setSubmitting(false);
+            }}
+            render={({ errors, status, touched, isSubmitting }) => (
+              <FormStyle>
+                <LoginEmailFieldStyle type="text" name="email" />
+                <ErrorMessage name="email" component="div" />
+                <LoginPasswordFieldStyle type="password" name="password" />
+                <ErrorMessage name="password" component="div" />
+                <LoginFormButtonStyle type="submit" disabled={isSubmitting}>
+                  Submit
+                </LoginFormButtonStyle>
+              </FormStyle>
+            )}
+          />
+        </LoginFormContainerStyle>
+      </LoginFormStyle>
+    );
+  }
+}
+
+export default connect(
+  null,
+  { login }
+)(LoginForm);

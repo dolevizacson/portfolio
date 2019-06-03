@@ -18,6 +18,22 @@ const getBlogPosts = () => async (dispatch, getState) => {
   }
 };
 
+// post blog post
+const postBlogPost = post => async (dispatch, getState) => {
+  dispatch({ type: blog.createRequest });
+  let response;
+  try {
+    response = await blogService.postPost(post);
+    dispatch({
+      type: blog.createSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: blog.createFail, payload: err });
+  }
+};
+
 export default {
   getBlogPosts,
+  postBlogPost,
 };
