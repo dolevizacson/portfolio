@@ -33,7 +33,23 @@ const postBlogPost = post => async (dispatch, getState) => {
   }
 };
 
+// delete blog post
+const deleteBlogPost = id => async (dispatch, getState) => {
+  dispatch({ type: blog.deleteRequest });
+  let response;
+  try {
+    response = await blogService.deletePost(id);
+    dispatch({
+      type: blog.deleteSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: blog.deleteFail, payload: err });
+  }
+};
+
 export default {
   getBlogPosts,
   postBlogPost,
+  deleteBlogPost,
 };

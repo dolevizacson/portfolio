@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { actions } from '../../../../env/utils/access';
 
+// actions
+const deleteBlogPost = actions.blogActions.deleteBlogPost;
+
+// style
 const BlogPostStyle = styled.div`
   ${({ theme }) => theme.div}
 `;
@@ -66,6 +72,9 @@ const BlogPostFooterStyle = styled.div`
   ${({ theme }) => theme.color.white2};
   ${({ theme }) => theme.font.font1};
 `;
+const BlogPostDeleteButtonStyle = styled.button`
+  ${({ theme }) => theme.ui.formButton}
+`;
 
 const formatDate = date => {
   const rawDate = new Date(date);
@@ -73,7 +82,7 @@ const formatDate = date => {
     1}/${rawDate.getFullYear()}`;
 };
 
-const BlogPost = ({ blogPostData }) => {
+const BlogPost = ({ blogPostData, isLoggedIn, deleteBlogPost }) => {
   return (
     <BlogPostStyle>
       <BlogPostContainerStyle>
@@ -103,9 +112,21 @@ const BlogPost = ({ blogPostData }) => {
             <BlogPostFooterStyle>{blogPostData.footer}</BlogPostFooterStyle>
           </>
         )}
+        {isLoggedIn && (
+          <BlogPostDeleteButtonStyle
+            onClick={() => deleteBlogPost(blogPostData._id)}
+          >
+            Delete
+          </BlogPostDeleteButtonStyle>
+        )}
       </BlogPostContainerStyle>
     </BlogPostStyle>
   );
 };
 
-export default BlogPost;
+const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+
+export default connect(
+  mapStateToProps,
+  { deleteBlogPost }
+)(BlogPost);

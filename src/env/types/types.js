@@ -12,6 +12,10 @@ export const blog = {
   createRequest: 'CREATE_BLOG_POSTS_REQUEST',
   createSuccess: 'CREATE_BLOG_POSTS_SUCCESS',
   createFail: 'CREATE_BLOG_POSTS_FAILURE',
+
+  deleteRequest: 'DELETE_BLOG_POSTS_REQUEST',
+  deleteSuccess: 'DELETE_BLOG_POSTS_SUCCESS',
+  deleteFail: 'DELETE_BLOG_POSTS_FAILURE',
 };
 
 export const auth = {
