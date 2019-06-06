@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { constants } from '../../../env/utils/access';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { constants } from '../../../env/utils/access';
+
+// icons
 import { Domain } from 'styled-icons/material';
 import { ThMenu } from 'styled-icons/typicons';
 

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { actions } from '../../../../env/utils/access';
+import { Redirect, withRouter } from 'react-router-dom';
+import { constants, actions } from '../../../../env/utils/access';
 
 // actions
 const deleteBlogPost = actions.blogActions.deleteBlogPost;
+
+// constants
+const { adminRoute, blogRoute } = constants;
 
 // style
 const BlogPostStyle = styled.div`
@@ -75,58 +79,94 @@ const BlogPostFooterStyle = styled.div`
 const BlogPostDeleteButtonStyle = styled.button`
   ${({ theme }) => theme.ui.formButton}
 `;
+const BlogPostUpdateButtonStyle = styled.button`
+  ${({ theme }) => theme.ui.formButton}
+`;
 
-const formatDate = date => {
-  const rawDate = new Date(date);
-  return `${rawDate.getDate()}/${rawDate.getMonth() +
-    1}/${rawDate.getFullYear()}`;
-};
+class BlogPost extends Component {
+  state = { updatePost: false };
 
-const BlogPost = ({ blogPostData, isLoggedIn, deleteBlogPost }) => {
-  return (
-    <BlogPostStyle>
-      <BlogPostContainerStyle>
-        <BlogPostHeaderStyle>{blogPostData.header}</BlogPostHeaderStyle>
-        <BlogPostDateStyle>
-          posted : {formatDate(blogPostData.date)}
-        </BlogPostDateStyle>
-        <SeperatorStyle />
-        <BlogPostBodyStyle>
-          {blogPostData.paragraph.map((paragraph, index) => {
-            return (
-              <BlogPostparagraphStyle key={index}>
-                <BlogPostparagraphHeaderStyle>
-                  {paragraph.header}
-                </BlogPostparagraphHeaderStyle>
-                <BlogPostparagraphBodyStyle>
-                  {paragraph.content}
-                </BlogPostparagraphBodyStyle>
-              </BlogPostparagraphStyle>
-            );
-          })}
-        </BlogPostBodyStyle>
-        {blogPostData.footer && (
-          <>
-            <SeperatorStyle />
+  deleteBlogPost = id => {
+    this.props.deleteBlogPost(id);
+  };
 
-            <BlogPostFooterStyle>{blogPostData.footer}</BlogPostFooterStyle>
-          </>
-        )}
-        {isLoggedIn && (
-          <BlogPostDeleteButtonStyle
-            onClick={() => deleteBlogPost(blogPostData._id)}
-          >
-            Delete
-          </BlogPostDeleteButtonStyle>
-        )}
-      </BlogPostContainerStyle>
-    </BlogPostStyle>
-  );
-};
+  updateBlogPost = () => {
+    this.setState(state => ({ updatePost: true }));
+  };
+
+  formatDate = date => {
+    const rawDate = new Date(date);
+    return `${rawDate.getDate()}/${rawDate.getMonth() +
+      1}/${rawDate.getFullYear()}`;
+  };
+  render() {
+    const { blogPostData, isLoggedIn, location } = this.props;
+
+    if (this.state.updatePost)
+      return (
+        <Redirect
+          to={{
+            pathname: `${adminRoute}${blogRoute}`,
+            state: {
+              from: location.pathname,
+              blogPost: blogPostData,
+            },
+          }}
+        />
+      );
+
+    return (
+      <BlogPostStyle>
+        <BlogPostContainerStyle>
+          <BlogPostHeaderStyle>{blogPostData.header}</BlogPostHeaderStyle>
+          <BlogPostDateStyle>
+            posted : {this.formatDate(blogPostData.date)}
+          </BlogPostDateStyle>
+          <SeperatorStyle />
+          <BlogPostBodyStyle>
+            {blogPostData.paragraph.map((paragraph, index) => {
+              return (
+                <BlogPostparagraphStyle key={index}>
+                  <BlogPostparagraphHeaderStyle>
+                    {paragraph.header}
+                  </BlogPostparagraphHeaderStyle>
+                  <BlogPostparagraphBodyStyle>
+                    {paragraph.content}
+                  </BlogPostparagraphBodyStyle>
+                </BlogPostparagraphStyle>
+              );
+            })}
+          </BlogPostBodyStyle>
+          {blogPostData.footer && (
+            <>
+              <SeperatorStyle />
+
+              <BlogPostFooterStyle>{blogPostData.footer}</BlogPostFooterStyle>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <BlogPostDeleteButtonStyle
+                onClick={() => this.deleteBlogPost(blogPostData._id)}
+              >
+                Delete
+              </BlogPostDeleteButtonStyle>
+              <BlogPostUpdateButtonStyle onClick={this.updateBlogPost}>
+                Update
+              </BlogPostUpdateButtonStyle>
+            </>
+          )}
+        </BlogPostContainerStyle>
+      </BlogPostStyle>
+    );
+  }
+}
 
 const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
 
-export default connect(
-  mapStateToProps,
-  { deleteBlogPost }
-)(BlogPost);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { deleteBlogPost }
+  )(BlogPost)
+);

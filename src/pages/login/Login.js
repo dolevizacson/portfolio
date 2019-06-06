@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { constants, UiHeader } from '../../env/utils/access';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { constants, UiHeader } from '../../env/utils/access';
 
 // icons
 import { LogIn } from 'styled-icons/boxicons-regular';

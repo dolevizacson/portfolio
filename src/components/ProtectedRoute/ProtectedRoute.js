@@ -1,7 +1,7 @@
 import React from 'react';
-import { constants } from '../../../env/utils/access';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { constants } from '../../env/utils/access';
 
 const { loginRoute } = constants;
 

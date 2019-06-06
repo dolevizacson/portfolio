@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { actions } from '../../../../env/utils/access';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { actions } from '../../../../env/utils/access';
 
 // actions
 const postBlogPost = actions.blogActions.postBlogPost;
+const updateBlogPost = actions.blogActions.updateBlogPost;
 
 // style
 const BlogPostFormStyle = styled.div`
@@ -66,6 +67,9 @@ const BlogPostParagraphRAddButtonStyle = styled.button`
 const BlogPostSubmitButtonStyle = styled.button`
   ${({ theme }) => theme.ui.formButton}
 `;
+const BlogPostUpdateButtonStyle = styled.button`
+  ${({ theme }) => theme.ui.formButton}
+`;
 
 const BlogPostFormValidationSchema = Yup.object().shape({
   header: Yup.string().required('Must provide a post header'),
@@ -83,24 +87,37 @@ class BlogPostForm extends Component {
     this.props.postBlogPost(post);
   };
 
+  updateBlogPost = (id, post) => {
+    this.props.updateBlogPost(id, post);
+  };
+
   render() {
     return (
       <BlogPostFormStyle>
         <BlogPostContainerStyle>
           <Formik
-            initialValues={{
-              header: 'Post Header',
-              paragraph: [
-                {
-                  header: 'Paragraph header',
-                  content: 'Paragraph content',
-                },
-              ],
-              footer: 'Post footer',
-            }}
+            initialValues={
+              this.props.location && this.props.location.state
+                ? this.props.location.state.blogPost
+                : {
+                    header: 'Post Header',
+                    paragraph: [
+                      {
+                        header: 'Paragraph header',
+                        content: 'Paragraph content',
+                      },
+                    ],
+                    footer: 'Post footer',
+                  }
+            }
             validationSchema={BlogPostFormValidationSchema}
             onSubmit={(values, actions) => {
-              this.postBlogPost(values);
+              this.props.location && this.props.location.state
+                ? this.updateBlogPost(
+                    this.props.location.state.blogPost._id,
+                    values
+                  )
+                : this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
             render={({ values, errors, status, touched, isSubmitting }) => (
@@ -164,12 +181,22 @@ class BlogPostForm extends Component {
                 />
                 <BlogPostFooterFieldStyle type="text" name="footer" />
                 <ErrorMessage name="footer" component="div" />
-                <BlogPostSubmitButtonStyle
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Submit
-                </BlogPostSubmitButtonStyle>
+                {!this.props.location.state && (
+                  <BlogPostSubmitButtonStyle
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Submit
+                  </BlogPostSubmitButtonStyle>
+                )}
+                {this.props.location && this.props.location.state && (
+                  <BlogPostUpdateButtonStyle
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    update
+                  </BlogPostUpdateButtonStyle>
+                )}
               </FormStyle>
             )}
           />
@@ -181,5 +208,5 @@ class BlogPostForm extends Component {
 
 export default connect(
   null,
-  { postBlogPost }
+  { postBlogPost, updateBlogPost }
 )(BlogPostForm);

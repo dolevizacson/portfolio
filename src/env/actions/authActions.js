@@ -44,7 +44,7 @@ const isLoggedIn = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch({
       type: auth.isLoggedInFail,
-      payload: response,
+      payload: err,
     });
   }
 };

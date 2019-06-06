@@ -33,6 +33,21 @@ const postBlogPost = post => async (dispatch, getState) => {
   }
 };
 
+// put blog post
+const updateBlogPost = (id, post) => async (dispatch, getState) => {
+  dispatch({ type: blog.updateRequest });
+  let response;
+  try {
+    response = await blogService.updatePost(id, post);
+    dispatch({
+      type: blog.updateSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: blog.updateFail, payload: err });
+  }
+};
+
 // delete blog post
 const deleteBlogPost = id => async (dispatch, getState) => {
   dispatch({ type: blog.deleteRequest });
@@ -51,5 +66,6 @@ const deleteBlogPost = id => async (dispatch, getState) => {
 export default {
   getBlogPosts,
   postBlogPost,
+  updateBlogPost,
   deleteBlogPost,
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { JsSquare, ReactLogo, Java, NodeJs } from 'styled-icons/fa-brands';
 
 // components
 import Stack from '../Stack/Stack';
+
+// icons
+import { JsSquare, ReactLogo, Java, NodeJs } from 'styled-icons/fa-brands';
 
 // style
 const StackListStyle = styled.div`

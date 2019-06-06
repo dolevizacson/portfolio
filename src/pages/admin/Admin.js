@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { UiHeader } from '../../env/utils/access';
 import { FileCode } from 'styled-icons/fa-regular';
+import { Link, Route } from 'react-router-dom';
+import { constants, UiHeader } from '../../env/utils/access';
 
 // components
 import BlogPostForm from './components/BlogPostForm/BlogPostForm';
+
+// constants
+const { adminRoute, blogRoute } = constants;
 
 // style
 const AdminStyle = styled.div`
@@ -23,7 +27,20 @@ class Admin extends Component {
     return (
       <AdminStyle>
         <UiHeader text="admin" icon={HeaderIconStyle} />
-        <BlogPostForm />
+        <Route
+          path={adminRoute}
+          exact
+          render={() => (
+            <>
+              <Link to={`${adminRoute}${blogRoute}`}>Blog</Link>
+            </>
+          )}
+        />
+        <Route
+          path={`${adminRoute}${blogRoute}`}
+          exact
+          render={props => <BlogPostForm {...props} />}
+        />
       </AdminStyle>
     );
   }

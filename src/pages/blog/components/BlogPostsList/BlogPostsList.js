@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { actions, UiHeader, UiLoading } from '../../../../env/utils/access';
 import { connect } from 'react-redux';
 import { BloggerB } from 'styled-icons/fa-brands/';
+import { actions, UiHeader, UiLoading } from '../../../../env/utils/access';
 
 // components
 import BlogPost from '../BlogPost/BlogPost';

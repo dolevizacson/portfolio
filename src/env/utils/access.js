@@ -16,6 +16,9 @@ export { default as actions } from '../actions';
 // global components
 export { default as UiHeader } from '../../components/UiHeader/UiHeader';
 export { default as UiLoading } from '../../components/UiLoading/UiLoading';
+export {
+  default as ProtectedRoute,
+} from '../../components/ProtectedRoute/ProtectedRoute';
 
 export const style = {
   GlobalStyle,

@@ -26,8 +26,8 @@ const general = {
   skillsRoute: '/skills',
   blogRoute: '/blog',
   contactRoute: '/contact',
-  adminRoute: '/admin',
   loginRoute: '/login',
+  adminRoute: '/admin',
 };
 
 export default (process.env.NODE_ENV === 'production'

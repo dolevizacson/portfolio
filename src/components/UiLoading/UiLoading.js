@@ -11,16 +11,22 @@ const UiLoadingStyle = styled.div`
   height: 100%;
 `;
 
-const renderLoadingIcon = (color, size) => {
-  const Elem = styled(BreedingRhombusSpinner).attrs(props => ({
-    color: color || props.theme.mainAppThemeColors.red1,
-    size,
-  }))``;
+const loadingIcon = [BreedingRhombusSpinner];
+
+const renderLoadingIcon = (color, size, icon) => {
+  const Elem = styled(loadingIcon[icon < loadingIcon.length ? icon : 0]).attrs(
+    props => ({
+      color: color || props.theme.mainAppThemeColors.red1,
+      size,
+    })
+  )``;
   return <Elem />;
 };
 
-const UiLoading = ({ color, size }) => {
-  return <UiLoadingStyle>{renderLoadingIcon(color, size)}</UiLoadingStyle>;
+const UiLoading = ({ color, size, icon }) => {
+  return (
+    <UiLoadingStyle>{renderLoadingIcon(color, size, icon)}</UiLoadingStyle>
+  );
 };
 
 export default UiLoading;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { actions } from '../../../../env/utils/access';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { actions } from '../../../../env/utils/access';
 
 // actions
 const login = actions.authActions.login;

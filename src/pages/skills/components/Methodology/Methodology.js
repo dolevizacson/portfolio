@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Times } from 'styled-icons/fa-solid';
 
 // components
 import StackList from '../StackList/StackList';
+
+// icons
+import { Times } from 'styled-icons/fa-solid';
 
 // style
 const MethodologyStyle = styled.div`
