@@ -5,17 +5,21 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { constants, actions } from '../../../../env/utils/access';
 
 // actions
-const deleteBlogPost = actions.blogActions.deleteBlogPost;
+const { deleteBlogPost } = actions.blogActions;
 
 // constants
 const { adminRoute, blogRoute } = constants;
 
 // style
 const BlogPostStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 `;
 const BlogPostContainerStyle = styled.div`
-  ${({ theme }) => theme.ui.item}
+  ${({
+    theme: {
+      ui: { item },
+    },
+  }) => item}
 
   flex-direction: column;
   width: 100%;
@@ -25,69 +29,122 @@ const BlogPostContainerStyle = styled.div`
 const BlogPostHeaderStyle = styled.h5`
   font-weight: bold;
 
-  ${({ theme }) => theme.color.white2}
-  ${({ theme }) => theme.font.font1}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
 `;
 const BlogPostDateStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
-  ${({ theme }) => theme.color.white2}
-  ${({ theme }) => theme.font.font1}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
 `;
 const SeperatorStyle = styled.hr`
   width: 100%;
   height: 2px;
-  background-color: ${({ theme }) => theme.mainAppThemeColors.red1};
+  background-color: ${({
+    theme: {
+      mainAppThemeColors: { red1 },
+    },
+  }) => red1};
   border: none;
 `;
 const BlogPostBodyStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
   flex-direction: column;
 `;
 const BlogPostparagraphStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
   align-items: center;
   flex-direction: column;
 `;
 const BlogPostparagraphHeaderStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
   font-size: 1.125rem;
   font-weight: bold;
 
-  ${({ theme }) => theme.color.white2};
-  ${({ theme }) => theme.font.font1};
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2};
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1};
 `;
 const BlogPostparagraphBodyStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
-  ${({ theme }) => theme.color.white2};
-  ${({ theme }) => theme.font.font1};
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2};
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1};
 `;
 const BlogPostFooterStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
   justify-content: center;
   font-size: 1.125rem;
   font-weight: bold;
 
-  ${({ theme }) => theme.color.white2};
-  ${({ theme }) => theme.font.font1};
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2};
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1};
 `;
 const BlogPostDeleteButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 const BlogPostUpdateButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 
 class BlogPost extends Component {
   state = { updatePost: false };
 
   deleteBlogPost = id => {
-    this.props.deleteBlogPost(id);
+    const { deleteBlogPost } = this.props;
+    deleteBlogPost(id);
   };
 
   updateBlogPost = () => {
@@ -101,8 +158,9 @@ class BlogPost extends Component {
   };
   render() {
     const { blogPostData, isLoggedIn, location } = this.props;
+    const { updatePost } = this.state;
 
-    if (this.state.updatePost)
+    if (updatePost)
       return (
         <Redirect
           to={{
@@ -163,10 +221,13 @@ class BlogPost extends Component {
 }
 
 const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+const mapDispatchToProps = dispatch => ({
+  deleteBlogPost: id => dispatch(deleteBlogPost(id)),
+});
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { deleteBlogPost }
+    mapDispatchToProps
   )(BlogPost)
 );

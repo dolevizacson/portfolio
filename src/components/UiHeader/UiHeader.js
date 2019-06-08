@@ -3,45 +3,81 @@ import styled from 'styled-components';
 
 // style
 const SkillsListHeaderStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   padding-top: 10vh;
   padding-bottom: 5vh;
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     padding: 2vh 0;
   `}
 `;
 const SkillsListHeaderContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   align-items: center;
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
+  ${({
+    theme: {
+      ui: { shadow },
+    },
+  }) => shadow}
 
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({
+    theme: {
+      BackgroundColor: { black1 },
+    },
+  }) => black1}
 `;
 const HeaderStyle = styled.h4`
   font-weight: bold;
   padding: 0 20px;
   text-align: center;
 
-  ${({ theme }) => theme.color.white2}
-  ${({ theme }) => theme.font.font1}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
 `;
 const HeaderIconStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
-  ${({ theme }) => theme.ui.headerIconSize}
+  ${({
+    theme: {
+      ui: { headerIconSize },
+    },
+  }) => headerIconSize}
 `;
 
 const renderIcon = icon => {
   if (icon) {
     const Elem = styled(icon)`
-      ${({ theme }) => theme.ui.corners}
+      ${({
+        theme: {
+          ui: { corners },
+        },
+      }) => corners}
 
-      ${({ theme }) => theme.BackgroundColor.white2}
+      ${({
+        theme: {
+          BackgroundColor: { white2 },
+        },
+      }) => white2}
     `;
     return (
       <HeaderIconStyle>

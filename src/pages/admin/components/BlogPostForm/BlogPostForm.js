@@ -6,69 +6,116 @@ import * as Yup from 'yup';
 import { actions } from '../../../../env/utils/access';
 
 // actions
-const postBlogPost = actions.blogActions.postBlogPost;
-const updateBlogPost = actions.blogActions.updateBlogPost;
+const { postBlogPost, updateBlogPost } = actions.blogActions;
 
 // style
 const BlogPostFormStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 `;
 const BlogPostContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   justify-content:center;
   align-content:center;
 
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
+  ${({
+    theme: {
+      ui: { shadow },
+    },
+  }) => shadow}
 
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({
+    theme: {
+      BackgroundColor: { black1 },
+    },
+  }) => black1}
 `;
 
 const FormStyle = styled(Form)`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 50%;
   flex-direction: column;
   align-content: space-around;
 `;
 const BlogPostHeaderFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const BlogPostParagraphHeaderFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const BlogPostParagraphContentFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const BlogPostFooterFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const BlogPostParagraphListContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
 `;
 const BlogPostParagraphContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
 `;
 const BlogPostParagraphCleanButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 const BlogPostParagraphRemoveButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 const BlogPostParagraphRAddButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 const BlogPostSubmitButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 const BlogPostUpdateButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 
 const BlogPostFormValidationSchema = Yup.object().shape({
@@ -84,21 +131,31 @@ const BlogPostFormValidationSchema = Yup.object().shape({
 
 class BlogPostForm extends Component {
   postBlogPost = post => {
-    this.props.postBlogPost(post);
+    const { postBlogPost } = this.props;
+    postBlogPost(post);
   };
 
   updateBlogPost = (id, post) => {
-    this.props.updateBlogPost(id, post);
+    const { updateBlogPost } = this.props;
+    updateBlogPost(id, post);
   };
 
   render() {
+    const {
+      location,
+      location: { state },
+      location: {
+        state: { blogPost },
+      },
+    } = this.props;
+
     return (
       <BlogPostFormStyle>
         <BlogPostContainerStyle>
           <Formik
             initialValues={
-              this.props.location && this.props.location.state
-                ? this.props.location.state.blogPost
+              location && state
+                ? blogPost
                 : {
                     header: 'Post Header',
                     paragraph: [
@@ -112,15 +169,19 @@ class BlogPostForm extends Component {
             }
             validationSchema={BlogPostFormValidationSchema}
             onSubmit={(values, actions) => {
-              this.props.location && this.props.location.state
-                ? this.updateBlogPost(
-                    this.props.location.state.blogPost._id,
-                    values
-                  )
+              location && state
+                ? this.updateBlogPost(blogPost._id, values)
                 : this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
-            render={({ values, errors, status, touched, isSubmitting }) => (
+            render={({
+              values,
+              errors,
+              status,
+              touched,
+              isSubmitting,
+              values: { paragraph },
+            }) => (
               <FormStyle>
                 <BlogPostHeaderFieldStyle type="text" name="header" />
                 <ErrorMessage name="header" component="div" />
@@ -128,8 +189,8 @@ class BlogPostForm extends Component {
                   name="paragraph"
                   render={arrayHelpers => (
                     <BlogPostParagraphListContainerStyle>
-                      {values.paragraph && values.paragraph.length > 0 ? (
-                        values.paragraph.map((paragraph, index) => (
+                      {paragraph && paragraph.length > 0 ? (
+                        paragraph.map((paragraph, index) => (
                           <BlogPostParagraphContainerStyle key={index}>
                             <BlogPostParagraphHeaderFieldStyle
                               type="text"
@@ -181,7 +242,7 @@ class BlogPostForm extends Component {
                 />
                 <BlogPostFooterFieldStyle type="text" name="footer" />
                 <ErrorMessage name="footer" component="div" />
-                {!this.props.location.state && (
+                {!state && (
                   <BlogPostSubmitButtonStyle
                     type="submit"
                     disabled={isSubmitting}
@@ -189,7 +250,7 @@ class BlogPostForm extends Component {
                     Submit
                   </BlogPostSubmitButtonStyle>
                 )}
-                {this.props.location && this.props.location.state && (
+                {location && state && (
                   <BlogPostUpdateButtonStyle
                     type="submit"
                     disabled={isSubmitting}
@@ -206,7 +267,12 @@ class BlogPostForm extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  postBlogPost: post => dispatch(postBlogPost(post)),
+  updateBlogPost: (id, post) => dispatch(updateBlogPost(id, post)),
+});
+
 export default connect(
   null,
-  { postBlogPost, updateBlogPost }
+  mapDispatchToProps
 )(BlogPostForm);

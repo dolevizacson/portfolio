@@ -1,6 +1,7 @@
 import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
 
 class SkillsService {
+  ss;
   constructor() {
     this.skillsServer = portfolioApiServer.create({
       baseURL: constants.server.baseUrl + constants.server.skills,

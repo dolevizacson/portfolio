@@ -8,23 +8,33 @@ import { actions, UiHeader, UiLoading } from '../../../../env/utils/access';
 import BlogPost from '../BlogPost/BlogPost';
 
 // actions
-const getBlogPosts = actions.blogActions.getBlogPosts;
+const { getBlogPosts } = actions.blogActions;
 
+// style
 const BlogPostsListStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   width: 100%;
   height: 100%;
 `;
 const HeaderIconStyle = styled(BloggerB)`
-  ${({ theme }) => theme.color.black1}
-  ${({ theme }) => theme.ui.headerIconSize}
+  ${({
+    theme: {
+      color: { black1 },
+    },
+  }) => black1}
+  ${({
+    theme: {
+      ui: { headerIconSize },
+    },
+  }) => headerIconSize}
 `;
 
 class BlogPostsList extends Component {
   componentDidMount = () => {
-    this.props.getBlogPosts();
+    const { getBlogPosts } = this.props;
+    getBlogPosts();
   };
 
   renderBlogPostsList = list => {
@@ -34,12 +44,12 @@ class BlogPostsList extends Component {
   };
 
   render() {
-    const { blogPostsList } = this.props;
+    const { blogPostsList, isLoading } = this.props;
 
     return (
       <BlogPostsListStyle>
-        {this.props.isLoading.READ_BLOG_POSTS && <UiLoading size={50} />}
-        {!this.props.isLoading.READ_BLOG_POSTS && (
+        {isLoading.READ_BLOG_POSTS && <UiLoading size={50} />}
+        {!isLoading.READ_BLOG_POSTS && (
           <>
             <UiHeader text="Personal blog" icon={HeaderIconStyle} />
             {this.renderBlogPostsList(blogPostsList)}
@@ -55,7 +65,11 @@ const mapStateToProps = ({ blogPostsList, isLoading }) => ({
   isLoading,
 });
 
+const mapDispatchToProps = dispatch => ({
+  getBlogPosts: () => dispatch(getBlogPosts()),
+});
+
 export default connect(
   mapStateToProps,
-  { getBlogPosts }
+  mapDispatchToProps
 )(BlogPostsList);

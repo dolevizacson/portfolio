@@ -6,7 +6,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     height: 100vh;
     width: 100%;
-    ${({ theme }) => theme.media.phone`
+    ${({
+      theme: {
+        media: { phone },
+      },
+    }) => phone`
       font-size: 12px;
     `}
   }
@@ -16,8 +20,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     height: 100%;
     width: 100%;
-    ${({ theme }) => theme.color.white2}
-    ${({ theme }) => theme.BackgroundColor.grey1}
+    ${({
+      theme: {
+        color: { white2 },
+      },
+    }) => white2}
+    ${({
+      theme: {
+        BackgroundColor: { grey1 },
+      },
+    }) => grey1}
   }
 
   #root {

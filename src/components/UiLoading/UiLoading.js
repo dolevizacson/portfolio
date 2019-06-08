@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { BreedingRhombusSpinner } from 'react-epic-spinners';
 
+// style
 const UiLoadingStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   justify-content: center;
   align-items: center;
@@ -15,8 +16,12 @@ const loadingIcon = [BreedingRhombusSpinner];
 
 const renderLoadingIcon = (color, size, icon) => {
   const Elem = styled(loadingIcon[icon < loadingIcon.length ? icon : 0]).attrs(
-    props => ({
-      color: color || props.theme.mainAppThemeColors.red1,
+    ({
+      theme: {
+        mainAppThemeColors: { red1 },
+      },
+    }) => ({
+      color: color || red1,
       size,
     })
   )``;

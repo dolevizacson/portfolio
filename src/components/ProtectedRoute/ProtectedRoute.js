@@ -22,10 +22,8 @@ const ProtectedRoute = ({ isLoggedIn, component: Component, ...restProps }) => {
   );
 };
 
-const mapStateToProps = ({ isLoggedIn }) => {
-  return {
-    isLoggedIn,
-  };
-};
+const mapStateToProps = ({ isLoggedIn }) => ({
+  isLoggedIn,
+});
 
 export default connect(mapStateToProps)(ProtectedRoute);

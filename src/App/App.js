@@ -20,7 +20,7 @@ import Admin from '../pages/admin/Admin';
 import Login from '../pages/login/Login';
 
 // actions
-const isLoggedIn = actions.authActions.isLoggedIn;
+const { isLoggedIn } = actions.authActions;
 
 // constants
 const {
@@ -39,7 +39,7 @@ const GlobalStyle = style.GlobalStyle;
 
 // style
 const AppStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   height: 100%;
@@ -49,7 +49,8 @@ const AppStyle = styled.div`
 
 class App extends Component {
   componentDidMount = () => {
-    this.props.isLoggedIn();
+    const { isLoggedIn } = this.props;
+    isLoggedIn();
   };
 
   render() {
@@ -84,7 +85,11 @@ class App extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  isLoggedIn: () => dispatch(isLoggedIn()),
+});
+
 export default connect(
   null,
-  { isLoggedIn }
+  mapDispatchToProps
 )(App);

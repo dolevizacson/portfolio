@@ -3,25 +3,37 @@ import styled from 'styled-components';
 
 // style
 const MainStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 70%;
   justify-content: center;
   flex: 1 0;
 
-  ${({ theme }) => theme.media.desktop`
+  ${({
+    theme: {
+      media: { desktop },
+    },
+  }) => desktop`
     width:85%;
   `}
-  ${({ theme }) => theme.media.tablet`
+  ${({
+    theme: {
+      media: { tablet },
+    },
+  }) => tablet`
     width:90%;
   `}
-  ${({ theme }) => theme.media.tablet`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     width:95%;
   `};
 `;
 
-const Main = props => {
-  return <MainStyle>{props.children}</MainStyle>;
+const Main = ({ children }) => {
+  return <MainStyle>{children}</MainStyle>;
 };
 
 export default Main;

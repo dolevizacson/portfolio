@@ -20,15 +20,19 @@ const {
 
 // style
 const AppNavbarStyle = styled.div`
-  ${({ theme }) => theme.div}
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({ theme: { div } }) => div}
+  ${({
+    theme: {
+      BackgroundColor: { black1 },
+    },
+  }) => black1}
 
   width: 100%;
   box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
   flex-direction: column;
 `;
 const NavbarContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   height: 50px;
@@ -36,14 +40,14 @@ const NavbarContainerStyle = styled.div`
   align-items: center;
 `;
 const LeftStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 30%;
   height: 100%;
   align-items: center;
 `;
 const RightStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 70%;
   height: 100%;
@@ -52,13 +56,17 @@ const RightStyle = styled.div`
 `;
 
 const MainLogoStyle = styled(Domain)`
-  ${({ theme }) => theme.color.red1}
+  ${({
+    theme: {
+      color: { red1 },
+    },
+  }) => red1}
   width: 50px;
   height: 50px;
 `;
 
 const LinksContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
   padding: 0 10px;
 `;
 
@@ -66,22 +74,34 @@ const LinkStyle = styled(Link)`
   text-decoration: none;
   font-size: 1.5rem;
 
-  ${({ theme }) => theme.font.font1}
-  ${({ theme }) => theme.color.white1}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
+  ${({
+    theme: {
+      color: { white1 },
+    },
+  }) => white1}
 `;
 const CollapseIconStyle = styled(ThMenu)`
-  ${({ theme }) => theme.color.white1}
+  ${({
+    theme: {
+      color: { white1 },
+    },
+  }) => white1}
   width: 50px;
   height: 50px;
   cursor: pointer;
 `;
 const CollapseStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
   flex-direction: column;
   padding: 7px;
 `;
 const CollapseLinkContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
   padding: 3px 0;
 `;
 
@@ -118,6 +138,9 @@ class AppNavbar extends Component {
   ];
 
   render() {
+    const { showIcon, isCollapse } = this.state;
+    const { isLoggedIn } = this.props;
+
     return (
       <AppNavbarStyle>
         <NavbarContainerStyle>
@@ -128,37 +151,37 @@ class AppNavbar extends Component {
           </LeftStyle>
 
           <RightStyle>
-            {this.state.showIcon && (
+            {showIcon && (
               <CollapseIconStyle
                 onClick={() =>
                   this.setState(state => {
-                    return { isCollapse: !this.state.isCollapse };
+                    return { isCollapse: !isCollapse };
                   })
                 }
               />
             )}
 
-            {!this.state.showIcon &&
+            {!showIcon &&
               this.linkList.map((item, index) => {
                 return (
                   <LinksContainerStyle key={index}>{item}</LinksContainerStyle>
                 );
               })}
-            {this.props.isLoggedIn && !this.state.showIcon && (
+            {isLoggedIn && !showIcon && (
               <LinksContainerStyle>
                 <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
               </LinksContainerStyle>
             )}
           </RightStyle>
         </NavbarContainerStyle>
-        {!this.state.isCollapse && (
+        {!isCollapse && (
           <CollapseStyle>
             {this.linkList.map((item, index) => {
               return (
                 <CollapseLinkContainerStyle>{item}</CollapseLinkContainerStyle>
               );
             })}
-            {this.props.isLoggedIn && (
+            {isLoggedIn && (
               <CollapseLinkContainerStyle>
                 <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
               </CollapseLinkContainerStyle>
@@ -170,10 +193,8 @@ class AppNavbar extends Component {
   }
 }
 
-const mapStateToProps = ({ isLoggedIn }) => {
-  return {
-    isLoggedIn,
-  };
-};
+const mapStateToProps = ({ isLoggedIn }) => ({
+  isLoggedIn,
+});
 
 export default connect(mapStateToProps)(AppNavbar);

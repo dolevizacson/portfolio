@@ -65,7 +65,11 @@ const headerIconSize = css`
   width: 80px;
   height: 80px;
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     width: 60px;
     height: 60px;
   `}
@@ -75,21 +79,41 @@ const formTextField = css`
   height: 2em;
   padding: 3px 6px;
   outline: none;
-  ${({ theme }) => theme.ui.corners}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
 `;
 
 const formButton = css`
   height: 2em;
   padding: 3px 6px;
   outline-width: 0;
-  ${({ theme }) => theme.ui.corners}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
 `;
 
 const item = css`
-  ${({ theme }) => theme.div}
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({ theme: { div } }) => div}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
+  ${({
+    theme: {
+      ui: { shadow },
+    },
+  }) => shadow}
+  ${({
+    theme: {
+      BackgroundColor: { black1 },
+    },
+  }) => black1}
 `;
 
 const MainTheme = props => {

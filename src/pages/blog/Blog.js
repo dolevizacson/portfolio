@@ -4,8 +4,9 @@ import styled from 'styled-components';
 // components
 import BlogPostsList from './components/BlogPostsList/BlogPostsList';
 
+// style
 const BlogStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   width: 100%;

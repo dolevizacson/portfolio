@@ -12,14 +12,22 @@ const { adminRoute, blogRoute } = constants;
 
 // style
 const AdminStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   width: 100%;
 `;
 const HeaderIconStyle = styled(FileCode)`
-  ${({ theme }) => theme.color.black1}
-  ${({ theme }) => theme.ui.headerIconSize}
+  ${({
+    theme: {
+      color: { black1 },
+    },
+  }) => black1}
+  ${({
+    theme: {
+      ui: { headerIconSize },
+    },
+  }) => headerIconSize}
 `;
 
 class Admin extends Component {
