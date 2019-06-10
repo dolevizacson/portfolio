@@ -9,46 +9,58 @@ import { LogIn } from 'styled-icons/boxicons-regular';
 
 // component
 import LoginForm from './components/LoginForm/LoginForm';
+import Admin from '../admin/Admin';
 
 // constants
-const { homeRoute } = constants;
+const { adminRoute } = constants;
 
 // style
 const LoginStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   width: 100%;
 `;
 
 const HeaderIconStyle = styled(LogIn)`
-  ${({ theme }) => theme.color.black1}
-  ${({ theme }) => theme.ui.headerIconSize}
+  ${({
+    theme: {
+      color: { black1 },
+    },
+  }) => black1}
+  ${({
+    theme: {
+      ui: { headerIconSize },
+    },
+  }) => headerIconSize}
 `;
 
 class Login extends Component {
   render() {
     const { from } = this.props.location.state || {
-      from: { pathname: homeRoute },
+      from: { pathname: adminRoute },
     };
+    const { isLoggedIn } = this.props;
 
-    if (this.props.isLoggedIn) {
-      return <Redirect to={from} />;
-    } else {
-      return (
-        <LoginStyle>
-          <UiHeader text="Login" icon={HeaderIconStyle} />
-          <LoginForm />
-        </LoginStyle>
-      );
-    }
+    return (
+      <>
+        {isLoggedIn && <Redirect to={from} />}
+
+        {!isLoggedIn && (
+          <>
+            <LoginStyle>
+              <UiHeader text="Login" icon={HeaderIconStyle} />
+              <LoginForm />
+            </LoginStyle>
+          </>
+        )}
+      </>
+    );
   }
 }
 
-const mapStateToProps = ({ isLoggedIn }) => {
-  return {
-    isLoggedIn,
-  };
-};
+const mapStateToProps = ({ isLoggedIn }) => ({
+  isLoggedIn,
+});
 
 export default connect(mapStateToProps)(Login);

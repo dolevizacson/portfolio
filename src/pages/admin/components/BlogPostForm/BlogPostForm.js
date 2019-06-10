@@ -141,21 +141,15 @@ class BlogPostForm extends Component {
   };
 
   render() {
-    const {
-      location,
-      location: { state },
-      location: {
-        state: { blogPost },
-      },
-    } = this.props;
+    const { location } = this.props;
 
     return (
       <BlogPostFormStyle>
         <BlogPostContainerStyle>
           <Formik
             initialValues={
-              location && state
-                ? blogPost
+              location && location.state
+                ? location.state.blogPost
                 : {
                     header: 'Post Header',
                     paragraph: [
@@ -169,8 +163,8 @@ class BlogPostForm extends Component {
             }
             validationSchema={BlogPostFormValidationSchema}
             onSubmit={(values, actions) => {
-              location && state
-                ? this.updateBlogPost(blogPost._id, values)
+              location && location.state
+                ? this.updateBlogPost(location.state.blogPost._id, values)
                 : this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
@@ -242,7 +236,7 @@ class BlogPostForm extends Component {
                 />
                 <BlogPostFooterFieldStyle type="text" name="footer" />
                 <ErrorMessage name="footer" component="div" />
-                {!state && (
+                {!location.state && (
                   <BlogPostSubmitButtonStyle
                     type="submit"
                     disabled={isSubmitting}
@@ -250,7 +244,7 @@ class BlogPostForm extends Component {
                     Submit
                   </BlogPostSubmitButtonStyle>
                 )}
-                {location && state && (
+                {location && location.state && (
                   <BlogPostUpdateButtonStyle
                     type="submit"
                     disabled={isSubmitting}

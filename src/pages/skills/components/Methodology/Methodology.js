@@ -9,19 +9,27 @@ import { Times } from 'styled-icons/fa-solid';
 
 // style
 const MethodologyStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   padding: 1vh 0;
 
   ${({ isExtended }) => (isExtended === true ? `width: 100%` : `width: 48%`)}
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     width: 100%;
   `}
 `;
 
 const MethodologyContainerstyle = styled.div`
-  ${({ theme }) => theme.ui.item}
+  ${({
+    theme: {
+      ui: { item },
+    },
+  }) => item}
 
   flex-direction: column;
   width: 100%;
@@ -31,12 +39,12 @@ const MethodologyContainerstyle = styled.div`
 `;
 
 const MethodologyHeaderStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   justify-content: space-between;
 `;
 const LeftHeaderStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   align-items: center;
 `;
@@ -44,41 +52,69 @@ const HeaderStyle = styled.h4`
   font-weight: bold;
   padding: 0 20px;
 
-  ${({ theme }) => theme.font.font1}
-  ${({ theme }) => theme.color.white2}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
 `;
 const MethodologyIconStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
-  ${({ theme }) => theme.ui.headerIconSize}
+  ${({
+    theme: {
+      ui: { headerIconSize },
+    },
+  }) => headerIconSize}
 `;
 const IconStyle = styled.img`
   width: 100%;
   height: 100%;
-  ${({ theme }) => theme.ui.corners}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
 
-  ${({ theme }) => theme.BackgroundColor.white2}
+  ${({
+    theme: {
+      BackgroundColor: { white2 },
+    },
+  }) => white2}
 `;
 const MethodologyCloseIconStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   justify-content: flex-end;
   padding: 12px;
 
-  ${props => props.theme.color.white2}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
 `;
 const CloseIconStyle = styled(Times)`
   width: 40px;
   height: 40px;
   cursor: pointer;
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     width: 30px;
     height: 30px;
   `}
 `;
 const MethodologyBodyStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 `;
 
 const renderStackList = (list, isExtended, close) => {

@@ -28,6 +28,8 @@ const general = {
   contactRoute: '/contact',
   loginRoute: '/login',
   adminRoute: '/admin',
+
+  localStorageKey: 'diAppState',
 };
 
 export default (process.env.NODE_ENV === 'production'

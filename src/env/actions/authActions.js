@@ -37,7 +37,6 @@ const isLoggedIn = () => async (dispatch, getState) => {
   let response;
   try {
     response = await authService.isLoggedIn();
-    console.log(response);
     dispatch({
       type: auth.isLoggedInSuccess,
       payload: response,

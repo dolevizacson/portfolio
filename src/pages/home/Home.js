@@ -7,7 +7,7 @@ import CurrentlyWorking from './components/CurrentlyWorking/CurrentlyWorking';
 
 // style
 const HomeStyle = styled.div`
-  ${({ theme }) => theme.div};
+  ${({ theme: { div } }) => div};
 
   flex-direction: column;
   width: 100%;

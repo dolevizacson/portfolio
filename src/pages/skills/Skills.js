@@ -6,7 +6,7 @@ import SkillsList from './components/SkillsList/SkillsList';
 
 // style
 const SkillsStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   width: 100%;

@@ -7,60 +7,84 @@ import content from './staticContent';
 
 // style
 const CurrentlyWorkingStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   padding-top: 5vh;
   padding-bottom: 10vh;
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     padding: 2vh 0;
   `}
 `;
 const TastsListContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   height: 100%;
   flex-direction: column;
 `;
 const TaskStyle = styled.div`
-  ${({ theme }) => theme.ui.item}
+  ${({
+    theme: {
+      ui: { item },
+    },
+  }) => item}
 
   padding: 12px;
   margin: 10px 0;
   flex-direction: column;
 `;
 const TaskHeaderStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   text-decoration-line: underline;
   font-weight: bold;
   font-size: 1.5rem;
 
-  ${({ theme }) => theme.font.font1}
-  ${({ theme }) => theme.color.white3}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
+  ${({
+    theme: {
+      color: { white3 },
+    },
+  }) => white3}
 `;
 const TaskBodyStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   justify-content: space-between;
 `;
 const BodyStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   font-size: 1.5rem;
 
-  ${({ theme }) => theme.font.font1}
-  ${({ theme }) => theme.color.white3}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
+  ${({
+    theme: {
+      color: { white3 },
+    },
+  }) => white3}
 `;
 const TaskDoneIconStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   justify-content: flex-end;
   align-items: flex-end;
 `;
 const DoneFrameStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   border-radius: 10px;
   height: 33px;
@@ -69,19 +93,27 @@ const DoneFrameStyle = styled.div`
   justify-content: center;
   align-items: center;
 
-  ${props => props.theme.BackgroundColor.white3}
+  ${({
+    theme: {
+      BackgroundColor: { white3 },
+    },
+  }) => white3}
 `;
 
 const DoneIconStyle = styled(Check)`
   height: 28px;
   width: 28px;
 
-  ${props => props.theme.color.red1}
+  ${({
+    theme: {
+      color: { red1 },
+    },
+  }) => red1}
 `;
 
 const renderTaskList = () => {
-  const taskList = content.workingOn;
-  return taskList.map((task, index) => {
+  const { workingOn } = content;
+  return workingOn.map((task, index) => {
     return (
       <TaskStyle key={index}>
         <TaskHeaderStyle>{task.header}</TaskHeaderStyle>

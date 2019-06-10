@@ -6,40 +6,64 @@ import * as Yup from 'yup';
 import { actions } from '../../../../env/utils/access';
 
 // actions
-const login = actions.authActions.login;
+const { login } = actions.authActions;
 
 // style
 const LoginFormStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 `;
 
 const LoginFormContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 100%;
   justify-content:center;
   align-content:center;
 
-  ${({ theme }) => theme.ui.corners}
-  ${({ theme }) => theme.ui.shadow}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
+  ${({
+    theme: {
+      ui: { shadow },
+    },
+  }) => shadow}
 
-  ${({ theme }) => theme.BackgroundColor.black1}
+  ${({
+    theme: {
+      BackgroundColor: { black1 },
+    },
+  }) => black1}
 `;
 const FormStyle = styled(Form)`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 50%;
   flex-direction: column;
   align-content: space-around;
 `;
 const LoginEmailFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const LoginPasswordFieldStyle = styled(Field)`
-  ${({ theme }) => theme.ui.formTextField}
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
 `;
 const LoginFormButtonStyle = styled.button`
-  ${({ theme }) => theme.ui.formButton}
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
 
 const loginFormValidationSchema = Yup.object().shape({
@@ -53,7 +77,8 @@ const loginFormValidationSchema = Yup.object().shape({
 
 class LoginForm extends Component {
   login = (username, password) => {
-    this.props.login(username, password);
+    const { login } = this.props;
+    login(username, password);
   };
 
   render() {
@@ -86,7 +111,11 @@ class LoginForm extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  login: (username, password) => dispatch(login(username, password)),
+});
+
 export default connect(
   null,
-  { login }
+  mapDispatchToProps
 )(LoginForm);

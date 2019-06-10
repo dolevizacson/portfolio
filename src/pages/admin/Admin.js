@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { FileCode } from 'styled-icons/fa-regular';
 import { Link, Route } from 'react-router-dom';
-import { constants, UiHeader } from '../../env/utils/access';
+import { constants, UiHeader, actions } from '../../env/utils/access';
 
 // components
 import BlogPostForm from './components/BlogPostForm/BlogPostForm';
 
 // constants
 const { adminRoute, blogRoute } = constants;
+
+// actions
+const { logout } = actions.authActions;
 
 // style
 const AdminStyle = styled.div`
@@ -29,12 +33,25 @@ const HeaderIconStyle = styled(FileCode)`
     },
   }) => headerIconSize}
 `;
+const LogoutButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
 
 class Admin extends Component {
+  logout = () => {
+    const { logout } = this.props;
+    logout();
+  };
+
   render() {
     return (
       <AdminStyle>
         <UiHeader text="admin" icon={HeaderIconStyle} />
+        <LogoutButtonStyle onClick={this.logout}>Logout </LogoutButtonStyle>
         <Route
           path={adminRoute}
           exact
@@ -54,4 +71,11 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Admin);

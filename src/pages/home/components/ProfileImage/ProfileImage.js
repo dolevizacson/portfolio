@@ -3,19 +3,27 @@ import styled from 'styled-components';
 
 // style
 const ProfileImageStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 50%;
   height: 100%;
 
-  ${({ theme }) => theme.media.tablet`width: 100%; height: 50%`}
+  ${({
+    theme: {
+      media: { tablet },
+    },
+  }) => tablet`width: 100%; height: 50%`}
 `;
 
 const Image = styled.img.attrs({ src: 'tempPic.jpg', alt: 'profile' })`
   width: 100%;
   height: 100%;
 
-  ${({ theme }) => theme.ui.corners}
+  ${({
+    theme: {
+      ui: { corners },
+    },
+  }) => corners}
 `;
 
 const ProfileImage = () => {

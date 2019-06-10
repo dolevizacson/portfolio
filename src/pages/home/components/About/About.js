@@ -9,33 +9,53 @@ import content from './staticContent';
 
 // style
 const AboutStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   padding-top: 10vh;
   padding-bottom: 5vh;
 
-  ${({ theme }) => theme.media.phone`
+  ${({
+    theme: {
+      media: { phone },
+    },
+  }) => phone`
     padding: 2vh 0;
   `}
 `;
 const AboutContainerStyle = styled.div`
-  ${({ theme }) => theme.media.tablet`flex-direction: column;`}
-  ${({ theme }) => theme.ui.item}
+  ${({
+    theme: {
+      media: { tablet },
+    },
+  }) => tablet`flex-direction: column;`}
+  ${({
+    theme: {
+      ui: { item },
+    },
+  }) => item}
 `;
 
 const AboutMeStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 50%;
   height: 100%;
   justify-content: center;
   align-items: center;
 
-  ${({ theme }) => theme.media.tablet`width: 100%; height: 50%`}
-  ${({ theme }) => theme.color.white2}
+  ${({
+    theme: {
+      media: { tablet },
+    },
+  }) => tablet`width: 100%; height: 50%`}
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
 `;
 const AboutMeContainerStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   width: 90%;
   height: 90%;
@@ -43,20 +63,28 @@ const AboutMeContainerStyle = styled.div`
   justify-content: space-around;
   align-content: space-around;
 
-  ${({ theme }) => theme.media.tablet`width: 95%;`}
+  ${({
+    theme: {
+      media: { tablet },
+    },
+  }) => tablet`width: 95%;`}
 `;
 
 const DescriptionStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   font-size: 1.5rem;
   text-align: center;
 
-  ${({ theme }) => theme.font.font1}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
 `;
 
 const MotoStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   font-weight: bold;
   font-size: 1.5rem;
@@ -64,24 +92,36 @@ const MotoStyle = styled.div`
   justify-content: space-around;
   align-items: center;
 
-  ${({ theme }) => theme.font.font2}
+  ${({
+    theme: {
+      font: { font2 },
+    },
+  }) => font2}
 `;
 const QuotesStartStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   font-size: 1.5rem;
   height: 100%;
 
-  ${({ theme }) => theme.color.red1}
+  ${({
+    theme: {
+      color: { red1 },
+    },
+  }) => red1}
 `;
 const QuotesEndStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   font-size: 1.5rem;
   height: 100%;
   align-items: flex-end;
 
-  ${({ theme }) => theme.color.red1}
+  ${({
+    theme: {
+      color: { red1 },
+    },
+  }) => red1}
 `;
 
 const About = () => {

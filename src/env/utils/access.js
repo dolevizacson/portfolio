@@ -3,6 +3,8 @@ import MainTheme from '../style/MainTheme';
 
 export { default as constants } from '../constants/constants';
 
+export { default as localStorage } from '../storage/localStorage';
+
 export { default as portfolioApiServer } from '../servers/portfolioApiServer';
 
 export { default as errors } from '../errors/errors';

@@ -9,7 +9,7 @@ import { JsSquare, ReactLogo, Java, NodeJs } from 'styled-icons/fa-brands';
 
 // style
 const StackListStyle = styled.div`
-  ${({ theme }) => theme.div}
+  ${({ theme: { div } }) => div}
 
   flex-direction: column;
   padding: 12px;
