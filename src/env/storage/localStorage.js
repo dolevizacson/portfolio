@@ -16,8 +16,8 @@ export default {
     try {
       const serializedState = JSON.stringify(state);
       localStorage.setItem(constants.localStorageKey, serializedState);
-    } catch {
-      console.log("State can't be saved");
+    } catch (err) {
+      console.log(`State can't be saved + ${err}`);
     }
   },
 };

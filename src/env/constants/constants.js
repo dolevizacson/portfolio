@@ -30,6 +30,18 @@ const general = {
   adminRoute: '/admin',
 
   localStorageKey: 'diAppState',
+
+  // blog post config
+  blogPostInitialState: {
+    header: 'Post Header',
+    paragraph: [
+      {
+        header: 'Paragraph header',
+        content: 'Paragraph content',
+      },
+    ],
+    footer: 'Post footer',
+  },
 };
 
 export default (process.env.NODE_ENV === 'production'

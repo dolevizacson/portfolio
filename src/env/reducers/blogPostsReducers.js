@@ -16,3 +16,14 @@ export const blogPostsReducer = (state = [], action) => {
       return state;
   }
 };
+
+export const currentyWritenBlogPostsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case blog.change:
+      return { ...action.payload };
+    case blog.reset:
+      return { ...action.payload };
+    default:
+      return state;
+  }
+};

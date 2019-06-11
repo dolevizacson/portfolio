@@ -1,7 +1,7 @@
 import { auth } from '../types/types';
 import { services } from '../utils/access';
 
-const authService = services.authService;
+const { authService } = services;
 
 // send login request to server
 const login = (username, password) => async (dispatch, getState) => {

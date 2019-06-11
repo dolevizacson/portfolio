@@ -6,7 +6,12 @@ import * as Yup from 'yup';
 import { actions } from '../../../../env/utils/access';
 
 // actions
-const { postBlogPost, updateBlogPost } = actions.blogActions;
+const {
+  postBlogPost,
+  updateBlogPost,
+  changeBlogPost,
+  resetBlogPost,
+} = actions.blogActions;
 
 // style
 const BlogPostFormStyle = styled.div`
@@ -117,6 +122,13 @@ const BlogPostUpdateButtonStyle = styled.button`
     },
   }) => formButton}
 `;
+const BlogPostResetButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
 
 const BlogPostFormValidationSchema = Yup.object().shape({
   header: Yup.string().required('Must provide a post header'),
@@ -140,34 +152,31 @@ class BlogPostForm extends Component {
     updateBlogPost(id, post);
   };
 
-  render() {
-    const { location } = this.props;
+  changeBlogPost = changedBlogPost => {
+    const { changeBlogPost } = this.props;
+    changeBlogPost(changedBlogPost);
+  };
 
+  render() {
+    const { location, blogPost } = this.props;
     return (
       <BlogPostFormStyle>
         <BlogPostContainerStyle>
           <Formik
             initialValues={
-              location && location.state
-                ? location.state.blogPost
-                : {
-                    header: 'Post Header',
-                    paragraph: [
-                      {
-                        header: 'Paragraph header',
-                        content: 'Paragraph content',
-                      },
-                    ],
-                    footer: 'Post footer',
-                  }
+              location && location.state ? location.state.blogPost : blogPost
             }
             validationSchema={BlogPostFormValidationSchema}
+            validate={values => {
+              !location.state && this.changeBlogPost(values);
+            }}
             onSubmit={(values, actions) => {
               location && location.state
                 ? this.updateBlogPost(location.state.blogPost._id, values)
                 : this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
+            onReset={() => this.props.resetBlogPost()}
             render={({
               values,
               errors,
@@ -188,17 +197,17 @@ class BlogPostForm extends Component {
                           <BlogPostParagraphContainerStyle key={index}>
                             <BlogPostParagraphHeaderFieldStyle
                               type="text"
-                              name={`paragraph.${index}.header`}
+                              name={`paragraph[${index}].header`}
                             />
                             <ErrorMessage
-                              name={`paragraph.${index}.header`}
+                              name={`paragraph[${index}].header`}
                               component="div"
                             />
                             <BlogPostParagraphContentFieldStyle
-                              name={`paragraph.${index}.content`}
+                              name={`paragraph[${index}].content`}
                             />
                             <ErrorMessage
-                              name={`paragraph.${index}.content`}
+                              name={`paragraph[${index}].content`}
                               component="div"
                             />
                             <BlogPostParagraphCleanButtonStyle
@@ -237,16 +246,22 @@ class BlogPostForm extends Component {
                 <BlogPostFooterFieldStyle type="text" name="footer" />
                 <ErrorMessage name="footer" component="div" />
                 {!location.state && (
-                  <BlogPostSubmitButtonStyle
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Submit
-                  </BlogPostSubmitButtonStyle>
+                  <>
+                    <BlogPostSubmitButtonStyle
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      Submit
+                    </BlogPostSubmitButtonStyle>
+                    <BlogPostResetButtonStyle type="reset">
+                      Reset
+                    </BlogPostResetButtonStyle>
+                  </>
                 )}
                 {location && location.state && (
                   <BlogPostUpdateButtonStyle
                     type="submit"
+                    name="submit"
                     disabled={isSubmitting}
                   >
                     update
@@ -261,12 +276,18 @@ class BlogPostForm extends Component {
   }
 }
 
+const mapStateToProps = ({ blogPost }) => ({
+  blogPost,
+});
+
 const mapDispatchToProps = dispatch => ({
   postBlogPost: post => dispatch(postBlogPost(post)),
   updateBlogPost: (id, post) => dispatch(updateBlogPost(id, post)),
+  changeBlogPost: changedBlogPost => dispatch(changeBlogPost(changedBlogPost)),
+  resetBlogPost: () => dispatch(resetBlogPost()),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(BlogPostForm);

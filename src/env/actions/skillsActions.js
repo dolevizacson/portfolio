@@ -1,7 +1,7 @@
 import { skills } from '../types/types';
 import { services } from '../utils/access';
 
-const skillsService = services.skillsService;
+const { skillsService } = services;
 
 // get skills list
 const getSkillsList = () => async (dispatch, getState) => {

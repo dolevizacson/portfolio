@@ -9,7 +9,6 @@ import { LogIn } from 'styled-icons/boxicons-regular';
 
 // component
 import LoginForm from './components/LoginForm/LoginForm';
-import Admin from '../admin/Admin';
 
 // constants
 const { adminRoute } = constants;

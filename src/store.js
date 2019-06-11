@@ -15,7 +15,7 @@ export default (initialState = {}) => {
   );
   store.subscribe(
     throttle(() => {
-      localStorage.saveState(store.getState());
+      localStorage.saveState({ blogPost: store.getState().blogPost });
     }, 3000)
   );
   return store;

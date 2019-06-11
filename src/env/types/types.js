@@ -20,6 +20,9 @@ export const blog = {
   deleteRequest: 'DELETE_BLOG_POSTS_REQUEST',
   deleteSuccess: 'DELETE_BLOG_POSTS_SUCCESS',
   deleteFail: 'DELETE_BLOG_POSTS_FAILURE',
+
+  change: 'CHANGE_BLOG_POST',
+  reset: 'RESET_BLOG_POST',
 };
 
 export const auth = {

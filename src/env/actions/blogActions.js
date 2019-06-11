@@ -1,7 +1,11 @@
 import { blog } from '../types/types';
-import { services } from '../utils/access';
+import { services, constants } from '../utils/access';
 
-const blogService = services.blogService;
+// services
+const { blogService } = services;
+
+// constants
+const { blogPostInitialState } = constants;
 
 // get blog posts
 const getBlogPosts = () => async (dispatch, getState) => {
@@ -63,9 +67,27 @@ const deleteBlogPost = id => async (dispatch, getState) => {
   }
 };
 
+// change blog post
+const changeBlogPost = newBlogPost => async (dispatch, getState) => {
+  dispatch({
+    type: blog.change,
+    payload: newBlogPost,
+  });
+};
+
+// reset blog post
+const resetBlogPost = () => async (dispatch, getState) => {
+  dispatch({
+    type: blog.reset,
+    payload: blogPostInitialState,
+  });
+};
+
 export default {
   getBlogPosts,
   postBlogPost,
   updateBlogPost,
   deleteBlogPost,
+  changeBlogPost,
+  resetBlogPost,
 };
