@@ -29,7 +29,7 @@ const general = {
   loginRoute: '/login',
   adminRoute: '/admin',
 
-  localStorageKey: 'diAppState',
+  blogFormLocalStorageKey: 'diAppblogPost',
 
   // blog post config
   blogPostInitialState: {

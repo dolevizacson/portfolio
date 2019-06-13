@@ -1,11 +1,11 @@
 import { blog } from '../types/types';
 import { services, constants } from '../utils/access';
 
+// constants
+const { blogRoute } = constants;
+
 // services
 const { blogService } = services;
-
-// constants
-const { blogPostInitialState } = constants;
 
 // get blog posts
 const getBlogPosts = () => async (dispatch, getState) => {
@@ -23,7 +23,7 @@ const getBlogPosts = () => async (dispatch, getState) => {
 };
 
 // post blog post
-const postBlogPost = post => async (dispatch, getState) => {
+const postBlogPost = (post, ownProps) => async (dispatch, getState) => {
   dispatch({ type: blog.createRequest });
   let response;
   try {
@@ -32,13 +32,15 @@ const postBlogPost = post => async (dispatch, getState) => {
       type: blog.createSuccess,
       payload: response,
     });
+    console.log(ownProps);
+    ownProps.history.push(blogRoute, { blogPost: response });
   } catch (err) {
     dispatch({ type: blog.createFail, payload: err });
   }
 };
 
 // put blog post
-const updateBlogPost = (id, post) => async (dispatch, getState) => {
+const updateBlogPost = (id, post, ownProps) => async (dispatch, getState) => {
   dispatch({ type: blog.updateRequest });
   let response;
   try {
@@ -47,6 +49,7 @@ const updateBlogPost = (id, post) => async (dispatch, getState) => {
       type: blog.updateSuccess,
       payload: response,
     });
+    ownProps.history.push(blogRoute, ownProps.location.state);
   } catch (err) {
     dispatch({ type: blog.updateFail, payload: err });
   }
@@ -67,27 +70,9 @@ const deleteBlogPost = id => async (dispatch, getState) => {
   }
 };
 
-// change blog post
-const changeBlogPost = newBlogPost => async (dispatch, getState) => {
-  dispatch({
-    type: blog.change,
-    payload: newBlogPost,
-  });
-};
-
-// reset blog post
-const resetBlogPost = () => async (dispatch, getState) => {
-  dispatch({
-    type: blog.reset,
-    payload: blogPostInitialState,
-  });
-};
-
 export default {
   getBlogPosts,
   postBlogPost,
   updateBlogPost,
   deleteBlogPost,
-  changeBlogPost,
-  resetBlogPost,
 };

@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { actions } from '../../../../env/utils/access';
+import { constants, actions, services } from '../../../../env/utils/access';
+
+// constants
+const { blogFormLocalStorageKey, blogPostInitialState } = constants;
 
 // actions
-const {
-  postBlogPost,
-  updateBlogPost,
-  changeBlogPost,
-  resetBlogPost,
-} = actions.blogActions;
+const { postBlogPost, updateBlogPost } = actions.blogActions;
+
+// services
+const { localStorageService } = services;
 
 // style
 const BlogPostFormStyle = styled.div`
@@ -152,23 +153,32 @@ class BlogPostForm extends Component {
     updateBlogPost(id, post);
   };
 
-  changeBlogPost = changedBlogPost => {
-    const { changeBlogPost } = this.props;
-    changeBlogPost(changedBlogPost);
+  loadBlogPostState = key => {
+    return localStorageService.loadData(key);
+  };
+
+  saveBlogPostState = (key, data) => {
+    localStorageService.saveData(key, data);
   };
 
   render() {
-    const { location, blogPost } = this.props;
+    const { location } = this.props;
     return (
       <BlogPostFormStyle>
         <BlogPostContainerStyle>
           <Formik
+            enableReinitialize={true}
             initialValues={
-              location && location.state ? location.state.blogPost : blogPost
+              location && location.state
+                ? location.state.blogPost
+                : this.loadBlogPostState(blogFormLocalStorageKey)
+                ? this.loadBlogPostState(blogFormLocalStorageKey)
+                : blogPostInitialState
             }
             validationSchema={BlogPostFormValidationSchema}
             validate={values => {
-              !location.state && this.changeBlogPost(values);
+              !location.state &&
+                this.saveBlogPostState(blogFormLocalStorageKey, values);
             }}
             onSubmit={(values, actions) => {
               location && location.state
@@ -176,7 +186,13 @@ class BlogPostForm extends Component {
                 : this.postBlogPost(values);
               actions.setSubmitting(false);
             }}
-            onReset={() => this.props.resetBlogPost()}
+            onReset={(values, formikBug) => {
+              this.saveBlogPostState(
+                blogFormLocalStorageKey,
+                blogPostInitialState
+              );
+              setTimeout(() => formikBug.resetForm(blogPostInitialState), 0);
+            }}
             render={({
               values,
               errors,
@@ -261,7 +277,6 @@ class BlogPostForm extends Component {
                 {location && location.state && (
                   <BlogPostUpdateButtonStyle
                     type="submit"
-                    name="submit"
                     disabled={isSubmitting}
                   >
                     update
@@ -276,18 +291,12 @@ class BlogPostForm extends Component {
   }
 }
 
-const mapStateToProps = ({ blogPost }) => ({
-  blogPost,
-});
-
-const mapDispatchToProps = dispatch => ({
-  postBlogPost: post => dispatch(postBlogPost(post)),
-  updateBlogPost: (id, post) => dispatch(updateBlogPost(id, post)),
-  changeBlogPost: changedBlogPost => dispatch(changeBlogPost(changedBlogPost)),
-  resetBlogPost: () => dispatch(resetBlogPost()),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  postBlogPost: post => dispatch(postBlogPost(post, ownProps)),
+  updateBlogPost: (id, post) => dispatch(updateBlogPost(id, post, ownProps)),
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(BlogPostForm);

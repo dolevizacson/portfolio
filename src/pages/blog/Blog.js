@@ -14,6 +14,10 @@ const BlogStyle = styled.div`
 
 class Blog extends Component {
   render() {
+    const { location } = this.props;
+    console.log(this.props.location);
+    if (location && location.state) console.log(location.state.blogPost);
+
     return (
       <BlogStyle>
         <BlogPostsList />
