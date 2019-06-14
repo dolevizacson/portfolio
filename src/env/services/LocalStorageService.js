@@ -1,3 +1,5 @@
+import { errorHandlers } from '../utils/access';
+
 class LocalStorageService {
   loadData(key) {
     try {
@@ -7,7 +9,7 @@ class LocalStorageService {
       }
       return JSON.parse(serializedState);
     } catch (err) {
-      console.log(`Data can't be load + ${err}`);
+      errorHandlers.localStorageErrorHandler(err);
     }
   }
   saveData(key, state) {
@@ -15,7 +17,7 @@ class LocalStorageService {
       const serializedState = JSON.stringify(state);
       localStorage.setItem(key, serializedState);
     } catch (err) {
-      console.log(`State can't be saved + ${err}`);
+      errorHandlers.localStorageErrorHandler(err);
     }
   }
 
@@ -23,7 +25,7 @@ class LocalStorageService {
     try {
       localStorage.removeItem(key);
     } catch (err) {
-      console.log(`Data can't be deleted + ${err}`);
+      errorHandlers.localStorageErrorHandler(err);
     }
   }
 }

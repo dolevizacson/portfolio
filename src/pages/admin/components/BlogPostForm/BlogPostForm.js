@@ -154,11 +154,19 @@ class BlogPostForm extends Component {
   };
 
   loadBlogPostState = key => {
-    return localStorageService.loadData(key);
+    try{
+      return localStorageService.loadData(key);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   saveBlogPostState = (key, data) => {
-    localStorageService.saveData(key, data);
+    try {
+      localStorageService.saveData(key, data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
