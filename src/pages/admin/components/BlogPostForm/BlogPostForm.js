@@ -57,6 +57,13 @@ const BlogPostHeaderFieldStyle = styled(Field)`
     },
   }) => formTextField}
 `;
+const BlogPostSummeryFieldStyle = styled(Field)`
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
+`;
 const BlogPostParagraphHeaderFieldStyle = styled(Field)`
   ${({
     theme: {
@@ -64,6 +71,7 @@ const BlogPostParagraphHeaderFieldStyle = styled(Field)`
     },
   }) => formTextField}
 `;
+
 const BlogPostParagraphContentFieldStyle = styled(Field)`
   ${({
     theme: {
@@ -133,6 +141,7 @@ const BlogPostResetButtonStyle = styled.button`
 
 const BlogPostFormValidationSchema = Yup.object().shape({
   header: Yup.string().required('Must provide a post header'),
+  summery: Yup.string().required('Must provide summery'),
   paragraph: Yup.array().of(
     Yup.object().shape({
       header: Yup.string(),
@@ -154,7 +163,7 @@ class BlogPostForm extends Component {
   };
 
   loadBlogPostState = key => {
-    try{
+    try {
       return localStorageService.loadData(key);
     } catch (err) {
       console.log(err);
@@ -212,6 +221,8 @@ class BlogPostForm extends Component {
               <FormStyle>
                 <BlogPostHeaderFieldStyle type="text" name="header" />
                 <ErrorMessage name="header" component="div" />
+                <BlogPostSummeryFieldStyle type="text" name="summery" />
+                <ErrorMessage name="summery" component="div" />
                 <FieldArray
                   name="paragraph"
                   render={arrayHelpers => (

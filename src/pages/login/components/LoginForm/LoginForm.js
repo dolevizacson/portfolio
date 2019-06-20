@@ -68,7 +68,7 @@ const LoginFormButtonStyle = styled.button`
 
 const loginFormValidationSchema = Yup.object().shape({
   email: Yup.string()
-    //.email('Invalid email')
+    .email('Invalid email')
     .required('Must provide an email'),
   password: Yup.string()
     .max(12, 'Password contains too many letters')

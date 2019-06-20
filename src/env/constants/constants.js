@@ -34,6 +34,7 @@ const general = {
   // blog post config
   blogPostInitialState: {
     header: 'Post Header',
+    summery: 'Post summery',
     paragraph: [
       {
         header: 'Paragraph header',

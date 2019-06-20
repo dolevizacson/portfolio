@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { style, constants, ProtectedRoute } from '../env/utils/access';
 import { connect } from 'react-redux';
@@ -19,6 +18,9 @@ import Contact from '../pages/contact';
 import Admin from '../pages/admin/Admin';
 import Login from '../pages/login/Login';
 
+// style
+import { AppStyle } from './AppStyle';
+
 // actions
 const { isLoggedIn } = actions.authActions;
 
@@ -34,18 +36,8 @@ const {
 } = constants;
 
 // global style
-const MainTheme = style.MainTheme;
-const GlobalStyle = style.GlobalStyle;
-
-// style
-const AppStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-`;
+const { MainTheme } = style;
+const { GlobalStyle } = style;
 
 class App extends Component {
   componentDidMount = () => {

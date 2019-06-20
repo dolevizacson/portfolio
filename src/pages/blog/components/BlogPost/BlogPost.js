@@ -28,7 +28,18 @@ const BlogPostContainerStyle = styled.div`
 `;
 const BlogPostHeaderStyle = styled.h5`
   font-weight: bold;
-
+  ${({
+    theme: {
+      color: { white2 },
+    },
+  }) => white2}
+  ${({
+    theme: {
+      font: { font1 },
+    },
+  }) => font1}
+`;
+const BlogPostSummeryStyle = styled.h5`
   ${({
     theme: {
       color: { white2 },
@@ -180,6 +191,8 @@ class BlogPost extends Component {
           <BlogPostDateStyle>
             posted : {this.formatDate(blogPostData.date)}
           </BlogPostDateStyle>
+          <SeperatorStyle />
+          <BlogPostSummeryStyle>{blogPostData.summery}</BlogPostSummeryStyle>
           <SeperatorStyle />
           <BlogPostBodyStyle>
             {blogPostData.paragraph.map((paragraph, index) => {

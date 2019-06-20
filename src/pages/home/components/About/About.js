@@ -7,21 +7,9 @@ import ProfileImage from '../ProfileImage/ProfileImage';
 // content
 import content from './staticContent';
 
+import { AboutStyle } from './AboutStyle';
+
 // style
-const AboutStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  padding-top: 10vh;
-  padding-bottom: 5vh;
-
-  ${({
-    theme: {
-      media: { phone },
-    },
-  }) => phone`
-    padding: 2vh 0;
-  `}
-`;
 const AboutContainerStyle = styled.div`
   ${({
     theme: {
