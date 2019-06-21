@@ -8,12 +8,7 @@ import Stack from '../Stack/Stack';
 import { JsSquare, ReactLogo, Java, NodeJs } from 'styled-icons/fa-brands';
 
 // style
-const StackListStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  flex-direction: column;
-  padding: 12px;
-`;
+import { StackListStyle } from './StackListStyle';
 
 const renderIcon = index => {
   const iconsList = [JsSquare, ReactLogo, Java, NodeJs];

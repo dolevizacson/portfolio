@@ -3,14 +3,7 @@ import styled from 'styled-components';
 import { BreedingRhombusSpinner } from 'react-epic-spinners';
 
 // style
-const UiLoadingStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
+import { UiLoadingStyle } from './UiLoadingStyle';
 
 const loadingIcon = [BreedingRhombusSpinner];
 

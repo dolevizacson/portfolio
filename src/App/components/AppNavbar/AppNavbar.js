@@ -1,31 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { constants } from '../../../env/utils/access';
 
-// style
-import {
-  AppNavbarStyle,
-  NavbarContainerStyle,
-  LeftStyle,
-  MainLogoStyle,
-  LinkStyle,
-  RightStyle,
-  CollapseIconStyle,
-  LinksContainerStyle,
-  CollapseStyle,
-  CollapseLinkContainerStyle,
-} from './AppNavbarStyle';
-
-// constants
-const {
-  homeRoute,
-  projectsRoute,
-  skillsRoute,
-  blogRoute,
-  contactRoute,
-  adminRoute,
-} = constants;
+// components
+import AppNavbarView from './AppNavbarView';
 
 class AppNavbar extends Component {
   state = { showIcon: false, isCollapse: true };
@@ -52,65 +29,22 @@ class AppNavbar extends Component {
     }
   };
 
-  linkList = [
-    <LinkStyle to={projectsRoute}>PROJECTS</LinkStyle>,
-    <LinkStyle to={skillsRoute}>SKILLS</LinkStyle>,
-    <LinkStyle to={blogRoute}>BLOG</LinkStyle>,
-    <LinkStyle to={contactRoute}>CONTACT</LinkStyle>,
-  ];
+  toggleNavbarMenu = () =>
+    this.setState(state => {
+      return { isCollapse: !this.state.isCollapse };
+    });
 
   render() {
-    const { showIcon, isCollapse } = this.state;
     const { isLoggedIn } = this.props;
 
     return (
-      <AppNavbarStyle>
-        <NavbarContainerStyle>
-          <LeftStyle>
-            <Link to={homeRoute}>
-              <MainLogoStyle />
-            </Link>
-          </LeftStyle>
-
-          <RightStyle>
-            {showIcon && (
-              <CollapseIconStyle
-                onClick={() =>
-                  this.setState(state => {
-                    return { isCollapse: !isCollapse };
-                  })
-                }
-              />
-            )}
-
-            {!showIcon &&
-              this.linkList.map((item, index) => {
-                return (
-                  <LinksContainerStyle key={index}>{item}</LinksContainerStyle>
-                );
-              })}
-            {isLoggedIn && !showIcon && (
-              <LinksContainerStyle>
-                <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
-              </LinksContainerStyle>
-            )}
-          </RightStyle>
-        </NavbarContainerStyle>
-        {!isCollapse && (
-          <CollapseStyle>
-            {this.linkList.map((item, index) => {
-              return (
-                <CollapseLinkContainerStyle>{item}</CollapseLinkContainerStyle>
-              );
-            })}
-            {isLoggedIn && (
-              <CollapseLinkContainerStyle>
-                <LinkStyle to={adminRoute}>ADMIN</LinkStyle>
-              </CollapseLinkContainerStyle>
-            )}
-          </CollapseStyle>
-        )}
-      </AppNavbarStyle>
+      <AppNavbarView
+        state={{
+          ...this.state,
+          isLoggedIn,
+          toggleNavbarMenu: this.toggleNavbarMenu,
+        }}
+      />
     );
   }
 }

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 // components
 import BlogPostsList from './components/BlogPostsList/BlogPostsList';
 
 // style
-const BlogStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  flex-direction: column;
-  width: 100%;
-`;
+import { BlogStyle } from './BlogStyle';
 
 class Blog extends Component {
   render() {

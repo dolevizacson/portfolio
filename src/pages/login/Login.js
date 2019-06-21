@@ -1,38 +1,12 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { constants, UiHeader } from '../../env/utils/access';
-
-// icons
-import { LogIn } from 'styled-icons/boxicons-regular';
+import { constants } from '../../env/utils/access';
 
 // component
-import LoginForm from './components/LoginForm/LoginForm';
+import LoginView from './LoginView';
 
 // constants
 const { adminRoute } = constants;
-
-// style
-const LoginStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  flex-direction: column;
-  width: 100%;
-`;
-
-const HeaderIconStyle = styled(LogIn)`
-  ${({
-    theme: {
-      color: { black1 },
-    },
-  }) => black1}
-  ${({
-    theme: {
-      ui: { headerIconSize },
-    },
-  }) => headerIconSize}
-`;
 
 class Login extends Component {
   render() {
@@ -41,20 +15,7 @@ class Login extends Component {
     };
     const { isLoggedIn } = this.props;
 
-    return (
-      <>
-        {isLoggedIn && <Redirect to={from} />}
-
-        {!isLoggedIn && (
-          <>
-            <LoginStyle>
-              <UiHeader text="Login" icon={HeaderIconStyle} />
-              <LoginForm />
-            </LoginStyle>
-          </>
-        )}
-      </>
-    );
+    return <LoginView state={{ isLoggedIn, from }} />;
   }
 }
 
