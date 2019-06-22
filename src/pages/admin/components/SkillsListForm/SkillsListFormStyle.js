@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
-export const BlogPostFormStyle = styled.div`
+export const SkillsListFormStyle = styled.div`
   ${({ theme: { div } }) => div}
 `;
-export const BlogPostContainerStyle = styled.div`
+export const SkillsListContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
 
   width: 100%;
@@ -36,21 +36,21 @@ export const FormStyle = styled(Form)`
   flex-direction: column;
   align-content: space-around;
 `;
-export const BlogPostHeaderFieldStyle = styled(Field)`
+export const SkillsListTopicFieldStyle = styled(Field)`
   ${({
     theme: {
       ui: { formTextField },
     },
   }) => formTextField}
 `;
-export const BlogPostSummeryFieldStyle = styled(Field)`
+export const SkillsListImageFieldStyle = styled(Field)`
   ${({
     theme: {
       ui: { formTextField },
     },
   }) => formTextField}
 `;
-export const BlogPostParagraphHeaderFieldStyle = styled(Field)`
+export const SkillsListLanguageFieldStyle = styled(Field)`
   ${({
     theme: {
       ui: { formTextField },
@@ -58,66 +58,77 @@ export const BlogPostParagraphHeaderFieldStyle = styled(Field)`
   }) => formTextField}
 `;
 
-export const BlogPostParagraphContentFieldStyle = styled(Field)`
-  ${({
-    theme: {
-      ui: { formTextField },
-    },
-  }) => formTextField}
-`;
-export const BlogPostFooterFieldStyle = styled(Field)`
-  ${({
-    theme: {
-      ui: { formTextField },
-    },
-  }) => formTextField}
-`;
-export const BlogPostParagraphListContainerStyle = styled.div`
+export const SkillsListStackContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
 
   flex-direction: column;
 `;
-export const BlogPostParagraphContainerStyle = styled.div`
+export const SkillsListLongDataContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
 
   flex-direction: column;
 `;
-export const BlogPostParagraphCleanButtonStyle = styled.button`
+export const SkillsListLongDataFieldStyle = styled(Field)`
+  ${({
+    theme: {
+      ui: { formTextField },
+    },
+  }) => formTextField}
+`;
+
+export const SkillsListStackListListContainerStyle = styled.div`
+  ${({ theme: { div } }) => div}
+
+  flex-direction: column;
+`;
+export const SkillsListLongDataListContainerStyle = styled.div`
+  ${({ theme: { div } }) => div}
+
+  flex-direction: column;
+`;
+export const SkillsListStackRemoveButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
     },
   }) => formButton}
 `;
-export const BlogPostParagraphRemoveButtonStyle = styled.button`
+export const SkillsListstackAddButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
     },
   }) => formButton}
 `;
-export const BlogPostParagraphAddButtonStyle = styled.button`
+export const SkillsListSubmitButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
     },
   }) => formButton}
 `;
-export const BlogPostSubmitButtonStyle = styled.button`
+export const SkillsListUpdateButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
     },
   }) => formButton}
 `;
-export const BlogPostUpdateButtonStyle = styled.button`
+export const SkillsListResetButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
     },
   }) => formButton}
 `;
-export const BlogPostResetButtonStyle = styled.button`
+export const SkillsListLongDataAddButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const SkillsListLongDataRemoveButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },

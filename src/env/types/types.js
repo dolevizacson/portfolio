@@ -2,9 +2,25 @@ export const skills = {
   readAllRequest: 'READ_SKILLS_LIST_REQUEST',
   readAllSuccess: 'READ_SKILLS_LIST_SUCCESS',
   readAllFail: 'READ_SKILLS_LIST_FAILURE',
+
+  createRequest: 'CREATE_SKILLS_LIST_REQUEST',
+  createSuccess: 'CREATE_SKILLS_LIST_SUCCESS',
+  createFail: 'CREATE_SKILLS_LIST_FAILURE',
+
+  updateRequest: 'UPDATE_SKILLS_LIST_REQUEST',
+  updateSuccess: 'UPDATE_SKILLS_LIST_SUCCESS',
+  updateFail: 'UPDATE_SKILLS_LIST_FAILURE',
+
+  deleteRequest: 'DELETE_SKILLS_LIST_REQUEST',
+  deleteSuccess: 'DELETE_SKILLS_LIST_SUCCESS',
+  deleteFail: 'DELETE_SKILLS_LIST_FAILURE',
 };
 
 export const blog = {
+  readAllActiveRequest: 'READ_ACTIVE_BLOG_POSTS_REQUEST',
+  readAllActiveSuccess: 'READ_ACTIVE_BLOG_POSTS_SUCCESS',
+  readAllActiveFail: 'READ_ACTIVE_BLOG_POSTS_FAILURE',
+
   readAllRequest: 'READ_BLOG_POSTS_REQUEST',
   readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
   readAllFail: 'READ_BLOG_POSTS_FAILURE',
@@ -16,6 +32,10 @@ export const blog = {
   updateRequest: 'UPDATE_BLOG_POSTS_REQUEST',
   updateSuccess: 'UPDATE_BLOG_POSTS_SUCCESS',
   updateFail: 'UPDATE_BLOG_POSTS_FAILURE',
+
+  toggleRequest: 'TOGGLE_BLOG_POSTS_REQUEST',
+  toggleSuccess: 'TOGGLE_BLOG_POSTS_SUCCESS',
+  toggleFail: 'TOGGLE_BLOG_POSTS_FAILURE',
 
   deleteRequest: 'DELETE_BLOG_POSTS_REQUEST',
   deleteSuccess: 'DELETE_BLOG_POSTS_SUCCESS',

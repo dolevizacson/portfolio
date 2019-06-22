@@ -14,7 +14,7 @@ import {
   BlogPostParagraphHeaderFieldStyle,
   BlogPostParagraphContentFieldStyle,
   BlogPostParagraphCleanButtonStyle,
-  BlogPostParagraphRAddButtonStyle,
+  BlogPostParagraphAddButtonStyle,
   BlogPostParagraphRemoveButtonStyle,
   BlogPostFooterFieldStyle,
   BlogPostSubmitButtonStyle,
@@ -116,7 +116,7 @@ const BlogPostFormView = ({
                     ) : (
                       <div>{arrayHelpers.insert(0, '')}</div>
                     )}
-                    <BlogPostParagraphRAddButtonStyle
+                    <BlogPostParagraphAddButtonStyle
                       type="button"
                       onClick={() =>
                         arrayHelpers.push({
@@ -126,7 +126,7 @@ const BlogPostFormView = ({
                       }
                     >
                       Add Paragraph
-                    </BlogPostParagraphRAddButtonStyle>
+                    </BlogPostParagraphAddButtonStyle>
                   </BlogPostParagraphListContainerStyle>
                 )}
               />

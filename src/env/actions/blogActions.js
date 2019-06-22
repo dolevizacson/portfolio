@@ -7,7 +7,22 @@ const { blogRoute } = constants;
 // services
 const { blogService } = services;
 
-// get blog posts
+// get active blog posts
+const getActiveBlogPosts = () => async (dispatch, getState) => {
+  dispatch({ type: blog.readAllActiveRequest });
+  let response;
+  try {
+    response = await blogService.getActivePosts();
+    dispatch({
+      type: blog.readAllActiveSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: blog.readAllActiveFail, payload: err });
+  }
+};
+
+// get all blog post
 const getBlogPosts = () => async (dispatch, getState) => {
   dispatch({ type: blog.readAllRequest });
   let response;
@@ -55,6 +70,21 @@ const updateBlogPost = (id, post, ownProps) => async (dispatch, getState) => {
   }
 };
 
+// patch blog post
+const toggleBlogPost = id => async (dispatch, getState) => {
+  dispatch({ type: blog.toggleRequest });
+  let response;
+  try {
+    response = await blogService.togglePost(id);
+    dispatch({
+      type: blog.toggleSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: blog.toggleFail, payload: err });
+  }
+};
+
 // delete blog post
 const deleteBlogPost = id => async (dispatch, getState) => {
   dispatch({ type: blog.deleteRequest });
@@ -71,8 +101,10 @@ const deleteBlogPost = id => async (dispatch, getState) => {
 };
 
 export default {
+  getActiveBlogPosts,
   getBlogPosts,
   postBlogPost,
   updateBlogPost,
+  toggleBlogPost,
   deleteBlogPost,
 };

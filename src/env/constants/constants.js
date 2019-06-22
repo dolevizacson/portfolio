@@ -29,9 +29,8 @@ const general = {
   loginRoute: '/login',
   adminRoute: '/admin',
 
-  blogFormLocalStorageKey: 'diAppblogPost',
-
   // blog post config
+  blogFormLocalStorageKey: 'diAppblogPost',
   blogPostInitialState: {
     header: 'Post Header',
     summery: 'Post summery',
@@ -42,6 +41,19 @@ const general = {
       },
     ],
     footer: 'Post footer',
+  },
+
+  // skills list config
+  skillslistLocalStorageKey: 'diAppskillsList',
+  skillsListInitialState: {
+    topic: 'skills list topic',
+    image: 'skills list image path',
+    stack: [
+      {
+        language: 'language name',
+        longData: ['language skill'],
+      },
+    ],
   },
 };
 

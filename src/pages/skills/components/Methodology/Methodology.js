@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // components
 import StackList from '../StackList/StackList';
@@ -15,13 +16,24 @@ import {
   MethodologyCloseIconStyle,
   CloseIconStyle,
   MethodologyBodyStyle,
+  MethodologyUpdateButtonStyle,
+  MethodologyDeleteButtonStyle,
 } from './MethodologyStyle';
 
 const renderStackList = (list, isExtended, close) => {
   return <StackList list={list} isExtended={isExtended} close={close} />;
 };
 
-const Methodology = ({ content, isExtended, choose, close }) => {
+const Methodology = ({
+  content,
+  isExtended,
+  choose,
+  close,
+  deleteSkillsList,
+  updateSkillsList,
+  closeOpenSkills,
+  isLoggedIn,
+}) => {
   return (
     <MethodologyStyle
       onClick={() => {
@@ -51,9 +63,36 @@ const Methodology = ({ content, isExtended, choose, close }) => {
         <MethodologyBodyStyle>
           {renderStackList(content.stack, isExtended)}
         </MethodologyBodyStyle>
+        {isLoggedIn && (
+          <>
+            <MethodologyUpdateButtonStyle
+              onClick={event => {
+                event.stopPropagation();
+                updateSkillsList(content);
+              }}
+            >
+              Update
+            </MethodologyUpdateButtonStyle>
+            <MethodologyDeleteButtonStyle
+              onClick={event => {
+                event.stopPropagation();
+                deleteSkillsList(content._id);
+                if (isExtended) {
+                  closeOpenSkills();
+                }
+              }}
+            >
+              Delete
+            </MethodologyDeleteButtonStyle>
+          </>
+        )}
       </MethodologyContainerstyle>
     </MethodologyStyle>
   );
 };
 
-export default Methodology;
+const mapStateToProps = ({ isLoggedIn }) => ({
+  isLoggedIn,
+});
+
+export default connect(mapStateToProps)(Methodology);

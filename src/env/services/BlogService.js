@@ -7,10 +7,20 @@ class BlogService {
     });
   }
 
-  async getPosts() {
+  async getActivePosts() {
     let response;
     try {
       response = await this.blogServer.get('/posts');
+    } catch (err) {
+      errorHandlers.blogErrorHandler(err);
+    }
+    return response.data;
+  }
+
+  async getPosts() {
+    let response;
+    try {
+      response = await this.blogServer.get('/posts/all');
     } catch (err) {
       errorHandlers.blogErrorHandler(err);
     }
@@ -34,6 +44,17 @@ class BlogService {
     } catch (err) {
       errorHandlers.blogErrorHandler(err);
     }
+    return response.data;
+  }
+
+  async togglePost(id) {
+    let response;
+    try {
+      response = await this.blogServer.patch(`/posts/${id}`);
+    } catch (err) {
+      errorHandlers.blogErrorHandler(err);
+    }
+    console.log(response.data);
     return response.data;
   }
 

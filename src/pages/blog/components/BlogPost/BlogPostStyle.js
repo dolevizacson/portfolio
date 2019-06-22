@@ -138,3 +138,10 @@ export const BlogPostUpdateButtonStyle = styled.button`
     },
   }) => formButton}
 `;
+export const BlogPostToggleButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;

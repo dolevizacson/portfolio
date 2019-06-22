@@ -15,6 +15,7 @@ import {
   BlogPostFooterStyle,
   BlogPostDeleteButtonStyle,
   BlogPostUpdateButtonStyle,
+  BlogPostToggleButtonStyle,
 } from './BlogPostStyle';
 
 const formatDate = date => {
@@ -24,7 +25,13 @@ const formatDate = date => {
 };
 
 const BlogPostView = ({
-  state: { blogPostData, deleteBlogPost, updateBlogPost, isLoggedIn },
+  state: {
+    blogPostData,
+    deleteBlogPost,
+    updateBlogPost,
+    toggleBlogPost,
+    isLoggedIn,
+  },
 }) => {
   return (
     <BlogPostStyle>
@@ -63,6 +70,11 @@ const BlogPostView = ({
             >
               Delete
             </BlogPostDeleteButtonStyle>
+            <BlogPostToggleButtonStyle
+              onClick={() => toggleBlogPost(blogPostData._id)}
+            >
+              {blogPostData.active ? 'Toggle off' : 'Toggle on'}
+            </BlogPostToggleButtonStyle>
             <BlogPostUpdateButtonStyle onClick={updateBlogPost}>
               Update
             </BlogPostUpdateButtonStyle>

@@ -4,12 +4,12 @@ import { constants, UiHeader } from '../../env/utils/access';
 
 // components
 import BlogPostForm from './components/BlogPostForm/BlogPostForm';
-
+import SkillsListForm from './components/SkillsListForm/SkillsListForm';
 // style
 import { AdminStyle, HeaderIconStyle, LogoutButtonStyle } from './AdminStyle';
 
 // constants
-const { adminRoute, blogRoute } = constants;
+const { adminRoute, blogRoute, skillsRoute } = constants;
 
 const AdminView = ({ state: { logout } }) => {
   return (
@@ -22,6 +22,8 @@ const AdminView = ({ state: { logout } }) => {
         render={() => (
           <>
             <Link to={`${adminRoute}${blogRoute}`}>Blog</Link>
+
+            <Link to={`${adminRoute}${skillsRoute}`}>Skills</Link>
           </>
         )}
       />
@@ -29,6 +31,11 @@ const AdminView = ({ state: { logout } }) => {
         path={`${adminRoute}${blogRoute}`}
         exact
         render={props => <BlogPostForm {...props} />}
+      />
+      <Route
+        path={`${adminRoute}${skillsRoute}`}
+        exact
+        render={props => <SkillsListForm {...props} />}
       />
     </AdminStyle>
   );

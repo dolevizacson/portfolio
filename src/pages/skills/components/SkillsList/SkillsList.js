@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { actions, UiHeader, UiLoading } from '../../../../env/utils/access';
+import { Redirect, withRouter } from 'react-router-dom';
+import {
+  actions,
+  UiHeader,
+  UiLoading,
+  constants,
+} from '../../../../env/utils/access';
 
 // components
 import Methodology from '../Methodology/Methodology';
@@ -13,17 +19,49 @@ import {
 } from './SkillsListStyle';
 
 // actions
-const { getSkillsList } = actions.skillsActions;
+const { getSkillsLists, deleteSkillsList } = actions.skillsActions;
+
+// constants
+const { adminRoute, skillsRoute } = constants;
 
 class SkillsList extends Component {
-  state = { list: [], isExtended: false };
+  state = {
+    list: [],
+    isExtended: false,
+    updateSkill: false,
+    skillsToUpdate: {},
+  };
 
   componentDidMount = async () => {
-    const { getSkillsList } = this.props;
-    await getSkillsList();
+    const { getSkillsLists } = this.props;
+    await getSkillsLists();
     this.setState(state => ({
       list: this.props.skillsList,
     }));
+  };
+
+  deleteSkillsList = id => {
+    const { deleteSkillsList } = this.props;
+    deleteSkillsList(id);
+  };
+
+  updateSkillsList = skillsList => {
+    this.setState(state => ({ updateSkill: true, skillsToUpdate: skillsList }));
+  };
+
+  closeOpenSkills = () => {
+    this.setState(state => ({ isExtended: false }));
+  };
+
+  componentDidUpdate = () => {
+    if (
+      this.state.list !== this.props.skillsList &&
+      this.state.isExtended === false
+    ) {
+      this.setState(state => ({
+        list: this.props.skillsList,
+      }));
+    }
   };
 
   renderOneMethodology = id => {
@@ -52,14 +90,30 @@ class SkillsList extends Component {
           isExtended={isExtended}
           choose={this.renderOneMethodology}
           close={this.renderAllMethodologies}
+          deleteSkillsList={this.deleteSkillsList}
+          updateSkillsList={this.updateSkillsList}
+          closeOpenSkills={this.closeOpenSkills}
         />
       );
     });
   };
 
   render() {
-    const { list } = this.state;
-    const { isLoading } = this.props;
+    const { list, updateSkill, skillsToUpdate } = this.state;
+    const { isLoading, location } = this.props;
+
+    if (updateSkill)
+      return (
+        <Redirect
+          to={{
+            pathname: `${adminRoute}${skillsRoute}`,
+            state: {
+              from: location.pathname,
+              skillsList: skillsToUpdate,
+            },
+          }}
+        />
+      );
 
     return (
       <SkillsListStyle>
@@ -87,10 +141,13 @@ const mapStateToProps = ({ skillsList, isLoading }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getSkillsList: () => dispatch(getSkillsList()),
+  getSkillsLists: () => dispatch(getSkillsLists()),
+  deleteSkillsList: id => dispatch(deleteSkillsList(id)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SkillsList);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SkillsList)
+);

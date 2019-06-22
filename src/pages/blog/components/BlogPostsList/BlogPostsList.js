@@ -6,12 +6,19 @@ import { actions } from '../../../../env/utils/access';
 import BlogPostListView from './BlogPostListView';
 
 // actions
-const { getBlogPosts } = actions.blogActions;
+const { getBlogPosts, getActiveBlogPosts } = actions.blogActions;
 
 class BlogPostsList extends Component {
   componentDidMount = () => {
-    const { getBlogPosts } = this.props;
-    getBlogPosts();
+    const { isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+    isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
+  };
+
+  componentDidUpdate = prevProps => {
+    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+      const { isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+      isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
+    }
   };
 
   render() {
@@ -21,13 +28,15 @@ class BlogPostsList extends Component {
   }
 }
 
-const mapStateToProps = ({ blogPostsList, isLoading }) => ({
+const mapStateToProps = ({ blogPostsList, isLoading, isLoggedIn }) => ({
   blogPostsList,
   isLoading,
+  isLoggedIn,
 });
 
 const mapDispatchToProps = dispatch => ({
   getBlogPosts: () => dispatch(getBlogPosts()),
+  getActiveBlogPosts: () => dispatch(getActiveBlogPosts()),
 });
 
 export default connect(

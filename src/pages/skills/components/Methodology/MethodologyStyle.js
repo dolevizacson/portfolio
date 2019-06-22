@@ -109,3 +109,18 @@ export const CloseIconStyle = styled(Times)`
 export const MethodologyBodyStyle = styled.div`
   ${({ theme: { div } }) => div}
 `;
+
+export const MethodologyUpdateButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const MethodologyDeleteButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;

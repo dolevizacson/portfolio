@@ -7,7 +7,7 @@ import { constants, actions } from '../../../../env/utils/access';
 import BlogPostView from './BlogPostView';
 
 // actions
-const { deleteBlogPost } = actions.blogActions;
+const { deleteBlogPost, toggleBlogPost } = actions.blogActions;
 
 // constants
 const { adminRoute, blogRoute } = constants;
@@ -24,11 +24,11 @@ class BlogPost extends Component {
     this.setState(state => ({ updatePost: true }));
   };
 
-  /* formatDate = date => {
-    const rawDate = new Date(date);
-    return `${rawDate.getDate()}/${rawDate.getMonth() +
-      1}/${rawDate.getFullYear()}`;
-  }; */
+  toggleBlogPost = id => {
+    const { toggleBlogPost } = this.props;
+    toggleBlogPost(id);
+  };
+
   render() {
     const { blogPostData, isLoggedIn, location } = this.props;
     const { updatePost } = this.state;
@@ -53,6 +53,7 @@ class BlogPost extends Component {
           isLoggedIn,
           deleteBlogPost: this.deleteBlogPost,
           updateBlogPost: this.updateBlogPost,
+          toggleBlogPost: this.toggleBlogPost,
         }}
       />
     );
@@ -62,6 +63,7 @@ class BlogPost extends Component {
 const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
 const mapDispatchToProps = dispatch => ({
   deleteBlogPost: id => dispatch(deleteBlogPost(id)),
+  toggleBlogPost: id => dispatch(toggleBlogPost(id)),
 });
 
 export default withRouter(
