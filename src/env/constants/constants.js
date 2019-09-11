@@ -18,6 +18,7 @@ const general = {
     skills: '/skills',
     auth: '/auth',
     blog: '/blog',
+    taskList: '/tasklist',
   },
 
   //routes
@@ -28,9 +29,11 @@ const general = {
   contactRoute: '/contact',
   loginRoute: '/login',
   adminRoute: '/admin',
+  taskListRoute: '/tasklist',
 
   // blog post config
   blogFormLocalStorageKey: 'diAppblogPost',
+
   blogPostInitialState: {
     header: 'Post Header',
     summery: 'Post summery',
@@ -40,23 +43,33 @@ const general = {
         content: 'Paragraph content',
       },
     ],
-    footer: 'Post footer',
+    conclusion: {
+      header: 'Post conclusion header',
+      content: 'Post conclusion content',
+    },
+    conclusionSentence: 'Post conclusion sentence',
   },
 
   // skills list config
   skillslistLocalStorageKey: 'diAppskillsList',
   skillsListInitialState: {
-    topic: 'skills list topic',
-    image: 'skills list image path',
+    topic: 'Skills list topic',
     stack: [
       {
-        language: 'language name',
-        longData: ['language skill'],
+        language: 'Language name',
+        longData: ['Language skill'],
       },
     ],
   },
+
+  // task config
+  taskLocalStorageKey: 'diApptask',
+  taskInitialState: {
+    header: 'Task header',
+    description: 'Task description',
+  },
 };
 
-export default (process.env.NODE_ENV === 'production'
+export default process.env.NODE_ENV === 'production'
   ? merge(general, prod)
-  : merge(general, dev));
+  : merge(general, dev);

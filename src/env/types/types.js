@@ -25,24 +25,46 @@ export const blog = {
   readAllSuccess: 'READ_BLOG_POSTS_SUCCESS',
   readAllFail: 'READ_BLOG_POSTS_FAILURE',
 
-  createRequest: 'CREATE_BLOG_POSTS_REQUEST',
-  createSuccess: 'CREATE_BLOG_POSTS_SUCCESS',
-  createFail: 'CREATE_BLOG_POSTS_FAILURE',
+  createRequest: 'CREATE_BLOG_POST_REQUEST',
+  createSuccess: 'CREATE_BLOG_POST_SUCCESS',
+  createFail: 'CREATE_BLOG_POST_FAILURE',
 
-  updateRequest: 'UPDATE_BLOG_POSTS_REQUEST',
-  updateSuccess: 'UPDATE_BLOG_POSTS_SUCCESS',
-  updateFail: 'UPDATE_BLOG_POSTS_FAILURE',
+  updateRequest: 'UPDATE_BLOG_POST_REQUEST',
+  updateSuccess: 'UPDATE_BLOG_POST_SUCCESS',
+  updateFail: 'UPDATE_BLOG_POST_FAILURE',
 
-  toggleRequest: 'TOGGLE_BLOG_POSTS_REQUEST',
-  toggleSuccess: 'TOGGLE_BLOG_POSTS_SUCCESS',
-  toggleFail: 'TOGGLE_BLOG_POSTS_FAILURE',
+  toggleRequest: 'TOGGLE_BLOG_POST_REQUEST',
+  toggleSuccess: 'TOGGLE_BLOG_POST_SUCCESS',
+  toggleFail: 'TOGGLE_BLOG_POST_FAILURE',
 
-  deleteRequest: 'DELETE_BLOG_POSTS_REQUEST',
-  deleteSuccess: 'DELETE_BLOG_POSTS_SUCCESS',
-  deleteFail: 'DELETE_BLOG_POSTS_FAILURE',
+  deleteRequest: 'DELETE_BLOG_POST_REQUEST',
+  deleteSuccess: 'DELETE_BLOG_POST_SUCCESS',
+  deleteFail: 'DELETE_BLOG_POST_FAILURE',
 
   change: 'CHANGE_BLOG_POST',
   reset: 'RESET_BLOG_POST',
+};
+
+export const taskList = {
+  readAllRequest: 'READ_TASK_LIST_REQUEST',
+  readAllSuccess: 'READ_TASK_LIST_SUCCESS',
+  readAllFail: 'READ_TASK_LIST_FAILURE',
+
+  createRequest: 'CREATE_TASK_REQUEST',
+  createSuccess: 'CREATE_TASK_SUCCESS',
+  createFail: 'CREATE_TASK_FAILURE',
+
+  updateRequest: 'UPDATE_TASK_REQUEST',
+  updateSuccess: 'UPDATE_TASK_SUCCESS',
+  updateFail: 'UPDATE_TASK_FAILURE',
+
+  toggleRequest: 'TOGGLE_TASK_REQUEST',
+  toggleSuccess: 'TOGGLE_TASK_SUCCESS',
+  toggleFail: 'TOGGLE_TASK_FAILURE',
+
+  deleteRequest: 'DELETE_TASK_REQUEST',
+  deleteSuccess: 'DELETE_TASK_SUCCESS',
+  deleteFail: 'DELETE_TASK_FAILURE',
 };
 
 export const auth = {

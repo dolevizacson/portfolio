@@ -11,7 +11,7 @@ import Footer from './components/Footer/Footer';
 
 // page component
 import Home from '../pages/home/Home';
-import Projects from '../pages/projects';
+import Projects from '../pages/projects/Projects';
 import Blog from '../pages/blog/Blog';
 import Skills from '../pages/skills/Skills';
 import Contact from '../pages/contact';

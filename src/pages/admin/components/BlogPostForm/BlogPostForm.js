@@ -21,7 +21,11 @@ const BlogPostFormValidationSchema = Yup.object().shape({
       content: Yup.string().required('Must provide paragraph content'),
     })
   ),
-  footer: Yup.string(),
+  conclusion: Yup.object().shape({
+    header: Yup.string(),
+    content: Yup.string().required('Must provide conclusion content'),
+  }),
+  conclusionSentence: Yup.string(),
 });
 
 class BlogPostForm extends Component {

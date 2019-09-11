@@ -8,7 +8,6 @@ import {
   SkillsListContainerStyle,
   FormStyle,
   SkillsListTopicFieldStyle,
-  SkillsListImageFieldStyle,
   SkillsListStackListListContainerStyle,
   SkillsListStackContainerStyle,
   SkillsListLanguageFieldStyle,
@@ -81,8 +80,6 @@ const SkillsListFormView = ({
             <FormStyle>
               <SkillsListTopicFieldStyle type="text" name="topic" />
               <ErrorMessage name="topic" component="div" />
-              <SkillsListImageFieldStyle type="text" name="image" />
-              <ErrorMessage name="image" component="div" />
               <FieldArray
                 name="stack"
                 render={arrayHelpers => (

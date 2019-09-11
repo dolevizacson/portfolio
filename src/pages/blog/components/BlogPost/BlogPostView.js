@@ -57,10 +57,22 @@ const BlogPostView = ({
             );
           })}
         </BlogPostBodyStyle>
-        {blogPostData.footer && (
+        {blogPostData.conclusion && (
           <>
             <BlogPostSeperatorStyle />
-            <BlogPostFooterStyle>{blogPostData.footer}</BlogPostFooterStyle>
+            <BlogPostparagraphStyle>
+              <BlogPostparagraphHeaderStyle>
+                {blogPostData.conclusion.header}
+              </BlogPostparagraphHeaderStyle>
+              <BlogPostparagraphBodyStyle>
+                {blogPostData.conclusion.content}
+              </BlogPostparagraphBodyStyle>
+              {blogPostData.conclusionSentence && (
+                <BlogPostparagraphBodyStyle>
+                  {blogPostData.conclusionSentence}
+                </BlogPostparagraphBodyStyle>
+              )}
+            </BlogPostparagraphStyle>
           </>
         )}
         {isLoggedIn && (

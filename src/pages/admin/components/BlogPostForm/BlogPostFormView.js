@@ -130,8 +130,19 @@ const BlogPostFormView = ({
                   </BlogPostParagraphListContainerStyle>
                 )}
               />
-              <BlogPostFooterFieldStyle type="text" name="footer" />
-              <ErrorMessage name="footer" component="div" />
+              <BlogPostParagraphContainerStyle>
+                <BlogPostParagraphHeaderFieldStyle
+                  type="text"
+                  name={`conclusion.header`}
+                />
+                <ErrorMessage name={`conclusion.header`} component="div" />
+                <BlogPostParagraphContentFieldStyle
+                  name={`conclusion.content`}
+                />
+                <ErrorMessage name={`conclusion.content`} component="div" />
+              </BlogPostParagraphContainerStyle>
+              <BlogPostFooterFieldStyle type="text" name="conclusionSentence" />
+              <ErrorMessage name="conclusionSentence" component="div" />
               {!location.state && (
                 <>
                   <BlogPostSubmitButtonStyle

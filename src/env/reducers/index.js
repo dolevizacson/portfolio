@@ -6,6 +6,7 @@ import { authReducer } from './authReducers';
 import { blogPostsReducer } from './blogPostsReducers';
 import { loadingReducer } from './loadingReducer';
 import { errorsReducer } from './errorsReducer';
+import { taskListreducer } from './taskListReducers';
 
 export default combineReducers({
   skillsList: skillsListReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   isLoggedIn: authReducer,
   isLoading: loadingReducer,
   errors: errorsReducer,
+  taskList: taskListreducer,
 });

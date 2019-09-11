@@ -54,7 +54,6 @@ class BlogService {
     } catch (err) {
       errorHandlers.blogErrorHandler(err);
     }
-    console.log(response.data);
     return response.data;
   }
 

@@ -47,7 +47,6 @@ const postBlogPost = (post, ownProps) => async (dispatch, getState) => {
       type: blog.createSuccess,
       payload: response,
     });
-    console.log(ownProps);
     ownProps.history.push(blogRoute, { blogPost: response });
   } catch (err) {
     dispatch({ type: blog.createFail, payload: err });

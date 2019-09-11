@@ -11,8 +11,6 @@ import {
   MethodologyHeaderStyle,
   LeftHeaderStyle,
   HeaderStyle,
-  MethodologyIconStyle,
-  IconStyle,
   MethodologyCloseIconStyle,
   CloseIconStyle,
   MethodologyBodyStyle,
@@ -44,9 +42,6 @@ const Methodology = ({
       <MethodologyContainerstyle isExtended={isExtended}>
         <MethodologyHeaderStyle>
           <LeftHeaderStyle>
-            <MethodologyIconStyle>
-              <IconStyle src={content.image} alt={content.topic} />
-            </MethodologyIconStyle>
             <HeaderStyle>{content.topic}</HeaderStyle>
           </LeftHeaderStyle>
           {isExtended && (

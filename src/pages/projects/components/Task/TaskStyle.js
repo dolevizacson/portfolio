@@ -1,27 +1,6 @@
 import styled from 'styled-components';
 import { Check } from 'styled-icons/fa-solid';
 
-export const CurrentlyWorkingStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  padding-top: 5vh;
-  padding-bottom: 10vh;
-
-  ${({
-    theme: {
-      media: { phone },
-    },
-  }) => phone`
-    padding: 2vh 0;
-  `}
-`;
-export const TastsListContainerStyle = styled.div`
-  ${({ theme: { div } }) => div}
-
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-`;
 export const TaskStyle = styled.div`
   ${({
     theme: {
@@ -103,4 +82,26 @@ export const DoneIconStyle = styled(Check)`
       color: { red1 },
     },
   }) => red1}
+`;
+
+export const TaskDeleteButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const TaskUpdateButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const TaskToggleButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
 `;
