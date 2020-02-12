@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { constants } from '../../../env/utils/access';
 
 // style
@@ -7,7 +6,6 @@ import {
   AppNavbarStyle,
   NavbarContainerStyle,
   LeftStyle,
-  MainLogoStyle,
   LinkStyle,
   RightStyle,
   CollapseIconStyle,
@@ -40,9 +38,7 @@ const AppNavbarView = ({
     <AppNavbarStyle>
       <NavbarContainerStyle>
         <LeftStyle>
-          <Link to={homeRoute}>
-            <MainLogoStyle />
-          </Link>
+          <LinkStyle to={homeRoute}>Logo</LinkStyle>
         </LeftStyle>
 
         <RightStyle>

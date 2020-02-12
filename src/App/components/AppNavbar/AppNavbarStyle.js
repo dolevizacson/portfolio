@@ -2,21 +2,21 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // icons
-import { Domain } from 'styled-icons/material';
 import { ThMenu } from 'styled-icons/typicons';
 
 export const AppNavbarStyle = styled.div`
   ${({ theme: { div } }) => div}
-  ${({
-    theme: {
-      BackgroundColor: { black1 },
-    },
-  }) => black1}
 
+  border-bottom: solid 2px ${({
+    theme: {
+      mainAppThemeColors: { uiColor4 },
+    },
+  }) => uiColor4};
+  box-shadow: 0px 3px 5px 0px rgba(45,45,45,0.75);
   width: 100%;
-  box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
   flex-direction: column;
 `;
+
 export const NavbarContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
 
@@ -27,7 +27,7 @@ export const NavbarContainerStyle = styled.div`
 `;
 export const LeftStyle = styled.div`
   ${({ theme: { div } }) => div}
-
+  padding: 0 10px;
   width: 30%;
   height: 100%;
   align-items: center;
@@ -41,16 +41,6 @@ export const RightStyle = styled.div`
   align-items: center;
 `;
 
-export const MainLogoStyle = styled(Domain)`
-  ${({
-    theme: {
-      color: { red1 },
-    },
-  }) => red1}
-  width: 50px;
-  height: 50px;
-`;
-
 export const LinksContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
   padding: 0 10px;
@@ -58,8 +48,8 @@ export const LinksContainerStyle = styled.div`
 
 export const LinkStyle = styled(Link)`
   text-decoration: none;
-  font-size: 1.5rem;
-
+  font-size: 1.2rem;
+  font-weight: bold;
   ${({
     theme: {
       font: { font1 },
@@ -67,16 +57,16 @@ export const LinkStyle = styled(Link)`
   }) => font1}
   ${({
     theme: {
-      color: { white1 },
+      color: { fontColor2 },
     },
-  }) => white1}
+  }) => fontColor2};
 `;
 export const CollapseIconStyle = styled(ThMenu)`
   ${({
     theme: {
-      color: { white1 },
+      color: { uiColor4 },
     },
-  }) => white1}
+  }) => uiColor4}
   width: 50px;
   height: 50px;
   cursor: pointer;
