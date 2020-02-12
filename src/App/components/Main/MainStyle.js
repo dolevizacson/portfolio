@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MainStyle = styled.div`
   ${({ theme: { div } }) => div}
 
-  width: 70%;
+  width: 980px;
   justify-content: center;
   flex: 1 0;
 
@@ -12,7 +12,7 @@ export const MainStyle = styled.div`
       media: { desktop },
     },
   }) => desktop`
-    width:85%;
+    width:78%;
   `}
   ${({
     theme: {
