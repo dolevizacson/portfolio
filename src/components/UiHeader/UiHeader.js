@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 // style
 import {
-  HeaderIconStyle,
-  SkillsListHeaderContainerStyle,
-  SkillsListHeaderStyle,
-  HeaderStyle,
+  UiHeaderStyle,
+  UiHeaderContainerStyle,
+  UiHeaderHeaderIconStyle,
+  UiHeaderHeaderStyle,
 } from './UiHeaderStyle';
 
 const renderIcon = icon => {
@@ -25,22 +25,22 @@ const renderIcon = icon => {
       }) => white2}
     `;
     return (
-      <HeaderIconStyle>
+      <UiHeaderHeaderIconStyle>
         <Elem />
-      </HeaderIconStyle>
+      </UiHeaderHeaderIconStyle>
     );
   }
 };
 
-const SkillsListHeader = ({ text, icon }) => {
+const UiHeader = ({ text, icon }) => {
   return (
-    <SkillsListHeaderStyle>
-      <SkillsListHeaderContainerStyle>
+    <UiHeaderStyle>
+      <UiHeaderContainerStyle>
         {renderIcon(icon)}
-        <HeaderStyle>{text}</HeaderStyle>
-      </SkillsListHeaderContainerStyle>
-    </SkillsListHeaderStyle>
+        <UiHeaderHeaderStyle>{text}</UiHeaderHeaderStyle>
+      </UiHeaderContainerStyle>
+    </UiHeaderStyle>
   );
 };
 
-export default SkillsListHeader;
+export default UiHeader;
