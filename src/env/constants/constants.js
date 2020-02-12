@@ -19,6 +19,8 @@ const general = {
     auth: '/auth',
     blog: '/blog',
     taskList: '/tasklist',
+    projects: '/projects',
+    contact: '/contact',
   },
 
   //routes
@@ -43,15 +45,14 @@ const general = {
         content: 'Paragraph content',
       },
     ],
-    conclusion: {
-      header: 'Post conclusion header',
-      content: 'Post conclusion content',
-    },
-    conclusionSentence: 'Post conclusion sentence',
+    conclusionHeader: '',
+    conclusionContent: '',
+    conclusionSentence: '',
   },
 
   // skills list config
   skillslistLocalStorageKey: 'diAppskillsList',
+
   skillsListInitialState: {
     topic: 'Skills list topic',
     stack: [
@@ -67,6 +68,23 @@ const general = {
   taskInitialState: {
     header: 'Task header',
     description: 'Task description',
+  },
+
+  // project config
+  projectFormLocalStorageKey: 'diAppproject',
+
+  projectInitialState: {
+    header: 'Project Header',
+    summery: 'Project summery',
+    description: '',
+    technologies: ['Technology name'],
+    links: [],
+  },
+  // contact config
+  contactInitialState: {
+    from: 'Insert your mail address',
+    subject: 'Message subject',
+    text: 'Message body',
   },
 };
 
