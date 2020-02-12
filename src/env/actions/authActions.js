@@ -1,6 +1,9 @@
-import { auth } from '../types/types';
-import { services } from '../utils/access';
+import { services, types } from '../utils/access';
 
+// types
+const { auth, init } = types;
+
+// service
 const { authService } = services;
 
 // send login request to server
@@ -47,6 +50,9 @@ const isLoggedIn = () => async (dispatch, getState) => {
       payload: err,
     });
   }
+  dispatch({
+    type: init.isLoggedIn,
+  });
 };
 
 export default {
