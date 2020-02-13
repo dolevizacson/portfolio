@@ -1,13 +1,5 @@
-import { errors } from '../utils/access';
+import { functions } from '../utils/access';
 
-const { LocalStorageError } = errors;
+const { localStorageErrorHandler } = functions;
 
-const localStorageErrorHandler = error => {
-  if (error.message) {
-    throw new LocalStorageError(error.message);
-  } else {
-    throw new LocalStorageError('Local storage error');
-  }
-};
-
-export default localStorageErrorHandler;
+export default error => localStorageErrorHandler(error);
