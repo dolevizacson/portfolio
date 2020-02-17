@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import {
-  actions,
-  UiHeader,
-  UiLoading,
-  constants,
-} from '../../../../env/utils/access';
+import { actions, constants, types } from '../../../../env/utils/access';
 
 // components
 import Methodology from '../Methodology/Methodology';
-
-// styles
-import {
-  SkillsListStyle,
-  SkillsListContainerStyle,
-  HeaderIconStyle,
-} from './SkillsListStyle';
+import SkillsListView from './SkillsListView';
 
 // actions
 const { getSkillsLists, deleteSkillsList } = actions.skillsActions;
@@ -24,9 +13,12 @@ const { getSkillsLists, deleteSkillsList } = actions.skillsActions;
 // constants
 const { adminRoute, skillsRoute } = constants;
 
+// types
+const { skills: skillsTypes } = types;
+
 class SkillsList extends Component {
   state = {
-    list: [],
+    localStateSkillsList: [],
     isExtended: false,
     updateSkill: false,
     skillsToUpdate: {},
@@ -36,7 +28,7 @@ class SkillsList extends Component {
     const { getSkillsLists } = this.props;
     await getSkillsLists();
     this.setState(state => ({
-      list: this.props.skillsList,
+      localStateSkillsList: this.props.skillsList,
     }));
   };
 
@@ -55,19 +47,21 @@ class SkillsList extends Component {
 
   componentDidUpdate = () => {
     if (
-      this.state.list !== this.props.skillsList &&
+      this.state.localStateSkillsList !== this.props.skillsList &&
       this.state.isExtended === false
     ) {
       this.setState(state => ({
-        list: this.props.skillsList,
+        localStateSkillsList: this.props.skillsList,
       }));
     }
   };
 
   renderOneMethodology = id => {
-    const { list } = this.state;
+    const { localStateSkillsList } = this.state;
     this.setState(state => ({
-      list: list.filter(methodology => methodology._id === id),
+      localStateSkillsList: localStateSkillsList.filter(
+        methodology => methodology._id === id
+      ),
       isExtended: true,
     }));
   };
@@ -75,7 +69,7 @@ class SkillsList extends Component {
   renderAllMethodologies = () => {
     const { skillsList } = this.props;
     this.setState(state => ({
-      list: skillsList,
+      localStateSkillsList: skillsList,
       isExtended: false,
     }));
   };
@@ -99,8 +93,13 @@ class SkillsList extends Component {
   };
 
   render() {
-    const { list, updateSkill, skillsToUpdate } = this.state;
-    const { isLoading, location } = this.props;
+    const {
+      localStateSkillsList,
+      isExtended,
+      updateSkill,
+      skillsToUpdate,
+    } = this.state;
+    const { location } = this.props;
 
     if (updateSkill)
       return (
@@ -116,28 +115,22 @@ class SkillsList extends Component {
       );
 
     return (
-      <SkillsListStyle>
-        {isLoading.READ_SKILLS_LIST && <UiLoading size={50} />}
-
-        {!isLoading.READ_SKILLS_LIST && (
-          <>
-            <UiHeader
-              text="Technology Stack And Stuff"
-              icon={HeaderIconStyle}
-            />
-            <SkillsListContainerStyle>
-              {this.renderMethodologyList(list)}
-            </SkillsListContainerStyle>
-          </>
-        )}
-      </SkillsListStyle>
+      <SkillsListView
+        state={{ skillsList: localStateSkillsList }}
+        requestName={skillsTypes.readAll}
+        isExtended={isExtended}
+        choose={this.renderOneMethodology}
+        close={this.renderAllMethodologies}
+        deleteSkillsList={this.deleteSkillsList}
+        updateSkillsList={this.updateSkillsList}
+        closeOpenSkills={this.closeOpenSkills}
+      />
     );
   }
 }
 
-const mapStateToProps = ({ skillsList, isLoading }) => ({
+const mapStateToProps = ({ skillsList }) => ({
   skillsList,
-  isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -146,8 +139,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SkillsList)
+  connect(mapStateToProps, mapDispatchToProps)(SkillsList)
 );
