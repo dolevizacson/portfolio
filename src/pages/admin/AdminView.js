@@ -6,11 +6,19 @@ import { constants, UiHeader } from '../../env/utils/access';
 import BlogPostForm from './components/BlogPostForm/BlogPostForm';
 import SkillsListForm from './components/SkillsListForm/SkillsListForm';
 import TaskForm from './components/TaskForm/TaskForm';
+import ProjectForm from './components/ProjectForm/ProjectForm';
+
 // style
 import { AdminStyle, HeaderIconStyle, LogoutButtonStyle } from './AdminStyle';
 
 // constants
-const { adminRoute, blogRoute, skillsRoute, taskListRoute } = constants;
+const {
+  adminRoute,
+  blogRoute,
+  skillsRoute,
+  taskListRoute,
+  projectsRoute,
+} = constants;
 
 const AdminView = ({ state: { logout } }) => {
   return (
@@ -25,6 +33,7 @@ const AdminView = ({ state: { logout } }) => {
             <Link to={`${adminRoute}${blogRoute}`}>Blog</Link>
             <Link to={`${adminRoute}${skillsRoute}`}>Skills</Link>
             <Link to={`${adminRoute}${taskListRoute}`}>Task</Link>
+            <Link to={`${adminRoute}${projectsRoute}`}>Project</Link>
           </>
         )}
       />
@@ -42,6 +51,11 @@ const AdminView = ({ state: { logout } }) => {
         path={`${adminRoute}${taskListRoute}`}
         exact
         render={props => <TaskForm {...props} />}
+      />
+      <Route
+        path={`${adminRoute}${projectsRoute}`}
+        exact
+        render={props => <ProjectForm {...props} />}
       />
     </AdminStyle>
   );
