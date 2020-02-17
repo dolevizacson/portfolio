@@ -1,28 +1,34 @@
 import React from 'react';
-import { UiHeader, UiLoading } from '../../../../env/utils/access';
+import {
+  UiHeader,
+  UiLoading,
+  UiRequest,
+  UiRequstError,
+} from '../../../../env/utils/access';
 
 // components
-import BlogPost from '../BlogPost/BlogPost';
+import MinimizedBlogPost from '../MinimizedBlogPost/MinimizedBlogPost';
 
 // style
 import { BlogPostsListStyle, HeaderIconStyle } from './BlogPostListStyle';
 
 const renderBlogPostsList = list => {
   return list.map((blogPost, index) => {
-    return <BlogPost key={index} blogPostData={blogPost} />;
+    return <MinimizedBlogPost key={index} blogPostData={blogPost} />;
   });
 };
 
-const BlogPostView = ({ state: { blogPostsList, isLoading } }) => {
+const BlogPostView = ({ state: { blogPostsList }, requestName }) => {
   return (
     <BlogPostsListStyle>
-      {isLoading.READ_BLOG_POSTS && <UiLoading size={50} />}
-      {!isLoading.READ_BLOG_POSTS && (
-        <>
-          <UiHeader text="Personal blog" icon={HeaderIconStyle} />
-          {renderBlogPostsList(blogPostsList)}
-        </>
-      )}
+      <UiRequest
+        requestName={requestName}
+        loading={<UiLoading size={50} />}
+        component={<UiHeader text="Personal blog" icon={HeaderIconStyle} />}
+        error={<UiRequstError message="failed to load" />}
+      >
+        <>{renderBlogPostsList(blogPostsList)}</>
+      </UiRequest>
     </BlogPostsListStyle>
   );
 };

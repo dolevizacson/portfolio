@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { actions } from '../../../../env/utils/access';
+import { actions, types } from '../../../../env/utils/access';
 
 // components
 import BlogPostListView from './BlogPostListView';
@@ -8,30 +8,45 @@ import BlogPostListView from './BlogPostListView';
 // actions
 const { getBlogPosts, getActiveBlogPosts } = actions.blogActions;
 
+// types
+const { blog: blogTypes } = types;
+
 class BlogPostsList extends Component {
   componentDidMount = () => {
-    const { isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
-    isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
-  };
-
-  componentDidUpdate = prevProps => {
-    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
-      const { isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+    const { init, isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+    if (init) {
       isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
     }
   };
 
-  render() {
-    const { blogPostsList, isLoading } = this.props;
+  componentDidUpdate = prevProps => {
+    if (
+      this.props.init !== prevProps.init ||
+      this.props.isLoggedIn !== prevProps.isLoggedIn
+    ) {
+      const { init, isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+      if (init) {
+        isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
+      }
+    }
+  };
 
-    return <BlogPostListView state={{ blogPostsList, isLoading }} />;
+  render() {
+    const { blogPostsList, isLoggedIn } = this.props;
+
+    return (
+      <BlogPostListView
+        state={{ blogPostsList }}
+        requestName={isLoggedIn ? blogTypes.readAll : blogTypes.readAllActive}
+      />
+    );
   }
 }
 
-const mapStateToProps = ({ blogPostsList, isLoading, isLoggedIn }) => ({
+const mapStateToProps = ({ blogPostsList, isLoggedIn, init }) => ({
   blogPostsList,
-  isLoading,
   isLoggedIn,
+  init,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -39,7 +54,4 @@ const mapDispatchToProps = dispatch => ({
   getActiveBlogPosts: () => dispatch(getActiveBlogPosts()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BlogPostsList);
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPostsList);
