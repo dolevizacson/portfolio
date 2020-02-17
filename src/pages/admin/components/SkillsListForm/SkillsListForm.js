@@ -14,7 +14,6 @@ const { localStorageService } = services;
 
 const SkillsListFormValidationSchema = Yup.object().shape({
   topic: Yup.string().required('Must provide a topic'),
-  image: Yup.string().required('Must provide an image path'),
   stack: Yup.array().of(
     Yup.object().shape({
       language: Yup.string().required('Must provide a language'),
