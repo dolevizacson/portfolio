@@ -16,7 +16,10 @@ import {
   BlogPostParagraphCleanButtonStyle,
   BlogPostParagraphAddButtonStyle,
   BlogPostParagraphRemoveButtonStyle,
-  BlogPostFooterFieldStyle,
+  BlogPostConclusionAddButtonStyle,
+  BlogPostConclusionRemoveButtonStyle,
+  BlogPostConclusionSentenceAddButtonStyle,
+  BlogPostConclusionSentenceRemoveButtonStyle,
   BlogPostSubmitButtonStyle,
   BlogPostResetButtonStyle,
   BlogPostUpdateButtonStyle,
@@ -68,6 +71,7 @@ const BlogPostFormView = ({
             status,
             touched,
             isSubmitting,
+            setFieldValue,
             values: { paragraph },
           }) => (
             <FormStyle>
@@ -130,19 +134,75 @@ const BlogPostFormView = ({
                   </BlogPostParagraphListContainerStyle>
                 )}
               />
-              <BlogPostParagraphContainerStyle>
-                <BlogPostParagraphHeaderFieldStyle
-                  type="text"
-                  name={`conclusion.header`}
-                />
-                <ErrorMessage name={`conclusion.header`} component="div" />
-                <BlogPostParagraphContentFieldStyle
-                  name={`conclusion.content`}
-                />
-                <ErrorMessage name={`conclusion.content`} component="div" />
-              </BlogPostParagraphContainerStyle>
-              <BlogPostFooterFieldStyle type="text" name="conclusionSentence" />
-              <ErrorMessage name="conclusionSentence" component="div" />
+              {values.conclusion && values.conclusion.header && (
+                <BlogPostParagraphContainerStyle>
+                  <BlogPostParagraphHeaderFieldStyle
+                    type="text"
+                    name={`conclusion.header`}
+                  />
+                  <ErrorMessage name={`conclusion.header`} component="div" />
+                  <BlogPostParagraphContentFieldStyle
+                    name={`conclusion.content`}
+                  />
+                  <ErrorMessage name={`conclusion.content`} component="div" />
+                </BlogPostParagraphContainerStyle>
+              )}
+              {values.conclusion && !values.conclusion.header && (
+                <BlogPostConclusionAddButtonStyle
+                  type="button"
+                  onClick={() =>
+                    setFieldValue('conclusion', {
+                      header: 'Post conclusion header',
+                      content: 'Post conclusion content',
+                    })
+                  }
+                >
+                  Add conclusion
+                </BlogPostConclusionAddButtonStyle>
+              )}
+              {values.conclusion && values.conclusion.header && (
+                <BlogPostConclusionRemoveButtonStyle
+                  type="button"
+                  onClick={() =>
+                    setFieldValue('conclusion', {
+                      header: '',
+                      content: '',
+                    })
+                  }
+                >
+                  remove conclusion
+                </BlogPostConclusionRemoveButtonStyle>
+              )}
+              {values.conclusionSentence && (
+                <>
+                  <BlogPostParagraphContentFieldStyle
+                    type="text"
+                    name="conclusionSentence"
+                  />
+                  <ErrorMessage name="conclusionSentence" component="div" />
+                </>
+              )}
+              {!values.conclusionSentence && (
+                <BlogPostConclusionSentenceAddButtonStyle
+                  type="button"
+                  onClick={() =>
+                    setFieldValue(
+                      'conclusionSentence',
+                      'Post conclusion sentence'
+                    )
+                  }
+                >
+                  Add conclusion sentence
+                </BlogPostConclusionSentenceAddButtonStyle>
+              )}
+              {values.conclusionSentence && (
+                <BlogPostConclusionSentenceRemoveButtonStyle
+                  type="button"
+                  onClick={() => setFieldValue('conclusionSentence', '')}
+                >
+                  remove conclusion sentence
+                </BlogPostConclusionSentenceRemoveButtonStyle>
+              )}
               {!location.state && (
                 <>
                   <BlogPostSubmitButtonStyle

@@ -23,7 +23,7 @@ const BlogPostFormValidationSchema = Yup.object().shape({
   ),
   conclusion: Yup.object().shape({
     header: Yup.string(),
-    content: Yup.string().required('Must provide conclusion content'),
+    content: Yup.string(),
   }),
   conclusionSentence: Yup.string(),
 });

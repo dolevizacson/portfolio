@@ -65,13 +65,7 @@ export const BlogPostParagraphContentFieldStyle = styled(Field)`
     },
   }) => formTextField}
 `;
-export const BlogPostFooterFieldStyle = styled(Field)`
-  ${({
-    theme: {
-      ui: { formTextField },
-    },
-  }) => formTextField}
-`;
+
 export const BlogPostParagraphListContainerStyle = styled.div`
   ${({ theme: { div } }) => div}
 
@@ -97,6 +91,34 @@ export const BlogPostParagraphRemoveButtonStyle = styled.button`
   }) => formButton}
 `;
 export const BlogPostParagraphAddButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const BlogPostConclusionAddButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const BlogPostConclusionRemoveButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const BlogPostConclusionSentenceAddButtonStyle = styled.button`
+  ${({
+    theme: {
+      ui: { formButton },
+    },
+  }) => formButton}
+`;
+export const BlogPostConclusionSentenceRemoveButtonStyle = styled.button`
   ${({
     theme: {
       ui: { formButton },
