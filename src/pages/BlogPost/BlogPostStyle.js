@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const BlogPostStyle = styled.div`
   ${({ theme: { div } }) => div}
+
+  flex-direction: column;
+  width: 100%;
 `;
 export const BlogPostContainerStyle = styled.div`
   ${({
