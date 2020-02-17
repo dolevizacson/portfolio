@@ -1,19 +1,23 @@
-import { blog } from '../types/types';
+import { types } from '../utils/access';
+
+// types
+const { blog } = types;
 
 export const blogPostsReducer = (state = [], action) => {
   switch (action.type) {
     case blog.readAllActiveSuccess:
     case blog.readAllSuccess:
       return [...action.payload];
-    case blog.createSuccess:
-      return [...state, action.payload];
+    default:
+      return state;
+  }
+};
+
+export const blogPostReducer = (state = {}, action) => {
+  switch (action.type) {
+    case blog.readSuccess:
     case blog.toggleSuccess:
-    case blog.updateSuccess:
-      return state.map(blogPost => {
-        return blogPost._id === action.payload._id ? action.payload : blogPost;
-      });
-    case blog.deleteSuccess:
-      return state.filter(blogPost => blogPost._id !== action.payload._id);
+      return { ...action.payload };
     default:
       return state;
   }

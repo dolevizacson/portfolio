@@ -1,13 +1,13 @@
-import { taskList } from '../types/types';
+import { types } from '../utils/access';
+
+// types
+const { taskList } = types;
 
 export const taskListreducer = (state = [], action) => {
   switch (action.type) {
     case taskList.readAllSuccess:
       return [...action.payload];
-    case taskList.createSuccess:
-      return [...state, action.payload];
     case taskList.toggleSuccess:
-    case taskList.updateSuccess:
       return state.map(blogPost => {
         return blogPost._id === action.payload._id ? action.payload : blogPost;
       });
