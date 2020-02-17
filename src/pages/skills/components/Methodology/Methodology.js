@@ -58,7 +58,7 @@ const Methodology = ({
         <MethodologyBodyStyle>
           {renderStackList(content.stack, isExtended)}
         </MethodologyBodyStyle>
-        {isLoggedIn && (
+        {isLoggedIn && isExtended && (
           <>
             <MethodologyUpdateButtonStyle
               onClick={event => {
