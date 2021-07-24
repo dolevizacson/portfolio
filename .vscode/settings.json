@@ -1,6 +1,6 @@
 {
   "workbench.colorTheme": "Monokai",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "vsicons.dontShowNewVersionMessage": true,
   "editor.tabSize": 2
 }
