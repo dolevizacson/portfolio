@@ -1,141 +1,44 @@
 import React from 'react';
 import { css, ThemeProvider } from 'styled-components';
+import * as mixins from './Mixins';
+import * as animations from './Animations';
 
-// theme style options
-const screenSizes = {
-  wideDesktop: 1200,
-  desktop: 992,
-  tablet: 768,
-  phone: 576,
+const createMediaQuery = (size, isMin) => {
+  const constSizes = {
+    phone: { size: '37.5em', isMin: false },
+    tabPort: { size: '56.25em', isMin: false },
+    tabLand: { size: '75em', isMin: false },
+    bigDesktop: { size: '112.5em', isMin: true },
+
+    // specific break points
+    buttonsCentering: { size: '34.375em', isMin: true },
+  };
+
+  if (constSizes[size]) {
+    isMin = constSizes[size].isMin;
+    size = constSizes[size].size;
+  }
+
+  return (...args) => css`
+    @media screen and (${isMin ? 'min-width' : 'max-width'}: ${size}) {
+      ${css(...args)}
+    }
+  `;
 };
 
-const mainAppThemeColors = {
-  red1: '#c3073f',
-  white1: 'white',
-  white2: '#d2caca',
-  white3: '#cfcfcf',
-  black1: '#1a1a1d',
-  grey1: '#313331',
-};
-
-const mainAppThemeFonts = {
-  font1: 'Courier New',
-  font2: 'myFont1-regular',
-};
-
-// theme methods
-const createMediaqueries = sizes => {
-  return Object.keys(sizes).reduce((sizesArray, size) => {
-    sizesArray[size] = (...args) => css`
-      @media (max-width: ${sizes[size] / 16}em) {
-        ${css(...args)}
-      }
-    `;
-    return sizesArray;
-  }, {});
-};
-
-const createsCss = (name, options) => {
-  return Object.keys(options).reduce((optionsArray, option) => {
-    optionsArray[option] = css`
-      ${name} : ${options[option]};
-    `;
-    return optionsArray;
-  }, {});
-};
-
-// theme element specific style
-const div = css`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: stretch;
-`;
-
-const corners = css`
-  border-radius: 10px;
-`;
-
-const shadow = css`
-  box-shadow: -20px 20px 40px 5px rgba(0, 0, 0, 0.75);
-`;
-
-const headerIconSize = css`
-  width: 80px;
-  height: 80px;
-
-  ${({
-    theme: {
-      media: { phone },
-    },
-  }) => phone`
-    width: 60px;
-    height: 60px;
-  `}
-`;
-
-const formTextField = css`
-  height: 2em;
-  padding: 3px 6px;
-  outline: none;
-  ${({
-    theme: {
-      ui: { corners },
-    },
-  }) => corners}
-`;
-
-const formButton = css`
-  height: 2em;
-  padding: 3px 6px;
-  outline-width: 0;
-  ${({
-    theme: {
-      ui: { corners },
-    },
-  }) => corners}
-`;
-
-const item = css`
-  ${({ theme: { div } }) => div}
-  ${({
-    theme: {
-      ui: { corners },
-    },
-  }) => corners}
-  ${({
-    theme: {
-      ui: { shadow },
-    },
-  }) => shadow}
-  ${({
-    theme: {
-      BackgroundColor: { black1 },
-    },
-  }) => black1}
-`;
-
-const MainTheme = props => {
+const MainTheme = (props) => {
   return (
     <>
       <ThemeProvider
         theme={{
-          mainAppThemeColors,
-          mainAppThemeFonts,
-          media: createMediaqueries(screenSizes),
-          color: createsCss('color', mainAppThemeColors),
-          BackgroundColor: createsCss('background-color', mainAppThemeColors),
-          font: createsCss('font-family', mainAppThemeFonts),
-          div,
-          ui: {
-            corners,
-            shadow,
-            headerIconSize,
-            formTextField,
-            formButton,
-            item,
-          },
+          // app css mixins
+          mixins,
+
+          // media quires
+          media: createMediaQuery,
+
+          //animations
+          animations,
         }}
       >
         {props.children}
