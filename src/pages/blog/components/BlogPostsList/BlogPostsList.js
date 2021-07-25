@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { actions, types } from '../../../../env/utils/access';
 
 // components
-import BlogPostListView from './BlogPostListView';
+import BlogPostsListView from './BlogPostsListView';
 
 // actions
 const { getBlogPosts, getActiveBlogPosts } = actions.blogActions;
@@ -13,21 +13,22 @@ const { blog: blogTypes } = types;
 
 class BlogPostsList extends Component {
   componentDidMount = () => {
-    const { init, isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
-    if (init) {
-      isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
-    }
+    this.getBlogPosts();
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps) => {
     if (
       this.props.init !== prevProps.init ||
       this.props.isLoggedIn !== prevProps.isLoggedIn
     ) {
-      const { init, isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
-      if (init) {
-        isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
-      }
+      this.getBlogPosts();
+    }
+  };
+
+  getBlogPosts = () => {
+    const { init, isLoggedIn, getBlogPosts, getActiveBlogPosts } = this.props;
+    if (init) {
+      isLoggedIn ? getBlogPosts() : getActiveBlogPosts();
     }
   };
 
@@ -35,9 +36,12 @@ class BlogPostsList extends Component {
     const { blogPostsList, isLoggedIn } = this.props;
 
     return (
-      <BlogPostListView
+      <BlogPostsListView
         state={{ blogPostsList }}
         requestName={isLoggedIn ? blogTypes.readAll : blogTypes.readAllActive}
+        functions={{
+          getBlogPosts: this.getBlogPosts,
+        }}
       />
     );
   }
@@ -49,7 +53,7 @@ const mapStateToProps = ({ blogPostsList, isLoggedIn, init }) => ({
   init,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getBlogPosts: () => dispatch(getBlogPosts()),
   getActiveBlogPosts: () => dispatch(getActiveBlogPosts()),
 });
