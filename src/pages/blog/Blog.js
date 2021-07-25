@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // components
 import BlogPostsList from './components/BlogPostsList/BlogPostsList';
 
 // style
-import { BlogStyle } from './BlogStyle';
+const BlogStyle = styled.div`
+  display: grid;
+`;
 
 class Blog extends Component {
   render() {

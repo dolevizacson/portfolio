@@ -1,15 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
 // components
-import SkillsList from './components/SkillsList/SkillsList';
+import SkillsLists from './components/SkillsLists/SkillsLists';
 
 // style
-import { SkillsStyle } from './SkillsStyle';
+const SkillsStyle = styled.div`
+  display: grid;
+`;
 
 const Skills = () => {
   return (
     <SkillsStyle>
-      <SkillsList />
+      <SkillsLists />
     </SkillsStyle>
   );
 };

@@ -1,10 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 
 // components
 import ContactForm from './components/ContactForm/ContactForm';
 
 // style
-import { ContactStyle } from './ContactStyle';
+const ContactStyle = styled.div`
+  display: grid;
+  align-items: center;
+`;
 
 const Contact = () => {
   return (
