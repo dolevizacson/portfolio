@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
     "formik": "^2.2.9",
     "http-status-codes": "^1.4.0",
-    "axios": "^0.21.1",
     "lodash": "^4.17.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -37,5 +37,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }
 }
