@@ -6,7 +6,7 @@ import localStorageService from './LocalStorageService';
 import projectsService from './ProjectsService';
 import contactService from './ContactService';
 
-export default {
+export {
   authService,
   skillsService,
   blogService,
