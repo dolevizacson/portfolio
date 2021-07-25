@@ -4,7 +4,7 @@ import { services, constants, functions, types } from '../utils/access';
 const { taskList: taskListTypes } = types;
 
 // constants
-const { projectsRoute } = constants;
+const { tasksRoute } = constants;
 
 // services
 const { taskListService } = services;
@@ -12,32 +12,29 @@ const { taskListService } = services;
 // functions
 const { reduxActions } = functions;
 
-export default {
-  getTaskList: () => reduxActions.getItems(taskListTypes, taskListService),
-  postTask: (task, ownProps) =>
-    reduxActions.postItem(
-      task,
-      ownProps,
-      taskListTypes,
-      taskListService,
-      projectsRoute
-    ),
-  updateTask: (id, task, ownProps) =>
-    reduxActions.updateItem(
-      id,
-      task,
-      ownProps,
-      taskListTypes,
-      taskListService,
-      projectsRoute
-    ),
-  toggleTask: id => reduxActions.toggleItem(id, taskListTypes, taskListService),
-  deleteTask: (id, ownProps) =>
-    reduxActions.deleteItem(
-      id,
-      ownProps,
-      taskListTypes,
-      taskListService,
-      projectsRoute
-    ),
-};
+export const getTaskList = () =>
+  reduxActions.getItems(taskListTypes, taskListService);
+
+export const getActiveTaskList = () =>
+  reduxActions.getActiveItems(taskListTypes, taskListService);
+
+export const getTask = (id) =>
+  reduxActions.getItem(taskListTypes, taskListService, id);
+
+export const postTask = (task, ownProps) =>
+  reduxActions.postItem(taskListTypes, taskListService, task, ownProps, {
+    route: tasksRoute,
+  });
+
+export const updateTask = (id, task, ownProps) =>
+  reduxActions.updateItem(taskListTypes, taskListService, id, task, ownProps, {
+    route: tasksRoute,
+  });
+
+export const toggleTask = (id) =>
+  reduxActions.toggleItem(taskListTypes, taskListService, id);
+
+export const deleteTask = (id, ownProps) =>
+  reduxActions.deleteItem(taskListTypes, taskListService, id, ownProps, {
+    route: tasksRoute,
+  });

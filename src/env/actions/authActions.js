@@ -7,7 +7,7 @@ const { auth, init } = types;
 const { authService } = services;
 
 // send login request to server
-const login = (username, password) => async (dispatch, getState) => {
+export const login = (username, password) => async (dispatch, getState) => {
   dispatch({ type: auth.loginRequest });
   let response;
   try {
@@ -21,7 +21,7 @@ const login = (username, password) => async (dispatch, getState) => {
   }
 };
 
-const logout = () => async (dispatch, getState) => {
+export const logout = () => async (dispatch, getState) => {
   dispatch({ type: auth.logoutRequest });
   let response;
   try {
@@ -35,7 +35,7 @@ const logout = () => async (dispatch, getState) => {
   }
 };
 
-const isLoggedIn = () => async (dispatch, getState) => {
+export const isLoggedIn = () => async (dispatch, getState) => {
   dispatch({ type: auth.isLoggedInRequest });
   let response;
   try {
@@ -53,10 +53,4 @@ const isLoggedIn = () => async (dispatch, getState) => {
   dispatch({
     type: init.isLoggedIn,
   });
-};
-
-export default {
-  login,
-  logout,
-  isLoggedIn,
 };

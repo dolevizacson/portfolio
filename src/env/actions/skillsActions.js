@@ -12,31 +12,34 @@ const { skillsService } = services;
 // functions
 const { reduxActions } = functions;
 
-export default {
-  getSkillsLists: () => reduxActions.getItems(skillsTypes, skillsService),
-  postSkillsList: (skillsList, ownProps) =>
-    reduxActions.postItem(
-      skillsList,
-      ownProps,
-      skillsTypes,
-      skillsService,
-      skillsRoute
-    ),
-  updateSkillsList: (id, skillsList, ownProps) =>
-    reduxActions.updateItem(
-      id,
-      skillsList,
-      ownProps,
-      skillsTypes,
-      skillsService,
-      skillsRoute
-    ),
-  deleteSkillsList: (id, ownProps) =>
-    reduxActions.deleteItem(
-      id,
-      ownProps,
-      skillsTypes,
-      skillsService,
-      skillsRoute
-    ),
-};
+export const getSkillsLists = () =>
+  reduxActions.getItems(skillsTypes, skillsService);
+
+export const getActiveSkillsLists = () =>
+  reduxActions.getActiveItems(skillsTypes, skillsService);
+
+export const getSkillsList = (id) =>
+  reduxActions.getItem(skillsTypes, skillsService, id);
+
+export const postSkillsList = (skillsList, ownProps) =>
+  reduxActions.postItem(skillsTypes, skillsService, skillsList, ownProps, {
+    route: skillsRoute,
+  });
+
+export const updateSkillsList = (id, skillsList, ownProps) =>
+  reduxActions.updateItem(
+    skillsTypes,
+    skillsService,
+    id,
+    skillsList,
+    ownProps,
+    { route: skillsRoute }
+  );
+
+export const deleteSkillsList = (id, ownProps) =>
+  reduxActions.deleteItem(skillsTypes, skillsService, id, ownProps, {
+    route: skillsRoute,
+  });
+
+export const toggleSkillsList = (id) =>
+  reduxActions.toggleItem(skillsTypes, skillsService, id);

@@ -1,15 +1,17 @@
-import authActions from './authActions';
-import skillsActions from './skillsActions';
-import blogActions from './blogActions';
-import taskListActions from './taskListActions';
-import projectsActions from './projectsActions';
-import contactActions from './contactActions';
+import * as authActions from './authActions';
+import * as skillsActions from './skillsActions';
+import * as blogActions from './blogActions';
+import * as taskListActions from './taskListActions';
+import * as projectsActions from './projectsActions';
+import * as contactActions from './contactActions';
+import * as errorsActions from './errorsActions';
 
-export default {
+export {
   authActions,
   skillsActions,
   blogActions,
   taskListActions,
   projectsActions,
   contactActions,
+  errorsActions,
 };

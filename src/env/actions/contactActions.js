@@ -6,7 +6,7 @@ const { contact: contactTypes } = types;
 // services
 const { contactService } = services;
 
-const postMail = (mail, ownProps) => async (dispatch, getState) => {
+export const postMail = (mail, ownProps) => async (dispatch, getState) => {
   dispatch({ type: contactTypes.createRequest });
   let response;
   try {
@@ -20,6 +20,6 @@ const postMail = (mail, ownProps) => async (dispatch, getState) => {
   }
 };
 
-export default {
-  postMail,
+export const resetMessageSent = () => (dispatch, getState) => {
+  dispatch({ type: contactTypes.resetMessageSent, payload: false });
 };

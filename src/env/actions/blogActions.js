@@ -12,30 +12,33 @@ const { blogService } = services;
 // functions
 const { reduxActions } = functions;
 
-export default {
-  getActiveBlogPosts: () => reduxActions.getActiveItems(blogTypes, blogService),
-  getBlogPosts: () => reduxActions.getItems(blogTypes, blogService),
-  getBlogPost: id => reduxActions.getItem(id, blogTypes, blogService),
-  postBlogPost: (blogPost, ownProps) =>
-    reduxActions.postItem(
-      blogPost,
-      ownProps,
-      blogTypes,
-      blogService,
-      blogRoute,
-      true
-    ),
-  updateBlogPost: (id, blogPost, ownProps) =>
-    reduxActions.updateItem(
-      id,
-      blogPost,
-      ownProps,
-      blogTypes,
-      blogService,
-      blogRoute,
-      true
-    ),
-  toggleBlogPost: id => reduxActions.toggleItem(id, blogTypes, blogService),
-  deleteBlogPost: (id, ownProps) =>
-    reduxActions.deleteItem(id, ownProps, blogTypes, blogService, blogRoute),
-};
+export const getActiveBlogPosts = () =>
+  reduxActions.getActiveItems(blogTypes, blogService);
+
+export const getBlogPosts = () => reduxActions.getItems(blogTypes, blogService);
+
+export const getBlogPost = (id) =>
+  reduxActions.getItem(blogTypes, blogService, id);
+
+export const getActiveBlogPost = (id) =>
+  reduxActions.getActiveItem(blogTypes, blogService, id);
+
+export const postBlogPost = (blogPost, ownProps) =>
+  reduxActions.postItem(blogTypes, blogService, blogPost, ownProps, {
+    route: blogRoute,
+    withID: true,
+  });
+
+export const updateBlogPost = (id, blogPost, ownProps) =>
+  reduxActions.updateItem(blogTypes, blogService, id, blogPost, ownProps, {
+    route: blogRoute,
+    withID: true,
+  });
+
+export const toggleBlogPost = (id) =>
+  reduxActions.toggleItem(blogTypes, blogService, id);
+
+export const deleteBlogPost = (id, ownProps) =>
+  reduxActions.deleteItem(blogTypes, blogService, id, ownProps, {
+    route: blogRoute,
+  });
