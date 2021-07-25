@@ -1,4 +1,4 @@
-export const loadingReducer = (state = { requestCount: 0 }, action) => {
+export const loadingReducer = (state = {}, action) => {
   const { type } = action;
   const matches = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);
 
@@ -10,7 +10,6 @@ export const loadingReducer = (state = { requestCount: 0 }, action) => {
 
   return {
     ...state,
-    requestCount: state.requestCount + (requestState === 'REQUEST' ? 1 : -1),
     [requestName]: requestState === 'REQUEST',
   };
 };
