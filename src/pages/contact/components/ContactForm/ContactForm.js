@@ -7,37 +7,47 @@ import { actions } from '../../../../env/utils/access';
 import ContactFormView from './ContactFormView';
 
 // actions
-const { postMail } = actions.contactActions;
+const { postMail, resetMessageSent } = actions.contactActions;
 
+// validation
 const ContactFormValidationSchema = Yup.object().shape({
+  name: Yup.string().required('Please add your name'),
   from: Yup.string()
-    .email('Must provide a valid mail address')
-    .required('Must provide from address'),
-  subject: Yup.string().required('Must provide message subject'),
-  text: Yup.string().required('Must provide message body'),
+    .email('Please provide a valid mail address')
+    .required('Please provide a mail address'),
+  subject: Yup.string().required('Please provide message subject'),
+  text: Yup.string().required('Please provide message body'),
 });
 
 class ContactForm extends Component {
-  postMail = mail => {
+  postMail = (mail) => {
     const { postMail } = this.props;
-    postMail(mail);
+    const { name, subject, ...newMail } = mail;
+    newMail.subject = `send by ${name} - ${subject}`;
+    postMail(newMail);
+  };
+
+  resetMessageSent = () => {
+    const { resetMessageSent } = this.props;
+    resetMessageSent();
   };
 
   render() {
     return (
       <ContactFormView
-        state={{ postMail: this.postMail, ContactFormValidationSchema }}
+        functions={{
+          postMail: this.postMail,
+          resetMessageSent: this.resetMessageSent,
+        }}
+        validation={ContactFormValidationSchema}
       />
     );
   }
 }
 
-const mapStateToProps = ({ isLoading }) => ({
-  isLoading,
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  postMail: (mail) => dispatch(postMail(mail)),
+  resetMessageSent: () => dispatch(resetMessageSent()),
 });
 
-const mapDispatchToProps = dispatch => ({
-  postMail: mail => dispatch(postMail(mail)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default connect(null, mapDispatchToProps)(ContactForm);
