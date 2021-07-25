@@ -13,21 +13,22 @@ const { projects: projectsTypes } = types;
 
 class ProjectsList extends Component {
   componentDidMount = () => {
-    const { init, isLoggedIn, getActiveProjects, getProjects } = this.props;
-    if (init) {
-      isLoggedIn ? getProjects() : getActiveProjects();
-    }
+    this.getProjects();
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps) => {
     if (
       this.props.init !== prevProps.init ||
       this.props.isLoggedIn !== prevProps.isLoggedIn
     ) {
-      const { init, isLoggedIn, getProjects, getActiveProjects } = this.props;
-      if (init) {
-        isLoggedIn ? getProjects() : getActiveProjects();
-      }
+      this.getProjects();
+    }
+  };
+
+  getProjects = () => {
+    const { init, isLoggedIn, getActiveProjects, getProjects } = this.props;
+    if (init) {
+      isLoggedIn ? getProjects() : getActiveProjects();
     }
   };
 
@@ -40,6 +41,7 @@ class ProjectsList extends Component {
         requestName={
           isLoggedIn ? projectsTypes.readAll : projectsTypes.readAllActive
         }
+        functions={{ getProjects: this.getProjects }}
       />
     );
   }
@@ -51,7 +53,7 @@ const mapStateToProps = ({ projectsList, isLoggedIn, init }) => ({
   init,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getProjects: () => dispatch(getProjects()),
   getActiveProjects: () => dispatch(getActiveProjects()),
 });

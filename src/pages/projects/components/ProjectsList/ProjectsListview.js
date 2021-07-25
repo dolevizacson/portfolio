@@ -1,33 +1,57 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   UiHeader,
   UiLoading,
   UiRequest,
-  UiRequstError,
+  UiRequestError,
+  UiTextMessage,
 } from '../../../../env/utils/access';
 
 // components
 import MinimizedProject from '../MinimizedProject/MinimizedProject';
 
 // style
-import { ProjectsListStyle } from './ProjectsListStyle';
+const ProjectsListStyle = styled.section`
+  display: grid;
+  grid-gap: var(--ui-grid-gap-1);
+`;
 
-const renderProjectsList = list => {
-  return list.map((project, index) => {
-    return <MinimizedProject key={index} projectData={project} />;
+const ProjectsListLoadingStyle = styled.div`
+  margin: var(--ui-loading-top-bottom-margin);
+`;
+
+const renderProjectsList = (state) => {
+  if (state.projectsList.length === 0) {
+    return <UiTextMessage>No projects at the moment</UiTextMessage>;
+  }
+
+  return state.projectsList.map((project) => {
+    return <MinimizedProject key={project._id} state={project} />;
   });
 };
 
-const ProjectsListView = ({ state: { projectsList }, requestName }) => {
+const ProjectsListView = (props) => {
+  const { state, requestName, functions } = props;
+
   return (
     <ProjectsListStyle>
       <UiRequest
         requestName={requestName}
-        loading={<UiLoading size={50} />}
-        component={<UiHeader text="Projects" />}
-        error={<UiRequstError message="failed to load" />}
+        loadingAnimation={
+          <ProjectsListLoadingStyle>
+            <UiLoading />
+          </ProjectsListLoadingStyle>
+        }
+        topComponent={<UiHeader>projects</UiHeader>}
+        error={
+          <UiRequestError
+            errorMessage="Failed to load projects"
+            request={functions.getProjects}
+          />
+        }
       >
-        <>{renderProjectsList(projectsList)}</>
+        {renderProjectsList(state)}
       </UiRequest>
     </ProjectsListStyle>
   );
