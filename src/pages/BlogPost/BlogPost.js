@@ -1,84 +1,88 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { constants, actions, types } from '../../env/utils/access';
 
 // components
 import BlogPostView from './BlogPostView';
 
+// actions
+const { getBlogPost, getActiveBlogPost, deleteBlogPost, toggleBlogPost } =
+  actions.blogActions;
+
+// constants
+const { adminRoute, blogRoute, updateRoute } = constants;
+
 // types
 const { blog: blogTypes } = types;
 
-// actions
-const { getBlogPost, deleteBlogPost, toggleBlogPost } = actions.blogActions;
-
-// constants
-const { adminRoute, blogRoute } = constants;
-
 class BlogPost extends Component {
-  state = { updatePost: false };
-
   componentDidMount = () => {
-    const { getBlogPost, location } = this.props;
-    const id = location.pathname.split('/')[2];
-    getBlogPost(id);
+    this.getBlogPost();
   };
 
-  deleteBlogPost = id => {
+  componentDidUpdate = (prevProps) => {
+    if (
+      this.props.init !== prevProps.init ||
+      this.props.isLoggedIn !== prevProps.isLoggedIn
+    ) {
+      this.getBlogPost();
+    }
+  };
+
+  getBlogPost = () => {
+    const { init, isLoggedIn, getBlogPost, getActiveBlogPost, location } =
+      this.props;
+    if (init) {
+      const id = location.pathname.split('/')[2];
+      isLoggedIn ? getBlogPost(id) : getActiveBlogPost(id);
+    }
+  };
+
+  deleteBlogPost = (id) => {
     const { deleteBlogPost } = this.props;
     deleteBlogPost(id);
   };
 
-  updateBlogPost = () => {
-    this.setState(state => ({ updatePost: true }));
+  updateBlogPost = (blogPost) => {
+    const { history } = this.props;
+    history.push(`${adminRoute}${blogRoute}${updateRoute}/${blogPost._id}`);
   };
 
-  toggleBlogPost = id => {
+  toggleBlogPost = (id) => {
     const { toggleBlogPost } = this.props;
     toggleBlogPost(id);
   };
+  z;
 
   render() {
-    const { blogPost, isLoggedIn, location } = this.props;
-    const { updatePost } = this.state;
-
-    if (updatePost)
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: `${adminRoute}${blogRoute}`,
-            state: {
-              from: location.pathname,
-              blogPost,
-            },
-          }}
-        />
-      );
+    const { blogPost, isLoggedIn } = this.props;
 
     return (
       <BlogPostView
-        state={{
-          blogPost,
-          isLoggedIn,
+        state={blogPost}
+        requestName={isLoggedIn ? blogTypes.read : blogTypes.readActive}
+        functions={{
+          getBlogPost: this.getBlogPost,
           deleteBlogPost: this.deleteBlogPost,
           updateBlogPost: this.updateBlogPost,
           toggleBlogPost: this.toggleBlogPost,
         }}
-        requestName={blogTypes.read}
       />
     );
   }
 }
 
-const mapStateToProps = ({ isLoggedIn, blogPost }) => ({
-  isLoggedIn,
+const mapStateToProps = ({ blogPost, init, isLoggedIn }) => ({
   blogPost,
+  init,
+  isLoggedIn,
 });
 const mapDispatchToProps = (dispatch, onwProps) => ({
-  getBlogPost: id => dispatch(getBlogPost(id)),
-  deleteBlogPost: id => dispatch(deleteBlogPost(id, onwProps)),
-  toggleBlogPost: id => dispatch(toggleBlogPost(id)),
+  getBlogPost: (id) => dispatch(getBlogPost(id)),
+  getActiveBlogPost: (id) => dispatch(getActiveBlogPost(id)),
+  deleteBlogPost: (id) => dispatch(deleteBlogPost(id, onwProps)),
+  toggleBlogPost: (id) => dispatch(toggleBlogPost(id)),
 });
 
 export default withRouter(
