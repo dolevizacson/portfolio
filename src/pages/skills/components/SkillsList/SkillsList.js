@@ -1,143 +1,203 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
-import { actions, constants, types } from '../../../../env/utils/access';
+import styled from 'styled-components';
+// import { v4 as uuidv4 } from 'uuid';
+import {
+  UiTextBlock,
+  UiButton,
+  UiButtonsContainer,
+} from '../../../../env/utils/access';
 
-// components
-import Methodology from '../Methodology/Methodology';
-import SkillsListView from './SkillsListView';
+// icons
+import { Times } from '@styled-icons/fa-solid';
+import { Dash } from '@styled-icons/octicons';
 
-// actions
-const { getSkillsLists, deleteSkillsList } = actions.skillsActions;
+// style
+const SkillsListStyle = styled.article``;
 
-// constants
-const { adminRoute, skillsRoute } = constants;
+const SkillsListContainerStyle = styled(UiTextBlock).attrs({
+  gap: '0',
+})`
+  width: 100%;
+  height: 100%;
+`;
 
-// types
-const { skills: skillsTypes } = types;
+const SkillsListHeaderStyle = styled.h2`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-class SkillsList extends Component {
-  state = {
-    localStateSkillsList: [],
-    isExtended: false,
-    updateSkill: false,
-    skillsToUpdate: {},
-  };
+const SkillsListBodyStyle = styled.div``;
 
-  componentDidMount = async () => {
-    const { getSkillsLists } = this.props;
-    await getSkillsLists();
-    this.setState(state => ({
-      localStateSkillsList: this.props.skillsList,
-    }));
-  };
+const SkillsListLanguageStyle = styled.h3``;
 
-  deleteSkillsList = id => {
-    const { deleteSkillsList } = this.props;
-    deleteSkillsList(id);
-  };
-
-  updateSkillsList = skillsList => {
-    this.setState(state => ({ updateSkill: true, skillsToUpdate: skillsList }));
-  };
-
-  closeOpenSkills = () => {
-    this.setState(state => ({ isExtended: false }));
-  };
-
-  componentDidUpdate = () => {
-    if (
-      this.state.localStateSkillsList !== this.props.skillsList &&
-      this.state.isExtended === false
-    ) {
-      this.setState(state => ({
-        localStateSkillsList: this.props.skillsList,
-      }));
+const SkillsListBodyContainerStyle = styled.div`
+  ${(props) =>
+    props.extended &&
+    `
+    padding: 1.5rem 0;
+    &:first-child {
+      padding-top: 0;
     }
-  };
 
-  renderOneMethodology = id => {
-    const { localStateSkillsList } = this.state;
-    this.setState(state => ({
-      localStateSkillsList: localStateSkillsList.filter(
-        methodology => methodology._id === id
-      ),
-      isExtended: true,
-    }));
-  };
+    &:last-child {
+      padding-bottom: 0;
+    }
 
-  renderAllMethodologies = () => {
-    const { skillsList } = this.props;
-    this.setState(state => ({
-      localStateSkillsList: skillsList,
-      isExtended: false,
-    }));
-  };
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--ui-specific-color-3);
+    }
 
-  renderMethodologyList = list => {
-    const { isExtended } = this.state;
-    return list.map((methodology, index) => {
-      return (
-        <Methodology
-          key={index}
-          content={methodology}
-          isExtended={isExtended}
-          choose={this.renderOneMethodology}
-          close={this.renderAllMethodologies}
-          deleteSkillsList={this.deleteSkillsList}
-          updateSkillsList={this.updateSkillsList}
-          closeOpenSkills={this.closeOpenSkills}
-        />
-      );
-    });
-  };
+    & > ${SkillsListLanguageStyle} {
+      margin-bottom: 1.5rem;
+    }
+  `}
 
-  render() {
-    const {
-      localStateSkillsList,
-      isExtended,
-      updateSkill,
-      skillsToUpdate,
-    } = this.state;
-    const { location } = this.props;
-
-    if (updateSkill)
-      return (
-        <Redirect
-          to={{
-            pathname: `${adminRoute}${skillsRoute}`,
-            state: {
-              from: location.pathname,
-              skillsList: skillsToUpdate,
-            },
-          }}
-        />
-      );
-
-    return (
-      <SkillsListView
-        state={{ skillsList: localStateSkillsList }}
-        requestName={skillsTypes.readAll}
-        isExtended={isExtended}
-        choose={this.renderOneMethodology}
-        close={this.renderAllMethodologies}
-        deleteSkillsList={this.deleteSkillsList}
-        updateSkillsList={this.updateSkillsList}
-        closeOpenSkills={this.closeOpenSkills}
-      />
-    );
+  &:not(:last-child) {
+    & > ${SkillsListLanguageStyle} {
+      margin-bottom: 1.5rem;
+    }
   }
-}
+`;
 
-const mapStateToProps = ({ skillsList }) => ({
-  skillsList,
+const SkillsListDescriptionContainerStyle = styled.div`
+  padding-left: 0.5rem;
+`;
+const SkillsListDescriptionStyle = styled.p`
+  display: grid;
+  grid-template-columns: max-content 1fr;
+
+  &:not(:last-child) {
+    margin-bottom: var(--ui-grid-gap-5);
+  }
+`;
+
+const SkillsListShowMoreButtonsContainerStyle = styled(UiButtonsContainer)`
+  margin-top: var(--ui-grid-gap-2);
+`;
+
+const SkillsListCloseButtonStyle = styled(Times).attrs({ tabIndex: '0' })`
+  width: 3.5rem;
+  height: 3.5rem;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--ui-main-color-1);
+    outline: none;
+  }
+`;
+
+const SkillsListDashIconStyle = styled(Dash)`
+  height: 1.5rem;
+  width: 1.5rem;
+
+  margin: 0 0.5rem;
+
+  transform: translateY(0.5rem);
+`;
+
+const renderOneSkillsList = (props) => {
+  const { state, functions } = props;
+  const id = state._id;
+  functions.renderOneSkillsList(id);
+};
+
+const renderAllSkillsLists = (props) => {
+  const { functions } = props;
+  functions.renderAllSkillsLists();
+};
+
+const deleteSkillsList = (props) => {
+  const { state, functions } = props;
+  const id = state._id;
+  functions.deleteSkillsList(id);
+};
+
+const updateSkillsList = (props) => {
+  const { state, functions } = props;
+  const SkillsList = state;
+  functions.updateSkillsList(SkillsList);
+};
+
+const toggleSkillsList = (props) => {
+  const { state, functions } = props;
+  const id = state._id;
+  functions.toggleSkillsList(id);
+};
+
+const SkillsList = (props) => {
+  const { extended, state, isLoggedIn } = props;
+
+  return (
+    <SkillsListStyle>
+      <SkillsListContainerStyle
+        extended={extended}
+        header={
+          <SkillsListHeaderStyle>
+            {state?.topic}
+            {extended && (
+              <SkillsListCloseButtonStyle
+                onClick={() => renderAllSkillsLists(props)}
+                onKeyDown={(event) =>
+                  event.key === 'Enter' && renderAllSkillsLists(props)
+                }
+              />
+            )}
+          </SkillsListHeaderStyle>
+        }
+      >
+        <SkillsListBodyStyle>
+          {state?.stack?.map((stack) => {
+            return (
+              <SkillsListBodyContainerStyle
+                extended={extended}
+                key={stack?._id}
+              >
+                <SkillsListLanguageStyle extended={extended}>
+                  {stack?.language}
+                </SkillsListLanguageStyle>
+                {extended && stack?.longData && (
+                  <SkillsListDescriptionContainerStyle>
+                    {stack?.longData?.map((longData, index) => {
+                      return (
+                        <SkillsListDescriptionStyle key={index}>
+                          <SkillsListDashIconStyle />
+                          {longData}
+                        </SkillsListDescriptionStyle>
+                      );
+                    })}
+                  </SkillsListDescriptionContainerStyle>
+                )}
+              </SkillsListBodyContainerStyle>
+            );
+          })}
+        </SkillsListBodyStyle>
+        {!extended && (
+          <SkillsListShowMoreButtonsContainerStyle>
+            <UiButton onClick={() => renderOneSkillsList(props)}>
+              show more
+            </UiButton>
+          </SkillsListShowMoreButtonsContainerStyle>
+        )}
+        {isLoggedIn && extended && (
+          <SkillsListShowMoreButtonsContainerStyle>
+            <UiButton onClick={() => updateSkillsList(props)}>update</UiButton>
+            <UiButton onClick={() => deleteSkillsList(props)}>delete</UiButton>
+            <UiButton onClick={() => toggleSkillsList(props)}>
+              {state?.active !== 0 ? 'toggle off' : 'toggle on'}
+            </UiButton>
+          </SkillsListShowMoreButtonsContainerStyle>
+        )}
+      </SkillsListContainerStyle>
+    </SkillsListStyle>
+  );
+};
+
+const mapStateToProps = ({ isLoggedIn }) => ({
+  isLoggedIn,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getSkillsLists: () => dispatch(getSkillsLists()),
-  deleteSkillsList: id => dispatch(deleteSkillsList(id)),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SkillsList)
-);
+export default connect(mapStateToProps)(SkillsList);
