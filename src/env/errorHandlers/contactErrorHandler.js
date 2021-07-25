@@ -4,5 +4,9 @@ const { GeneralErrorHandlerMessagesObject } = classes;
 
 const contactErrorsObject = new GeneralErrorHandlerMessagesObject();
 
-export default error =>
-  functions.errorHandlers.generalErrorHandler(error, contactErrorsObject);
+export default function contactErrorHandler(error) {
+  return functions.errorHandlers.generalErrorHandler(
+    error,
+    contactErrorsObject
+  );
+}

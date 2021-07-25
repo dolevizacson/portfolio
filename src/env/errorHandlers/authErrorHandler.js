@@ -4,5 +4,6 @@ const { GeneralErrorHandlerMessagesObject } = classes;
 
 const authErrorsObject = new GeneralErrorHandlerMessagesObject();
 
-export default error =>
-  functions.errorHandlers.generalErrorHandler(error, authErrorsObject);
+export default function authErrorHandler(error) {
+  return functions.errorHandlers.generalErrorHandler(error, authErrorsObject);
+}

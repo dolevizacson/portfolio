@@ -1,5 +1,7 @@
 import { functions } from '../utils/access';
 
-const { localStorageErrorHandler } = functions;
+const { localStorageErrorHandler: errorHandler } = functions;
 
-export default error => localStorageErrorHandler(error);
+export default function localStorageErrorHandler(error) {
+  return errorHandler(error);
+}

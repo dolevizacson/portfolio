@@ -4,5 +4,9 @@ const { GeneralErrorHandlerMessagesObject } = classes;
 
 const projectErrorsObject = new GeneralErrorHandlerMessagesObject();
 
-export default error =>
-  functions.errorHandlers.generalErrorHandler(error, projectErrorsObject);
+export default function projectsErrorHandler(error) {
+  return functions.errorHandlers.generalErrorHandler(
+    error,
+    projectErrorsObject
+  );
+}
