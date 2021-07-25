@@ -1,4 +1,7 @@
-import { types } from '../utils/access';
+import { types, constants } from '../utils/access';
+
+// constants
+const { projectInitialState } = constants;
 
 // types
 const { projects } = types;
@@ -13,9 +16,10 @@ export const projectsReducer = (state = [], action) => {
   }
 };
 
-export const projectReducer = (state = {}, action) => {
+export const projectReducer = (state = projectInitialState, action) => {
   switch (action.type) {
     case projects.readSuccess:
+    case projects.readActiveSuccess:
     case projects.toggleSuccess:
       return { ...action.payload };
     default:

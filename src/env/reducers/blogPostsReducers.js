@@ -1,4 +1,7 @@
-import { types } from '../utils/access';
+import { types, constants } from '../utils/access';
+
+// constants
+const { blogPostInitialState } = constants;
 
 // types
 const { blog } = types;
@@ -13,9 +16,10 @@ export const blogPostsReducer = (state = [], action) => {
   }
 };
 
-export const blogPostReducer = (state = {}, action) => {
+export const blogPostReducer = (state = blogPostInitialState, action) => {
   switch (action.type) {
     case blog.readSuccess:
+    case blog.readActiveSuccess:
     case blog.toggleSuccess:
       return { ...action.payload };
     default:
