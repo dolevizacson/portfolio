@@ -4,10 +4,7 @@ const { Crud } = classes;
 
 class TaskListService extends Crud {
   constructor() {
-    super(
-      `${constants.server.baseUrl + constants.server.taskList}`,
-      errorHandlers.taskListErrorHandler
-    );
+    super(constants.server.taskList, errorHandlers.taskListErrorHandler);
   }
 }
 

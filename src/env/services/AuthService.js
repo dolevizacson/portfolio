@@ -5,7 +5,7 @@ import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
 class AuthService {
   constructor() {
     this.authServer = portfolioApiServer.create({
-      baseURL: constants.server.baseUrl + constants.server.auth,
+      baseURL: process.env.REACT_APP_BASE_URL + constants.server.auth,
     });
   }
 

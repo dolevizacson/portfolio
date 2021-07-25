@@ -4,10 +4,7 @@ const { Crud } = classes;
 
 class BlogService extends Crud {
   constructor() {
-    super(
-      `${constants.server.baseUrl + constants.server.blog}`,
-      errorHandlers.blogErrorHandler
-    );
+    super(constants.server.blog, errorHandlers.blogErrorHandler);
   }
 }
 

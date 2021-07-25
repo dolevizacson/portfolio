@@ -4,10 +4,7 @@ const { Crud } = classes;
 
 class ProjectsService extends Crud {
   constructor() {
-    super(
-      `${constants.server.baseUrl + constants.server.projects}`,
-      errorHandlers.projectsErrorHandler
-    );
+    super(constants.server.projects, errorHandlers.projectsErrorHandler);
   }
 }
 
