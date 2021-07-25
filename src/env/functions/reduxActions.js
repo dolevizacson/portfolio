@@ -1,5 +1,7 @@
-export default {
-  getActiveItems: (types, service) => async (dispatch, getState) => {
+const defaultOptions = { route: null, withID: false };
+
+export const getActiveItems =
+  (types, service) => async (dispatch, getState) => {
     dispatch({ type: types.readAllActiveRequest });
     let response;
     try {
@@ -11,37 +13,48 @@ export default {
     } catch (err) {
       dispatch({ type: types.readAllActiveFail, payload: err });
     }
-  },
+  };
 
-  getItems: (types, service) => async (dispatch, getState) => {
-    dispatch({ type: types.readAllRequest });
+export const getItems = (types, service) => async (dispatch, getState) => {
+  dispatch({ type: types.readAllRequest });
+  let response;
+  try {
+    response = await service.getItems();
+    dispatch({
+      type: types.readAllSuccess,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({ type: types.readAllFail, payload: err });
+  }
+};
+
+export const getItem = (types, service, id) => async (dispatch, getState) => {
+  dispatch({ type: types.readRequest });
+  let response;
+  try {
+    response = await service.getItem(id);
+    dispatch({ type: types.readSuccess, payload: response });
+  } catch (err) {
+    dispatch({ type: types.readFail, payload: err });
+  }
+};
+
+export const getActiveItem =
+  (types, service, id) => async (dispatch, getState) => {
+    dispatch({ type: types.readActiveRequest });
     let response;
     try {
-      response = await service.getItems();
-      dispatch({
-        type: types.readAllSuccess,
-        payload: response,
-      });
+      response = await service.getActiveItem(id);
+      dispatch({ type: types.readActiveSuccess, payload: response });
     } catch (err) {
-      dispatch({ type: types.readAllFail, payload: err });
+      dispatch({ type: types.readActiveFail, payload: err });
     }
-  },
+  };
 
-  getItem: (id, types, service) => async (dispatch, getState) => {
-    dispatch({ type: types.readRequest });
-    let response;
-    try {
-      response = await service.getItem(id);
-      dispatch({ type: types.readSuccess, payload: response });
-    } catch (err) {
-      dispatch({ type: types.readFail, payload: err });
-    }
-  },
-
-  postItem: (item, ownProps, types, service, route, withID) => async (
-    dispatch,
-    getState
-  ) => {
+export const postItem =
+  (types, service, item, ownProps, options = { ...defaultOptions }) =>
+  async (dispatch, getState) => {
     dispatch({ type: types.createRequest });
     let response;
     try {
@@ -50,18 +63,20 @@ export default {
         type: types.createSuccess,
         payload: response,
       });
-      withID
-        ? ownProps.history.push(`${route}/${response._id}`)
-        : ownProps.history.push(`${route}`);
+      if (options.route) {
+        ownProps.history.push(
+          `${options.route}${options.withID ? `/${response._id}` : ''}`,
+          response
+        );
+      }
     } catch (err) {
       dispatch({ type: types.createFail, payload: err });
     }
-  },
+  };
 
-  updateItem: (id, item, ownProps, types, service, route, withID) => async (
-    dispatch,
-    getState
-  ) => {
+export const updateItem =
+  (types, service, id, item, ownProps, options = { ...defaultOptions }) =>
+  async (dispatch, getState) => {
     dispatch({ type: types.updateRequest });
     let response;
     try {
@@ -70,15 +85,19 @@ export default {
         type: types.updateSuccess,
         payload: response,
       });
-      withID
-        ? ownProps.history.push(`${route}/${response._id}`)
-        : ownProps.history.push(`${route}`);
+      if (options.route) {
+        ownProps.history.push(
+          `${options.route}${options.withID ? `/${response._id}` : ''}`,
+          response
+        );
+      }
     } catch (err) {
       dispatch({ type: types.updateFail, payload: err });
     }
-  },
+  };
 
-  toggleItem: (id, types, service) => async (dispatch, getState) => {
+export const toggleItem =
+  (types, service, id) => async (dispatch, getState) => {
     dispatch({ type: types.toggleRequest });
     let response;
     try {
@@ -90,12 +109,11 @@ export default {
     } catch (err) {
       dispatch({ type: types.toggleFail, payload: err });
     }
-  },
+  };
 
-  deleteItem: (id, ownProps, type, service, route) => async (
-    dispatch,
-    getState
-  ) => {
+export const deleteItem =
+  (type, service, id, ownProps, options = { ...defaultOptions }) =>
+  async (dispatch, getState) => {
     dispatch({ type: type.deleteRequest });
     let response;
     try {
@@ -104,9 +122,12 @@ export default {
         type: type.deleteSuccess,
         payload: response,
       });
-      ownProps.history.push(route);
+      if (options.route) {
+        ownProps.history.push(
+          `${options.route}${options.withID ? `/${response._id}` : ''}`
+        );
+      }
     } catch (err) {
       dispatch({ type: type.deleteFail, payload: err });
     }
-  },
-};
+  };

@@ -4,7 +4,7 @@ import BadRequestObjectError from './BadRequestObjectError';
 import UnAuthorizedError from './UnAuthorizedError';
 import LocalStorageError from './LocalStorageError';
 
-export default {
+export {
   InternalServerError,
   NoResponseError,
   BadRequestObjectError,

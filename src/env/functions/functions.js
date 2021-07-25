@@ -1,7 +1,4 @@
-import reduxActions from './reduxActions';
-import errorHandlers from './errorHandlers';
+import * as reduxActions from './reduxActions';
+import * as errorHandlers from './errorHandlers';
 
-export default {
-  reduxActions,
-  errorHandlers,
-};
+export { reduxActions, errorHandlers };

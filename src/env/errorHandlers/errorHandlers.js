@@ -6,7 +6,7 @@ import projectsErrorHandler from './projectsErrorHandler';
 import skillsListErrorHandler from './skillsListErrorHandler';
 import contactErrorHandler from './contactErrorHandler';
 
-export default {
+export {
   blogErrorHandler,
   authErrorHandler,
   taskListErrorHandler,
