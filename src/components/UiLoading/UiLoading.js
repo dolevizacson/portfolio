@@ -1,30 +1,74 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BreedingRhombusSpinner } from 'react-epic-spinners';
 
-// style
-import { UiLoadingStyle } from './UiLoadingStyle';
+const UiLoadingStyle = styled.div`
+  --loading-height: ${(props) => props.size || '20px'};
 
-const loadingIcon = [BreedingRhombusSpinner];
-
-const renderLoadingIcon = (color, size, icon) => {
-  const Elem = styled(loadingIcon[icon < loadingIcon.length ? icon : 0]).attrs(
-    ({
-      theme: {
-        mainAppThemeColors: { red1 },
-      },
-    }) => ({
-      color: color || red1,
-      size,
-    })
-  )``;
-  return <Elem />;
-};
-
-const UiLoading = ({ color, size, icon }) => {
-  return (
-    <UiLoadingStyle>{renderLoadingIcon(color, size, icon)}</UiLoadingStyle>
+  height: var(--loading-height);
+  width: calc(
+    (var(--loading-height) * 3) + 2 * ((var(--loading-height) * 0.5) / 2) +
+      (var(--loading-height) / 5)
   );
-};
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: calc(
+    ((var(--loading-height) * 0.5) / 2) + (var(--loading-height) / 5)
+  );
+`;
+const UiLoadingSquareStyle = styled.div`
+  border-radius: var(--ui-corners-1);
+
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+`;
+
+const UiLoadingSquare1Style = styled(UiLoadingSquareStyle)`
+  background-color: var(--ui-main-color-3);
+  animation-name: ${(props) => props.theme.animations.resize1};
+`;
+const UiLoadingSquare2Style = styled(UiLoadingSquareStyle)`
+  background-color: var(--ui-main-color-2);
+  animation-name: ${(props) => props.theme.animations.resize2};
+`;
+const UiLoadingSquare3Style = styled(UiLoadingSquareStyle)`
+  background-color: var(--ui-main-color-1);
+  animation-name: ${(props) => props.theme.animations.resize3};
+`;
+
+class UiLoading extends Component {
+  state = { isShowing: this.props.delay ? false : true };
+
+  componentDidMount() {
+    const { delay } = this.props;
+    if (delay) {
+      this.timeOutId = setTimeout(() => {
+        this.setState((state) => ({
+          isShowing: true,
+        }));
+      }, delay);
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeOutId);
+  }
+
+  render() {
+    const { size, className } = this.props;
+    const { isShowing } = this.state;
+    return (
+      <>
+        {isShowing && (
+          <UiLoadingStyle className={className} size={size}>
+            <UiLoadingSquare1Style />
+            <UiLoadingSquare2Style />
+            <UiLoadingSquare3Style />
+          </UiLoadingStyle>
+        )}
+      </>
+    );
+  }
+}
 
 export default UiLoading;
