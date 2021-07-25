@@ -15,15 +15,12 @@ class Admin extends Component {
   };
 
   render() {
-    return <AdminView state={{ logout: this.logout }} />;
+    return <AdminView functions={{ logout: this.logout }} />;
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Admin);
+export default connect(null, mapDispatchToProps)(Admin);
