@@ -1,11 +1,14 @@
 import httpStatus from 'http-status-codes';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import { constants, errorHandlers, portfolioApiServer } from '../utils/access';
+
+const env = runtimeEnv();
 
 class AuthService {
   constructor() {
     this.authServer = portfolioApiServer.create({
-      baseURL: process.env.REACT_APP_BASE_URL + constants.server.auth,
+      baseURL: env.REACT_APP_BASE_URL + constants.server.auth,
     });
   }
 
