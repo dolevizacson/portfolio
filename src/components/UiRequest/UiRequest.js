@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const UiRequest = ({
-  isLoading,
-  requestName,
-  component,
-  loading,
-  children,
-  error,
-  errors,
-}) => {
+const UiRequest = (props) => {
+  const {
+    isLoading,
+    requestName,
+    topComponent,
+    loadingAnimation,
+    children,
+    error,
+    errors,
+  } = props;
+
   return (
     <>
-      {component}
-      {isLoading[requestName] && loading}
+      {topComponent}
+      {isLoading[requestName] && loadingAnimation}
       {errors[requestName] ? error : !isLoading[requestName] && children}
     </>
   );
