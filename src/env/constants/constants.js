@@ -1,17 +1,3 @@
-import { merge } from 'lodash';
-
-const dev = {
-  server: {
-    baseUrl: 'http://localhost:5000',
-  },
-};
-
-const prod = {
-  server: {
-    baseUrl: process.env.BASE_URL,
-  },
-};
-
 const general = {
   server: {
     // endpoints
@@ -27,67 +13,71 @@ const general = {
   homeRoute: '/',
   projectsRoute: '/projects',
   skillsRoute: '/skills',
+  tasksRoute: '/tasks',
   blogRoute: '/blog',
   contactRoute: '/contact',
   loginRoute: '/login',
   adminRoute: '/admin',
-  taskListRoute: '/tasklist',
+  updateRoute: '/update',
 
-  // blog post config
-  blogFormLocalStorageKey: 'diAppblogPost',
+  // project config
+  projectFormLocalStorageKey: 'diAppProject',
 
-  blogPostInitialState: {
-    header: 'Post Header',
-    summery: 'Post summery',
-    paragraph: [
-      {
-        header: 'Paragraph header',
-        content: 'Paragraph content',
-      },
-    ],
-    conclusionHeader: '',
-    conclusionContent: '',
-    conclusionSentence: '',
+  projectInitialState: {
+    header: '',
+    summery: '',
+    description: '',
+    technologies: [''],
+    links: [],
   },
 
   // skills list config
-  skillslistLocalStorageKey: 'diAppskillsList',
+  skillsListFormLocalStorageKey: 'diAppSkillsList',
 
   skillsListInitialState: {
-    topic: 'Skills list topic',
+    topic: '',
     stack: [
       {
-        language: 'Language name',
-        longData: ['Language skill'],
+        language: '',
+        longData: [''],
       },
     ],
   },
 
   // task config
-  taskLocalStorageKey: 'diApptask',
+  taskFormLocalStorageKey: 'diAppTask',
+
   taskInitialState: {
-    header: 'Task header',
-    description: 'Task description',
-  },
-
-  // project config
-  projectFormLocalStorageKey: 'diAppproject',
-
-  projectInitialState: {
-    header: 'Project Header',
-    summery: 'Project summery',
+    header: '',
     description: '',
-    technologies: ['Technology name'],
-    links: [],
   },
+
+  // blog post config
+  blogFormLocalStorageKey: 'diAppBlogPost',
+
+  blogPostInitialState: {
+    header: '',
+    summery: '',
+    paragraph: [
+      {
+        header: '',
+        content: '',
+      },
+    ],
+    conclusion: {
+      header: '',
+      content: '',
+    },
+    conclusionSentence: '',
+  },
+
   // contact config
   contactInitialState: {
-    from: 'Insert your mail address',
-    subject: 'Message subject',
-    text: 'Message body',
+    name: '',
+    from: '',
+    subject: '',
+    text: '',
   },
 };
 
-export default process.env.NODE_ENV === 'production'
-  ? merge(general, prod)
-  : merge(general, dev);
+export default general;
