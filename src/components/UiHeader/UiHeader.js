@@ -2,45 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 // style
-import {
-  UiHeaderStyle,
-  UiHeaderContainerStyle,
-  UiHeaderHeaderIconStyle,
-  UiHeaderHeaderStyle,
-} from './UiHeaderStyle';
+const UiHeaderStyle = styled.h1`
+  padding: 1.8rem 2.5rem;
+  border-radius: var(--ui-corners-1);
 
-const renderIcon = icon => {
-  if (icon) {
-    const Elem = styled(icon)`
-      ${({
-        theme: {
-          ui: { corners },
-        },
-      }) => corners}
+  background-color: var(--ui-specific-color-2);
+  border: 1px solid var(--ui-specific-color-3);
+`;
 
-      ${({
-        theme: {
-          BackgroundColor: { white2 },
-        },
-      }) => white2}
-    `;
-    return (
-      <UiHeaderHeaderIconStyle>
-        <Elem />
-      </UiHeaderHeaderIconStyle>
-    );
-  }
-};
-
-const UiHeader = ({ text, icon }) => {
-  return (
-    <UiHeaderStyle>
-      <UiHeaderContainerStyle>
-        {renderIcon(icon)}
-        <UiHeaderHeaderStyle>{text}</UiHeaderHeaderStyle>
-      </UiHeaderContainerStyle>
-    </UiHeaderStyle>
-  );
+const UiHeader = (props) => {
+  const { children } = props;
+  return <UiHeaderStyle {...props}>{children}</UiHeaderStyle>;
 };
 
 export default UiHeader;
