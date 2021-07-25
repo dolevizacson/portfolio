@@ -19,20 +19,21 @@ class AppNavbar extends Component {
   checkWidth = () => {
     const width = window.innerWidth;
     if (width < 768) {
-      this.setState(state => {
-        return { showIcon: true };
-      });
+      this.setState((state) => ({
+        showIcon: true,
+      }));
     } else {
-      this.setState(state => {
-        return { showIcon: false, isCollapse: true };
-      });
+      this.setState((state) => ({
+        showIcon: false,
+        isCollapse: true,
+      }));
     }
   };
 
   toggleNavbarMenu = () =>
-    this.setState(state => {
-      return { isCollapse: !this.state.isCollapse };
-    });
+    this.setState((state) => ({
+      isCollapse: !this.state.isCollapse,
+    }));
 
   render() {
     const { isLoggedIn } = this.props;
