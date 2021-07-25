@@ -3,7 +3,7 @@ import { portfolioApiServer } from '../utils/access';
 export default class CRUD {
   constructor(url, errorHandler) {
     this.serviceServer = portfolioApiServer.create({
-      baseURL: url,
+      baseURL: process.env.REACT_APP_BASE_URL + url,
     });
     this.errorHandler = errorHandler;
   }
@@ -11,7 +11,7 @@ export default class CRUD {
   async getActiveItems() {
     let response;
     try {
-      response = await this.serviceServer.get('/');
+      response = await this.serviceServer.get('/active');
     } catch (err) {
       this._handleError(err);
     }
@@ -21,7 +21,17 @@ export default class CRUD {
   async getItems() {
     let response;
     try {
-      response = await this.serviceServer.get('/all');
+      response = await this.serviceServer.get('/');
+    } catch (err) {
+      this._handleError(err);
+    }
+    return response.data;
+  }
+
+  async getActiveItem(id) {
+    let response;
+    try {
+      response = await this.serviceServer.get(`/active/${id}`);
     } catch (err) {
       this._handleError(err);
     }
