@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import { constants } from '../../env/utils/access';
 
 // component
-import LoginView from './LoginView';
+import LoginForm from './components/LoginForm/LoginForm';
 
 // constants
 const { adminRoute } = constants;
 
-class Login extends Component {
-  render() {
-    const { from } = this.props.location.state || {
-      from: { pathname: adminRoute },
-    };
-    const { isLoggedIn } = this.props;
+// style
+const LoginStyle = styled.div`
+  display: grid;
+`;
 
-    return <LoginView state={{ isLoggedIn, from }} />;
-  }
-}
+const Login = (props) => {
+  const { isLoggedIn, location } = props;
+
+  return isLoggedIn ? (
+    <Redirect to={location.state.from || `/${adminRoute}`} />
+  ) : (
+    <LoginStyle>
+      <LoginForm />
+    </LoginStyle>
+  );
+};
 
 const mapStateToProps = ({ isLoggedIn }) => ({
   isLoggedIn,

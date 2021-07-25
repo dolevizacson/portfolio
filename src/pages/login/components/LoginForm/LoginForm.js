@@ -10,9 +10,7 @@ import LoginFormView from './LoginFormView';
 const { login } = actions.authActions;
 
 const loginFormValidationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Must provide an email'),
+  email: Yup.string().email('Invalid email').required('Must provide an email'),
   password: Yup.string()
     .max(12, 'Password contains too many letters')
     .required('Must insert a password'),
@@ -26,16 +24,18 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <LoginFormView state={{ login: this.login, loginFormValidationSchema }} />
+      <LoginFormView
+        functions={{
+          login: this.login,
+        }}
+        validation={loginFormValidationSchema}
+      />
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   login: (username, password) => dispatch(login(username, password)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);
