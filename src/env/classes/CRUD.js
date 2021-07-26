@@ -1,9 +1,12 @@
 import { portfolioApiServer } from '../utils/access';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+
+const env = runtimeEnv();
 
 export default class CRUD {
   constructor(url, errorHandler) {
     this.serviceServer = portfolioApiServer.create({
-      baseURL: process.env.REACT_APP_BASE_URL + url,
+      baseURL: env.REACT_APP_BASE_URL + url,
     });
     this.errorHandler = errorHandler;
   }
