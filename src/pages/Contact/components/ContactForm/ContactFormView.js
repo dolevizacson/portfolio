@@ -84,7 +84,12 @@ const ContactFormView = (props) => {
               <UiFormInputField label="Name" name="name" />
               <UiFormInputField label="E-mail" name="from" />
               <UiFormInputField label="Subject" name="subject" />
-              <UiFormInputField label="Message" name="text" textarea />
+              <UiFormInputField
+                label="Message"
+                name="text"
+                textarea
+                rows="10"
+              />
               <UiButtonsContainer>
                 <UiButton type="reset">clear</UiButton>
                 <UiButton type="submit" disabled={isSubmitting}>
