@@ -16,6 +16,8 @@ const AppNavbarStyle = styled.nav`
 
   padding: 0 1rem;
   border-bottom: 1px solid var(--ui-general-color-2);
+
+  font-size: 1.7rem;
 `;
 
 const AppNavbarLinkListStyle = styled.ul`
@@ -39,7 +41,6 @@ const AppNavbarLinkStyle = styled(NavLink)`
 
     color: var(--ui-font-color-1);
     font-family: var(--ui-header-font-1);
-    font-size: 1.7rem;
     font-weight: 400;
     text-decoration: none;
     text-transform: uppercase;
@@ -96,10 +97,20 @@ const AppNavbarCollapseStyle = styled.div`
   & ${AppNavbarLinkListStyle} {
     display: flex;
     flex-direction: column;
+
+    & ${AppNavbarLinkListItemStyle} {
+      &:not(:last-child) {
+        padding-bottom: 0.3rem;
+      }
+    }
   }
+
+  padding: 0.5rem;
 
   width: 100%;
   border-bottom: 1px solid var(--ui-general-color-2);
+
+  font-size: 2.2rem;
 `;
 
 // constants
