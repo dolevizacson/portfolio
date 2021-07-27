@@ -7,7 +7,7 @@ const MainStyle = styled.main`
   grid-template-columns:
     minmax(1rem, 1fr) [main-start] minmax(min-content, 90rem)
     [main-end] minmax(1rem, 1fr);
-  min-height: calc(100vh - Var(--navbar-height));
+  min-height: calc(100vh - Var(--navbar-height) * 2);
 `;
 
 const MainContainerStyle = styled.div`
