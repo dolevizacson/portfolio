@@ -65,7 +65,8 @@ const GlobalStyle = createGlobalStyle`
     --ui-grid-gap-3: 5rem; /* between page elements */
     --ui-grid-gap-4: 0.6rem; /* between footer icons */
     --ui-grid-gap-5: 1.2rem; /* between skills list long data */
-    --ui-top-bottom-margin: 4.5rem 0;
+    --ui-top-bottom-margin: 6.5rem 0;
+    --ui-top-bottom-margin-small: 4.5rem 0;
     --ui-loading-top-bottom-margin: 7rem auto;
     --ui-text-block-vertical: 1.5rem;
     --ui-text-block-horizontal: 2.5rem;

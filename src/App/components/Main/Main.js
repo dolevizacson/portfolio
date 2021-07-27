@@ -13,6 +13,9 @@ const MainStyle = styled.main`
 const MainContainerStyle = styled.div`
   grid-column: main-start/main-end;
   margin: var(--ui-top-bottom-margin);
+  ${(props) => props.theme.media('tabPort')`
+    margin: var(--ui-top-bottom-margin-small);
+  `}
 `;
 
 const Main = ({ children }) => {
