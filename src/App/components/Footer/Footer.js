@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // icons
 import {
-  InstagramAlt,
+  Github,
   LinkedinSquare,
   FacebookSquare,
 } from 'styled-icons/boxicons-logos';
@@ -18,8 +18,8 @@ const linkList = [
     url: 'https://www.linkedin.com/in/dolev-izacsson-084087109/',
   },
   {
-    Icon: InstagramAlt,
-    url: 'https://www.instagram.com/dolevizacson',
+    Icon: Github,
+    url: 'https://github.com/dolevizacson',
   },
 ];
 
