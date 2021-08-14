@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import types from '../types/types';
 
 // reducers
 import { skillsListsReducer, skillsListReducer } from './skillsListReducers';
@@ -12,13 +13,13 @@ import { initReducer } from './initReducer';
 import { contactReducer } from './contactReducers';
 
 export default combineReducers({
-  projectsList: projectsReducer,
+  [types.projects.stateName]: projectsReducer,
   project: projectReducer,
-  skillsLists: skillsListsReducer,
+  [types.skills.stateName]: skillsListsReducer,
   skillsList: skillsListReducer,
-  taskList: taskListReducer,
+  [types.taskList.stateName]: taskListReducer,
   task: taskReducer,
-  blogPostsList: blogPostsReducer,
+  [types.blog.stateName]: blogPostsReducer,
   blogPost: blogPostReducer,
   messageSent: contactReducer,
   isLoggedIn: authReducer,

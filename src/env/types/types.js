@@ -4,6 +4,8 @@ const types = {
   },
 
   skills: {
+    stateName: 'skillsLists',
+
     readAll: 'READ_SKILLS_LISTS',
     readAllRequest: 'READ_SKILLS_LISTS_REQUEST',
     readAllSuccess: 'READ_SKILLS_LISTS_SUCCESS',
@@ -39,6 +41,8 @@ const types = {
   },
 
   blog: {
+    stateName: 'blogPostsList',
+
     readAllActive: 'READ_ACTIVE_BLOG_POSTS',
     readAllActiveRequest: 'READ_ACTIVE_BLOG_POSTS_REQUEST',
     readAllActiveSuccess: 'READ_ACTIVE_BLOG_POSTS_SUCCESS',
@@ -81,6 +85,8 @@ const types = {
     reset: 'RESET_BLOG_POST',
   },
   taskList: {
+    stateName: 'taskList',
+
     readAll: 'READ_TASK_LIST',
     readAllRequest: 'READ_TASK_LIST_REQUEST',
     readAllSuccess: 'READ_TASK_LIST_SUCCESS',
@@ -130,6 +136,8 @@ const types = {
     isLoggedInFail: 'IS_LOGGED_IN_FAILURE',
   },
   projects: {
+    stateName: 'projectsList',
+
     readAllActive: 'READ_ACTIVE_PROJECTS',
     readAllActiveRequest: 'READ_ACTIVE_PROJECTS_REQUEST',
     readAllActiveSuccess: 'READ_ACTIVE_PROJECTS_SUCCESS',

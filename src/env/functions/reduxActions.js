@@ -2,7 +2,11 @@ const defaultOptions = { route: null, withID: false };
 
 export const getActiveItems =
   (types, service) => async (dispatch, getState) => {
-    dispatch({ type: types.readAllActiveRequest });
+    const state = getState();
+
+    if (state[types.stateName] && state[types.stateName].length === 0) {
+      dispatch({ type: types.readAllActiveRequest });
+    }
     let response;
     try {
       response = await service.getActiveItems();
@@ -16,6 +20,11 @@ export const getActiveItems =
   };
 
 export const getItems = (types, service) => async (dispatch, getState) => {
+  const state = getState();
+
+  if (state[types.stateName] && state[types.stateName].length === 0) {
+    dispatch({ type: types.readAllActiveRequest });
+  }
   dispatch({ type: types.readAllRequest });
   let response;
   try {
