@@ -192,7 +192,7 @@ const SkillsListFormView = (props) => {
                     })
                   }
                 >
-                  Add stack
+                  Add technology
                 </SkillsListFormButtonLeftStyle>
                 {!state?.isUpdate && (
                   <>
