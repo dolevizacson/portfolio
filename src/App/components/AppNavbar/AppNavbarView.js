@@ -38,6 +38,8 @@ const AppNavbarLinkStyle = styled(NavLink)`
     position: relative;
 
     padding: 0.3rem 0.8rem;
+    border: solid 1px var(--ui-general-color-1);
+    border-bottom: none;
 
     color: var(--ui-font-color-1);
     font-family: var(--ui-header-font-1);
@@ -46,9 +48,11 @@ const AppNavbarLinkStyle = styled(NavLink)`
     text-transform: uppercase;
     letter-spacing: 0.1rem;
   }
-  &:focus-visible {
-    box-shadow: var(--ui-shadow-1);
+  &:focus-visible,
+  &:hover {
     outline: none;
+    border: 1px solid var(--ui-general-color-2);
+    border-bottom: none;
   }
 
   &.active,
@@ -56,11 +60,7 @@ const AppNavbarLinkStyle = styled(NavLink)`
   &:active,
   &:active:hover {
     color: var(--ui-main-color-1);
-    box-shadow: none;
-  }
-
-  &:hover {
-    box-shadow: var(--ui-shadow-1);
+    border: none;
   }
 `;
 
@@ -99,18 +99,41 @@ const AppNavbarCollapseStyle = styled.div`
     flex-direction: column;
 
     & ${AppNavbarLinkListItemStyle} {
-      &:not(:last-child) {
-        padding-bottom: 0.3rem;
+      &:first-child ${AppNavbarLinkStyle} {
+        border-top: none;
+        padding-top: 0.8rem;
+      }
+      &:last-child ${AppNavbarLinkStyle} {
+        border-bottom: none;
+        padding-bottom: 0.8rem;
+      }
+    }
+
+    & ${AppNavbarLinkStyle} {
+      &:link,
+      &:visited {
+        border: solid 1px var(--ui-general-color-1);
+        padding: 0.4rem 1.6rem;
+      }
+
+      &.active,
+      &.active:hover,
+      &:active,
+      &:active:hover {
+        border: none;
+      }
+
+      &:focus-visible,
+      &:hover {
+        border: solid 1px var(--ui-general-color-2);
       }
     }
   }
 
-  padding: 0.5rem;
-
   width: 100%;
   border-bottom: 1px solid var(--ui-general-color-2);
 
-  font-size: 2.2rem;
+  font-size: 2.7rem;
 `;
 
 // constants
