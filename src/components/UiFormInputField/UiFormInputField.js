@@ -46,7 +46,6 @@ const UiFormFieldInputStyle = styled(Field).attrs(
 
   &:focus-visible {
     outline: none;
-    box-shadow: inset 0px 0px 5px 3px var(--ui-general-color-1);
   }
 
   &::selection {
