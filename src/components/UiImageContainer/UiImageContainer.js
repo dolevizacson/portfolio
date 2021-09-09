@@ -9,7 +9,7 @@ const UiImageContainerStyle = styled.figure`
   height: 100%;
 
   padding: 0.8rem;
-  border: 1px solid var(--ui-main-color-4);
+  border: 1px solid var(--ui-general-color-3);
 
   ${(props) =>
     !props.isLoaded
