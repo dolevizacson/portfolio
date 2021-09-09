@@ -6,7 +6,7 @@ import { UiImageContainer, UiLoading } from '../../../../env/utils/access';
 import content from './staticContent';
 
 // assets
-import profilePicture from '../../../../assets/images/tempPic.jpg';
+import profilePicture from '../../../../assets/images/ProfilePicSmall.JPG';
 
 const AboutStyle = styled.section`
   display: grid;
