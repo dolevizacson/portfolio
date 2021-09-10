@@ -74,12 +74,12 @@ const FooterLinkStyle = styled.a`
     border-radius: 4px;
     box-sizing: content-box;
   }
-
-  &:hover {
-    color: var(--ui-main-color-1);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--ui-main-color-1);
+    }
   }
 `;
-
 const FooterTextStyle = styled.p`
   font-family: var(--ui-header-font-1);
   font-size: 1.7rem;

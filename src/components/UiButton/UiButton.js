@@ -25,11 +25,13 @@ const UiButtonStyle = styled.button`
   outline: none;
   border: none;
 
-  &:hover {
-    background-color: var(--ui-main-color-1);
-    color: var(--ui-general-color-2);
-    transition: background-color 0.15s ease-out;
-    border: none;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--ui-main-color-1);
+      color: var(--ui-general-color-2);
+      transition: background-color 0.15s ease-out;
+      border: none;
+    }
   }
 
   &:active,
