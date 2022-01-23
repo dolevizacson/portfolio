@@ -4,10 +4,15 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 const env = runtimeEnv();
 
 export default class CRUD {
-  constructor(url, errorHandler) {
+  constructor(url, errorHandler, timeOut) {
     this.serviceServer = portfolioApiServer.create({
       baseURL: env.REACT_APP_BASE_URL + url,
     });
+
+    if (timeOut) {
+      this.serviceServer.defaults.timeout = timeOut;
+    }
+
     this.errorHandler = errorHandler;
   }
 
